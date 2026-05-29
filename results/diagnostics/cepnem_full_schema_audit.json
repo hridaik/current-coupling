@@ -1,0 +1,258 @@
+{
+  "file_status": {
+    "full_jld2_exists": true,
+    "full_bz2_exists": true,
+    "full_jld2_bytes_on_disk": 4234498048,
+    "full_jld2_gb_on_disk": 4.234,
+    "full_bz2_bytes": 12381241475,
+    "full_bz2_gb": 12.381
+  },
+  "superblock": {
+    "jld2_preamble_text": "HDF5-based Julia Data Format, version 0.1.1",
+    "hdf5_signature_at_512": true,
+    "hdf5_superblock_version": 2,
+    "offset_size_bytes": 8,
+    "base_address": 512,
+    "superblock_extension_addr": 18446744073709551615,
+    "stored_eof_addr": 19546889603,
+    "stored_full_file_size_bytes": 19546890115,
+    "stored_full_file_size_gb": 19.547,
+    "root_group_addr": 19546888935,
+    "root_group_near_end_of_file": true
+  },
+  "file_truncated": true,
+  "truncation_gb_missing": 15.31,
+  "inferred_field_inventory": {
+    "trace_array": {
+      "python_shape": "(T, N)",
+      "dtype": "float64",
+      "present_in_lite": true,
+      "description": "Z-scored GCaMP traces (identical to H5 gcamp/trace_array)"
+    },
+    "trace_original": {
+      "python_shape": "(T, N)",
+      "dtype": "float64",
+      "present_in_lite": true,
+      "description": "Raw fluorescence traces"
+    },
+    "v": {
+      "python_shape": "(T,)",
+      "dtype": "float64",
+      "present_in_lite": true,
+      "description": "Velocity behavioral covariate"
+    },
+    "ang_vel": {
+      "python_shape": "(T,)",
+      "dtype": "float64",
+      "present_in_lite": true,
+      "description": "Angular velocity covariate"
+    },
+    "\u03b8h": {
+      "python_shape": "(T,)",
+      "dtype": "float64",
+      "present_in_lite": true,
+      "description": "Head angle covariate"
+    },
+    "P": {
+      "python_shape": "(T,)",
+      "dtype": "float64",
+      "present_in_lite": true,
+      "description": "Pumping rate covariate"
+    },
+    "curve": {
+      "python_shape": "(T,)",
+      "dtype": "float64",
+      "present_in_lite": true,
+      "description": "Body curvature covariate"
+    },
+    "ranges": {
+      "python_shape": "(n_epochs,) struct",
+      "dtype": "structured (start, stop)",
+      "present_in_lite": true,
+      "description": "Epoch frame boundaries"
+    },
+    "num_neurons": {
+      "python_shape": "scalar",
+      "dtype": "int64",
+      "present_in_lite": true,
+      "description": "Number of neurons for this recording"
+    },
+    "avg_timestep": {
+      "python_shape": "scalar",
+      "dtype": "float64",
+      "present_in_lite": true,
+      "description": "Mean frame duration (seconds)"
+    },
+    "sampled_tau_vals": {
+      "python_shape": "(n_samples=10001, N, n_epochs)",
+      "dtype": "float64",
+      "present_in_lite": true,
+      "description": "MCMC posterior of EWMA timescale \u03c4 per neuron per epoch (derived from sampled_trace_params[:,7] = s0)"
+    },
+    "sampled_trace_params": {
+      "python_shape": "(n_params=11, n_samples=10001, N, n_epochs)",
+      "dtype": "float64",
+      "present_in_lite": false,
+      "description": "MCMC posterior of ALL 11 NL10d parameters per neuron per epoch. Contains behavioral encoding coefficients c_v, c_\u03b8h, c_P, c_vT enabling direct CePNEM residual computation via model_nl8 formula.",
+      "key_params": {
+        "c_v": "param index 2 \u2014 velocity encoding weight",
+        "c_\u03b8h": "param index 3 \u2014 head curvature encoding weight",
+        "c_P": "param index 4 \u2014 pumping encoding weight",
+        "c_vT": "param index 1 \u2014 velocity rectification",
+        "b": "param index 8 \u2014 baseline",
+        "s0": "param index 7 \u2014 EWMA timescale (same source as sampled_tau_vals)"
+      },
+      "source": "CePNEMAnalysis.jl/src/data.jl lines 47, 68-75"
+    },
+    "trace_params": {
+      "python_shape": "(n_params=11, n_particles, N, n_epochs)",
+      "dtype": "float64",
+      "present_in_lite": false,
+      "description": "Particle filter particles (raw; conditional on save_raw_params flag)",
+      "conditional": true
+    },
+    "log_weights": {
+      "python_shape": "(n_particles, N, n_epochs)",
+      "dtype": "float64",
+      "present_in_lite": false,
+      "description": "Log importance weights for particles",
+      "conditional": true
+    },
+    "trace_scores": {
+      "python_shape": "(n_particles, N, n_epochs)",
+      "dtype": "float64",
+      "present_in_lite": false,
+      "description": "Particle log-likelihood scores",
+      "conditional": true
+    },
+    "log_ml_est": {
+      "python_shape": "(N, n_epochs)",
+      "dtype": "float64",
+      "present_in_lite": false,
+      "description": "Log marginal likelihood estimate per neuron per epoch",
+      "conditional": true
+    }
+  },
+  "nl10d_params": [
+    {
+      "index": 1,
+      "name": "c_vT",
+      "description": "velocity rectification parameter",
+      "is_behavioral_encoding_weight": true,
+      "is_timing_parameter": false
+    },
+    {
+      "index": 2,
+      "name": "c_v",
+      "description": "velocity encoding coefficient (behavioral weight)",
+      "is_behavioral_encoding_weight": true,
+      "is_timing_parameter": false
+    },
+    {
+      "index": 3,
+      "name": "c_\u03b8h",
+      "description": "head curvature encoding coefficient (behavioral weight)",
+      "is_behavioral_encoding_weight": true,
+      "is_timing_parameter": false
+    },
+    {
+      "index": 4,
+      "name": "c_P",
+      "description": "pumping encoding coefficient (behavioral weight)",
+      "is_behavioral_encoding_weight": true,
+      "is_timing_parameter": false
+    },
+    {
+      "index": 5,
+      "name": "0",
+      "description": "constant term (disabled/zeroed in NL10d)",
+      "is_behavioral_encoding_weight": true,
+      "is_timing_parameter": false
+    },
+    {
+      "index": 6,
+      "name": "y0",
+      "description": "initial neural activity",
+      "is_behavioral_encoding_weight": false,
+      "is_timing_parameter": false
+    },
+    {
+      "index": 7,
+      "name": "s0",
+      "description": "EWMA timescale parameter (\u03c4 derived from this)",
+      "is_behavioral_encoding_weight": false,
+      "is_timing_parameter": true
+    },
+    {
+      "index": 8,
+      "name": "b",
+      "description": "baseline neural activity",
+      "is_behavioral_encoding_weight": false,
+      "is_timing_parameter": false
+    },
+    {
+      "index": 9,
+      "name": "\u21130",
+      "description": "GP residual length scale",
+      "is_behavioral_encoding_weight": false,
+      "is_timing_parameter": false
+    },
+    {
+      "index": 10,
+      "name": "\u03c30_SE",
+      "description": "GP residual squared-exponential amplitude",
+      "is_behavioral_encoding_weight": false,
+      "is_timing_parameter": false
+    },
+    {
+      "index": 11,
+      "name": "\u03c30_noise",
+      "description": "noise amplitude",
+      "is_behavioral_encoding_weight": false,
+      "is_timing_parameter": false
+    }
+  ],
+  "size_arithmetic": {
+    "sampled_trace_params_per_recording_bytes": 242904288,
+    "sampled_trace_params_per_recording_gb": 0.243,
+    "sampled_trace_params_total_68_recordings_gb": 16.52,
+    "sampled_tau_vals_total_68_recordings_gb": 1.5,
+    "expected_full_archive_gb_estimate": 18.5,
+    "observed_stored_eof_gb": 19.547,
+    "ratio_full_to_lite_theoretical": 11,
+    "ratio_full_to_lite_observed": 9.8,
+    "arithmetic_consistent": true
+  },
+  "residual_availability_full": {
+    "precomputed_residuals": false,
+    "predicted_traces": false,
+    "sampled_trace_params": "PRESENT (source-code inferred; file truncated)",
+    "behavioral_encoding_coefficients": "PRESENT in sampled_trace_params",
+    "residual_computation_method": "closed_form_model_nl8 (no OLS needed)",
+    "requires_ols_regression": false,
+    "requires_future_checkpoint": true,
+    "blocker": "File is truncated; complete decompression required first"
+  },
+  "lite_vs_full_comparison": {
+    "lite_fields_count": 11,
+    "full_additional_certain": [
+      "sampled_trace_params"
+    ],
+    "full_additional_conditional": [
+      "trace_params",
+      "log_weights",
+      "trace_scores",
+      "log_ml_est"
+    ],
+    "key_difference": "sampled_trace_params contains full 11-parameter MCMC posterior including behavioral encoding coefficients (c_v, c_\u03b8h, c_P, c_vT)",
+    "lite_can_compute_residuals": "yes (via OLS regression proxy \u2014 less accurate)",
+    "full_can_compute_residuals": "yes (via direct model_nl8 evaluation \u2014 more accurate)",
+    "file_accessible": false,
+    "file_blockers": [
+      "Truncated JLD2 \u2014 4 GB of 18.2 GB on disk",
+      "Root group metadata is in unwritten portion",
+      "h5py refuses to open truncated HDF5"
+    ],
+    "required_action": "Complete decompression of fit_results.jld2.bz2 \u2192 fit_results.jld2"
+  }
+}

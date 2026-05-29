@@ -1,0 +1,22 @@
+{
+  "date": "2026-05-28",
+  "EWMA_timescale_seconds": 20.0,
+  "BEHAV_THRESHOLD": 0.284,
+  "W_TRANS_SECONDS": 10.0,
+  "MIN_BOUT_SECONDS": 10.0,
+  "N_COMMON_NEURONS": 61,
+  "n_recordings": 40,
+  "ESTIMATOR_TIER": "pooled_hierarchical",
+  "NONSTATIONARITY_FRACTION": 1.0,
+  "tau_int_roaming_median_lags": 6.047019952730192,
+  "tau_int_roaming_median_sec": 1.2094039905460384,
+  "tau_int_nr_median_lags": 8.47310277861618,
+  "tau_int_nr_median_sec": 1.694620555723236,
+  "neff_roaming_animal_median": 0.0,
+  "neff_nr_animal_median": 84.78744168387439,
+  "pooled_roaming_neff_p25": 426.6735457556715,
+  "pooled_roaming_neff_p25_over_N": 6.994648291076582,
+  "pooled_nr_neff_p25": 2004.254312822688,
+  "pooled_nr_neff_p25_over_N": 32.85662807906046,
+  "_note_tau_int_units": "tau_int values are in LAGS (frames). Divide by SAMPLING_HZ=5 for seconds. These are cross-product ACF times, underestimated for short epochs (k_cap=T//3 truncation)."
+}

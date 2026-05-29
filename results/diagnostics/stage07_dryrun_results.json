@@ -1,0 +1,422 @@
+[
+  {
+    "regime": "non_roaming_optimistic",
+    "T_synth": 2000,
+    "effect_size": 0.1,
+    "N": 61,
+    "n_signal": 10,
+    "stability_selection": {
+      "TPR": 1.0,
+      "FPR_on": 0.12129380053908356,
+      "FPR_off_noise": 0.015873015873015872,
+      "n_true_positives": 10,
+      "n_signal": 10,
+      "n_discovered_off": 33,
+      "pass": true
+    },
+    "anatomy_guided": {
+      "TPR": 0.2,
+      "FPR_on": 0.1105121293800539,
+      "FPR_off_noise": 0.2277432712215321,
+      "n_true_positives": 2,
+      "n_signal": 10,
+      "pass": false
+    },
+    "circularity_control": {
+      "n_confirmed_by_both": 2,
+      "n_ss_only": 8
+    }
+  },
+  {
+    "regime": "non_roaming_optimistic",
+    "T_synth": 2000,
+    "effect_size": 0.2,
+    "N": 61,
+    "n_signal": 10,
+    "stability_selection": {
+      "TPR": 1.0,
+      "FPR_on": 0.18867924528301888,
+      "FPR_off_noise": 0.01725327812284334,
+      "n_true_positives": 10,
+      "n_signal": 10,
+      "n_discovered_off": 35,
+      "pass": true
+    },
+    "anatomy_guided": {
+      "TPR": 0.0,
+      "FPR_on": 0.0862533692722372,
+      "FPR_off_noise": 0.14354727398205658,
+      "n_true_positives": 0,
+      "n_signal": 10,
+      "pass": false
+    },
+    "circularity_control": {
+      "n_confirmed_by_both": 0,
+      "n_ss_only": 10
+    }
+  },
+  {
+    "regime": "non_roaming_optimistic",
+    "T_synth": 2000,
+    "effect_size": 0.3,
+    "N": 61,
+    "n_signal": 10,
+    "stability_selection": {
+      "TPR": 1.0,
+      "FPR_on": 0.11590296495956873,
+      "FPR_off_noise": 0.02139406487232574,
+      "n_true_positives": 10,
+      "n_signal": 10,
+      "n_discovered_off": 41,
+      "pass": true
+    },
+    "anatomy_guided": {
+      "TPR": 0.4,
+      "FPR_on": 0.1725067385444744,
+      "FPR_off_noise": 0.2443064182194617,
+      "n_true_positives": 4,
+      "n_signal": 10,
+      "pass": false
+    },
+    "circularity_control": {
+      "n_confirmed_by_both": 4,
+      "n_ss_only": 6
+    }
+  },
+  {
+    "regime": "non_roaming_middle",
+    "T_synth": 300,
+    "effect_size": 0.1,
+    "N": 61,
+    "n_signal": 10,
+    "stability_selection": {
+      "TPR": 0.0,
+      "FPR_on": 0.0,
+      "FPR_off_noise": 0.0,
+      "n_true_positives": 0,
+      "n_signal": 10,
+      "n_discovered_off": 0,
+      "pass": false
+    },
+    "anatomy_guided": {
+      "TPR": 0.4,
+      "FPR_on": 0.18328840970350405,
+      "FPR_off_noise": 0.3167701863354037,
+      "n_true_positives": 4,
+      "n_signal": 10,
+      "pass": false
+    },
+    "circularity_control": {
+      "n_confirmed_by_both": 0,
+      "n_ss_only": 0
+    }
+  },
+  {
+    "regime": "non_roaming_middle",
+    "T_synth": 300,
+    "effect_size": 0.2,
+    "N": 61,
+    "n_signal": 10,
+    "stability_selection": {
+      "TPR": 0.4,
+      "FPR_on": 0.008086253369272238,
+      "FPR_off_noise": 0.0,
+      "n_true_positives": 4,
+      "n_signal": 10,
+      "n_discovered_off": 4,
+      "pass": false
+    },
+    "anatomy_guided": {
+      "TPR": 0.6,
+      "FPR_on": 0.1293800539083558,
+      "FPR_off_noise": 0.2263630089717046,
+      "n_true_positives": 6,
+      "n_signal": 10,
+      "pass": true
+    },
+    "circularity_control": {
+      "n_confirmed_by_both": 2,
+      "n_ss_only": 2
+    }
+  },
+  {
+    "regime": "non_roaming_middle",
+    "T_synth": 300,
+    "effect_size": 0.3,
+    "N": 61,
+    "n_signal": 10,
+    "stability_selection": {
+      "TPR": 1.0,
+      "FPR_on": 0.016172506738544475,
+      "FPR_off_noise": 0.0006901311249137336,
+      "n_true_positives": 10,
+      "n_signal": 10,
+      "n_discovered_off": 11,
+      "pass": true
+    },
+    "anatomy_guided": {
+      "TPR": 0.1,
+      "FPR_on": 0.10242587601078167,
+      "FPR_off_noise": 0.16701173222912352,
+      "n_true_positives": 1,
+      "n_signal": 10,
+      "pass": false
+    },
+    "circularity_control": {
+      "n_confirmed_by_both": 1,
+      "n_ss_only": 9
+    }
+  },
+  {
+    "regime": "roaming_optimistic",
+    "T_synth": 420,
+    "effect_size": 0.1,
+    "N": 61,
+    "n_signal": 10,
+    "stability_selection": {
+      "TPR": 0.0,
+      "FPR_on": 0.0,
+      "FPR_off_noise": 0.0,
+      "n_true_positives": 0,
+      "n_signal": 10,
+      "n_discovered_off": 0,
+      "pass": false
+    },
+    "anatomy_guided": {
+      "TPR": 0.5,
+      "FPR_on": 0.11859838274932614,
+      "FPR_off_noise": 0.22084195997239475,
+      "n_true_positives": 5,
+      "n_signal": 10,
+      "pass": false
+    },
+    "circularity_control": {
+      "n_confirmed_by_both": 0,
+      "n_ss_only": 0
+    }
+  },
+  {
+    "regime": "roaming_optimistic",
+    "T_synth": 420,
+    "effect_size": 0.2,
+    "N": 61,
+    "n_signal": 10,
+    "stability_selection": {
+      "TPR": 0.8,
+      "FPR_on": 0.029649595687331536,
+      "FPR_off_noise": 0.0006901311249137336,
+      "n_true_positives": 8,
+      "n_signal": 10,
+      "n_discovered_off": 9,
+      "pass": true
+    },
+    "anatomy_guided": {
+      "TPR": 0.2,
+      "FPR_on": 0.18059299191374664,
+      "FPR_off_noise": 0.25948930296756384,
+      "n_true_positives": 2,
+      "n_signal": 10,
+      "pass": false
+    },
+    "circularity_control": {
+      "n_confirmed_by_both": 2,
+      "n_ss_only": 6
+    }
+  },
+  {
+    "regime": "roaming_optimistic",
+    "T_synth": 420,
+    "effect_size": 0.3,
+    "N": 61,
+    "n_signal": 10,
+    "stability_selection": {
+      "TPR": 0.9,
+      "FPR_on": 0.05121293800539083,
+      "FPR_off_noise": 0.0013802622498274672,
+      "n_true_positives": 9,
+      "n_signal": 10,
+      "n_discovered_off": 11,
+      "pass": true
+    },
+    "anatomy_guided": {
+      "TPR": 0.7,
+      "FPR_on": 0.16172506738544473,
+      "FPR_off_noise": 0.23740510697032435,
+      "n_true_positives": 7,
+      "n_signal": 10,
+      "pass": true
+    },
+    "circularity_control": {
+      "n_confirmed_by_both": 6,
+      "n_ss_only": 3
+    }
+  },
+  {
+    "regime": "roaming_middle",
+    "T_synth": 60,
+    "effect_size": 0.1,
+    "N": 61,
+    "n_signal": 10,
+    "stability_selection": {
+      "TPR": 0.0,
+      "FPR_on": 0.0,
+      "FPR_off_noise": 0.0,
+      "n_true_positives": 0,
+      "n_signal": 10,
+      "n_discovered_off": 0,
+      "pass": false
+    },
+    "anatomy_guided": {
+      "TPR": 0.2,
+      "FPR_on": 0.09164420485175202,
+      "FPR_off_noise": 0.23809523809523808,
+      "n_true_positives": 2,
+      "n_signal": 10,
+      "pass": false
+    },
+    "circularity_control": {
+      "n_confirmed_by_both": 0,
+      "n_ss_only": 0
+    }
+  },
+  {
+    "regime": "roaming_middle",
+    "T_synth": 60,
+    "effect_size": 0.2,
+    "N": 61,
+    "n_signal": 10,
+    "stability_selection": {
+      "TPR": 0.0,
+      "FPR_on": 0.0,
+      "FPR_off_noise": 0.0,
+      "n_true_positives": 0,
+      "n_signal": 10,
+      "n_discovered_off": 0,
+      "pass": false
+    },
+    "anatomy_guided": {
+      "TPR": 0.1,
+      "FPR_on": 0.07816711590296496,
+      "FPR_off_noise": 0.15942028985507245,
+      "n_true_positives": 1,
+      "n_signal": 10,
+      "pass": false
+    },
+    "circularity_control": {
+      "n_confirmed_by_both": 0,
+      "n_ss_only": 0
+    }
+  },
+  {
+    "regime": "roaming_middle",
+    "T_synth": 60,
+    "effect_size": 0.3,
+    "N": 61,
+    "n_signal": 10,
+    "stability_selection": {
+      "TPR": 0.0,
+      "FPR_on": 0.0,
+      "FPR_off_noise": 0.0,
+      "n_true_positives": 0,
+      "n_signal": 10,
+      "n_discovered_off": 0,
+      "pass": false
+    },
+    "anatomy_guided": {
+      "TPR": 0.1,
+      "FPR_on": 0.0862533692722372,
+      "FPR_off_noise": 0.22084195997239475,
+      "n_true_positives": 1,
+      "n_signal": 10,
+      "pass": false
+    },
+    "circularity_control": {
+      "n_confirmed_by_both": 0,
+      "n_ss_only": 0
+    }
+  },
+  {
+    "regime": "roaming_conservative",
+    "T_synth": 30,
+    "effect_size": 0.1,
+    "N": 61,
+    "n_signal": 10,
+    "stability_selection": {
+      "TPR": 0.0,
+      "FPR_on": 0.0,
+      "FPR_off_noise": 0.0,
+      "n_true_positives": 0,
+      "n_signal": 10,
+      "n_discovered_off": 0,
+      "pass": false
+    },
+    "anatomy_guided": {
+      "TPR": 0.2,
+      "FPR_on": 0.03773584905660377,
+      "FPR_off_noise": 0.13940648723257418,
+      "n_true_positives": 2,
+      "n_signal": 10,
+      "pass": false
+    },
+    "circularity_control": {
+      "n_confirmed_by_both": 0,
+      "n_ss_only": 0
+    }
+  },
+  {
+    "regime": "roaming_conservative",
+    "T_synth": 30,
+    "effect_size": 0.2,
+    "N": 61,
+    "n_signal": 10,
+    "stability_selection": {
+      "TPR": 0.0,
+      "FPR_on": 0.0,
+      "FPR_off_noise": 0.0,
+      "n_true_positives": 0,
+      "n_signal": 10,
+      "n_discovered_off": 0,
+      "pass": false
+    },
+    "anatomy_guided": {
+      "TPR": 0.1,
+      "FPR_on": 0.05390835579514825,
+      "FPR_off_noise": 0.16080055210489994,
+      "n_true_positives": 1,
+      "n_signal": 10,
+      "pass": false
+    },
+    "circularity_control": {
+      "n_confirmed_by_both": 0,
+      "n_ss_only": 0
+    }
+  },
+  {
+    "regime": "roaming_conservative",
+    "T_synth": 30,
+    "effect_size": 0.3,
+    "N": 61,
+    "n_signal": 10,
+    "stability_selection": {
+      "TPR": 0.0,
+      "FPR_on": 0.0,
+      "FPR_off_noise": 0.0,
+      "n_true_positives": 0,
+      "n_signal": 10,
+      "n_discovered_off": 0,
+      "pass": false
+    },
+    "anatomy_guided": {
+      "TPR": 0.1,
+      "FPR_on": 0.03773584905660377,
+      "FPR_off_noise": 0.13664596273291926,
+      "n_true_positives": 1,
+      "n_signal": 10,
+      "pass": false
+    },
+    "circularity_control": {
+      "n_confirmed_by_both": 0,
+      "n_ss_only": 0
+    }
+  }
+]

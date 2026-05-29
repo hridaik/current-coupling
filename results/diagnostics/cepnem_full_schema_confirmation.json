@@ -1,0 +1,215 @@
+{
+  "file_gb": 19.55,
+  "audit_type": "direct_file_inspection",
+  "top_level_keys": [
+    "_types",
+    "fit_results"
+  ],
+  "n_recordings": 68,
+  "recording_id_alignment": {
+    "n_cepnem": 68,
+    "n_h5": 68,
+    "n_overlap": 68,
+    "perfect_alignment": true
+  },
+  "canonical_fields": [
+    "P",
+    "ang_vel",
+    "avg_timestep",
+    "curve",
+    "num_neurons",
+    "ranges",
+    "sampled_tau_vals",
+    "sampled_trace_params",
+    "trace_array",
+    "trace_original",
+    "v",
+    "\u03b8h"
+  ],
+  "n_fields": 12,
+  "sampled_trace_params": {
+    "present": true,
+    "shape": [
+      11,
+      10001,
+      151,
+      2
+    ],
+    "dtype": "float64",
+    "axes": "(n_params=11, n_samples=10001, N_neurons, n_epochs)",
+    "present_in_lite": false
+  },
+  "parameter_stats": [
+    {
+      "index": 0,
+      "name": "c_vT",
+      "expected_zero": false,
+      "confirmed_zero": null,
+      "min": -5.423358994091484,
+      "max": 4.092367140900485,
+      "mean": -0.20598944447773324,
+      "std": 1.2259340396511829,
+      "is_behavioral_encoding_weight": true
+    },
+    {
+      "index": 1,
+      "name": "c_v",
+      "expected_zero": false,
+      "confirmed_zero": null,
+      "min": -3.9121509164469765,
+      "max": 3.4716704962335387,
+      "mean": 0.14438407726531252,
+      "std": 1.0423024898616784,
+      "is_behavioral_encoding_weight": true
+    },
+    {
+      "index": 2,
+      "name": "c_\u03b8h",
+      "expected_zero": false,
+      "confirmed_zero": null,
+      "min": -5.0540963762655515,
+      "max": 4.363134943899936,
+      "mean": 0.029725105461789726,
+      "std": 1.1334806735479095,
+      "is_behavioral_encoding_weight": true
+    },
+    {
+      "index": 3,
+      "name": "c_P",
+      "expected_zero": false,
+      "confirmed_zero": null,
+      "min": -2.2611817556658247,
+      "max": 2.9835622085281814,
+      "mean": 0.03055609799190457,
+      "std": 0.5134833421744445,
+      "is_behavioral_encoding_weight": true
+    },
+    {
+      "index": 4,
+      "name": "0_disabled",
+      "expected_zero": true,
+      "confirmed_zero": true,
+      "min": 0.0,
+      "max": 0.0,
+      "mean": 0.0,
+      "std": 0.0,
+      "is_behavioral_encoding_weight": false
+    },
+    {
+      "index": 5,
+      "name": "y0",
+      "expected_zero": false,
+      "confirmed_zero": null,
+      "min": -3.2950079579228198,
+      "max": 5.695788253578509,
+      "mean": 0.6611864832160097,
+      "std": 1.275405963262972,
+      "is_behavioral_encoding_weight": false
+    },
+    {
+      "index": 6,
+      "name": "s0",
+      "expected_zero": false,
+      "confirmed_zero": null,
+      "min": -3.8006332109461143,
+      "max": 4.795034256286401,
+      "mean": 0.43899770477270095,
+      "std": 1.428686604475522,
+      "is_behavioral_encoding_weight": false
+    },
+    {
+      "index": 7,
+      "name": "b",
+      "expected_zero": false,
+      "confirmed_zero": null,
+      "min": -3.5092332109868725,
+      "max": 3.293839042283261,
+      "mean": -0.17802300861448644,
+      "std": 0.8340058256495978,
+      "is_behavioral_encoding_weight": false
+    },
+    {
+      "index": 8,
+      "name": "\u21130",
+      "expected_zero": false,
+      "confirmed_zero": null,
+      "min": -3.4153386158127677,
+      "max": 1.1446010184060922,
+      "mean": -1.631158127780439,
+      "std": 0.561863357294452,
+      "is_behavioral_encoding_weight": false
+    },
+    {
+      "index": 9,
+      "name": "\u03c30_SE",
+      "expected_zero": false,
+      "confirmed_zero": null,
+      "min": -2.557743079168677,
+      "max": 0.9915181167759045,
+      "mean": 0.18435709521325022,
+      "std": 0.3638853531475947,
+      "is_behavioral_encoding_weight": false
+    },
+    {
+      "index": 10,
+      "name": "\u03c30_noise",
+      "expected_zero": false,
+      "confirmed_zero": null,
+      "min": -0.6939491127880868,
+      "max": 4.220191231889773,
+      "mean": 1.5899333196204468,
+      "std": 0.9749587090865066,
+      "is_behavioral_encoding_weight": false
+    }
+  ],
+  "nl10d_ordering_confirmed": true,
+  "survey_all_recordings": {
+    "all_fields_identical": true,
+    "all_have_sampled_trace_params": true,
+    "n_params_values": [
+      11
+    ],
+    "n_samples_values": [
+      10001
+    ],
+    "N_neurons_min": 105,
+    "N_neurons_max": 163,
+    "N_neurons_median": 138.5,
+    "n_epochs_min": 2,
+    "n_epochs_max": 3
+  },
+  "trace_array_h5_identical": true,
+  "precomputed_residuals_present": false,
+  "predicted_activity_present": false,
+  "absent_conditional_fields": [
+    "residuals",
+    "trace_residual",
+    "residual",
+    "predicted",
+    "predicted_activity",
+    "trace_params",
+    "log_weights",
+    "trace_scores",
+    "log_ml_est"
+  ],
+  "sampled_tau_vals_range_s": {
+    "min": 0.24530951080749377,
+    "max": 504.374590763056,
+    "p50": 7.1964691798119205
+  },
+  "timescale_reparameterization": {
+    "stp6_vs_stv_correlation": 0.991242540683433,
+    "note": "stp[6] is highly correlated with sampled_tau_vals but not in the same units/space. The forward transform stp[6]\u2192tau deviates from the simple formula assumed in the prior schema audit. Exact reparameterization requires verification at residual computation checkpoint. Does NOT affect the availability or usefulness of behavioral encoding params (indices 0-3)."
+  },
+  "feasibility": {
+    "sampled_trace_params_confirmed": true,
+    "behavioral_params_accessible": true,
+    "nl10d_ordering_confirmed": true,
+    "precomputed_residuals": false,
+    "predicted_neural_activity": false,
+    "custom_reconstruction_needed": true,
+    "reconstruction_method": "model_nl8 evaluation with posterior median parameters",
+    "timescale_param_translation_needed": true,
+    "all_68_recordings_present": true
+  }
+}

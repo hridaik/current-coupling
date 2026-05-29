@@ -1,0 +1,214 @@
+"""Stage 01 Creamer source audit.
+
+This script is deliberately read-only with respect to the Creamer repository.
+It inspects only filenames and selected text/code snippets; it does not import
+Creamer modules, execute notebooks, load pickle/model/data arrays, or compute
+scientific statistics.
+"""
+
+from __future__ import annotations
+
+from datetime import date
+from pathlib import Path
+import re
+
+
+CREAMER_ROOT = Path("data/creamer/Creamer_LDS_2026")
+REPORT_PATH = Path("results/diagnostics/stage01_creamer_audit.md")
+
+TEXT_FILES = [
+    "README.md",
+    "ssm_classes.py",
+    "loading_utilities.py",
+    "lgssm_utilities.py",
+    "quick_start_examples/_paths.py",
+    "quick_start_examples/predict_stams.py",
+    "quick_start_examples/generate_weights_spreadsheet.py",
+    "submission_params/exp_test.yml",
+    "submission_params/slurm_example.yml",
+    "submission_params/syn_test.yml",
+    "setup.py",
+]
+
+KEY_PATTERNS = [
+    r"dynamics_weights",
+    r"dynamics_input_weights",
+    r"dynamics_cov",
+    r"emissions_weights",
+    r"emissions_cov",
+    r"sample_rate",
+    r"latents\[t",
+    r"pred_cov",
+    r"max_abs_eig",
+    r"cell_ids",
+    r"pickle\.load",
+    r"connectome_constrained",
+]
+
+BINARY_OR_MODEL_SUFFIXES = {".pkl", ".pickle", ".npy", ".npz", ".mat", ".h5", ".hdf5"}
+
+
+def read_text(path: Path) -> list[str]:
+    return path.read_text(encoding="utf-8", errors="replace").splitlines()
+
+
+def excerpt(path: Path, start: int, end: int) -> str:
+    lines = read_text(path)
+    selected = lines[start - 1 : end]
+    body = "\n".join(f"{start + i:>4}: {line}" for i, line in enumerate(selected))
+    return f"**{path} lines {start}-{end}**\n\n```text\n{body}\n```"
+
+
+def collect_matches(root: Path, rel_paths: list[str]) -> dict[str, list[tuple[int, str]]]:
+    pattern = re.compile("|".join(KEY_PATTERNS), re.IGNORECASE)
+    matches: dict[str, list[tuple[int, str]]] = {}
+    for rel in rel_paths:
+        path = root / rel
+        if not path.exists():
+            continue
+        rel_matches: list[tuple[int, str]] = []
+        for line_no, line in enumerate(read_text(path), start=1):
+            if pattern.search(line):
+                rel_matches.append((line_no, line.strip()))
+        matches[rel] = rel_matches
+    return matches
+
+
+def list_files(root: Path) -> tuple[list[str], list[str]]:
+    text_like: list[str] = []
+    model_like: list[str] = []
+    for path in sorted(root.rglob("*")):
+        if not path.is_file():
+            continue
+        rel = path.relative_to(root).as_posix()
+        if any(part == ".git" for part in path.relative_to(root).parts):
+            continue
+        if path.suffix.lower() in BINARY_OR_MODEL_SUFFIXES:
+            model_like.append(rel)
+        elif path.suffix.lower() in {".md", ".py", ".yml", ".yaml", ".txt"}:
+            text_like.append(rel)
+    return text_like, model_like
+
+
+def build_report() -> str:
+    if not CREAMER_ROOT.exists():
+        raise FileNotFoundError(f"Missing Creamer repository: {CREAMER_ROOT}")
+
+    text_like, model_like = list_files(CREAMER_ROOT)
+    existing_text_files = [rel for rel in TEXT_FILES if (CREAMER_ROOT / rel).exists()]
+    matches = collect_matches(CREAMER_ROOT, existing_text_files)
+
+    model_lines = "\n".join(f"- `{name}`" for name in model_like) or "- none found"
+    text_lines = "\n".join(f"- `{name}`" for name in existing_text_files)
+
+    match_sections = []
+    for rel, rel_matches in matches.items():
+        if not rel_matches:
+            continue
+        preview = "\n".join(
+            f"- line {line_no}: `{line}`" for line_no, line in rel_matches[:20]
+        )
+        if len(rel_matches) > 20:
+            preview += f"\n- ... {len(rel_matches) - 20} additional matches omitted"
+        match_sections.append(f"### `{rel}`\n\n{preview}")
+
+    excerpts = [
+        excerpt(CREAMER_ROOT / "README.md", 23, 59),
+        excerpt(CREAMER_ROOT / "ssm_classes.py", 14, 45),
+        excerpt(CREAMER_ROOT / "ssm_classes.py", 76, 88),
+        excerpt(CREAMER_ROOT / "ssm_classes.py", 203, 219),
+        excerpt(CREAMER_ROOT / "ssm_classes.py", 252, 274),
+        excerpt(CREAMER_ROOT / "ssm_classes.py", 376, 388),
+        excerpt(CREAMER_ROOT / "ssm_classes.py", 647, 660),
+        excerpt(CREAMER_ROOT / "ssm_classes.py", 800, 805),
+        excerpt(CREAMER_ROOT / "loading_utilities.py", 247, 258),
+        excerpt(CREAMER_ROOT / "loading_utilities.py", 350, 369),
+        excerpt(CREAMER_ROOT / "quick_start_examples/predict_stams.py", 23, 37),
+        excerpt(CREAMER_ROOT / "quick_start_examples/generate_weights_spreadsheet.py", 7, 24),
+        excerpt(CREAMER_ROOT / "submission_params/slurm_example.yml", 12, 44),
+        excerpt(CREAMER_ROOT / "setup.py", 13, 20),
+    ]
+
+    return f"""# Stage 01 Creamer Source Audit
+
+Date: {date.today().isoformat()}
+
+Scope: non-biological source audit of `{CREAMER_ROOT}`. This report was generated by
+`scripts/stage01_creamer_check.py` using the Python standard library only. The script did
+not import Creamer code, load pickles/model/data arrays, execute notebooks, or compute
+scientific statistics.
+
+## Files Inspected
+
+{text_lines}
+
+## Model/Data-Like Files Not Loaded
+
+These files exist and may support later model checks, but were not opened as data arrays:
+
+{model_lines}
+
+## Summary Conclusions
+
+- Time convention appears to be discrete-time LGSSM/AR dynamics from code text:
+  `latents[t, :] = self.dynamics_weights @ latents[t-1, :] + ...`.
+- The repository documents `dynamics_weights` as `"W"` and `dynamics_cov` as `"Q" -
+  covariance of the dynamics noise. Diagonal in the paper.`
+- `dynamics_cov` is the closest documented candidate for the Phase 0 `D_C` source, but
+  it is a discrete-time process/dynamics-noise covariance and the repository's `"Q"` name
+  conflicts with this project's precision-matrix notation. Human decision is needed before
+  recording `CREAMER_D_TYPE`.
+- `dynamics_input_weights` is documented as `"H"` and appears to represent optogenetic
+  stimulation input/drive effects, not the dynamics-noise covariance.
+- `emissions_weights` is documented as latent-to-emission weights and set to identity in
+  the paper; `emissions_cov` is documented as emissions-noise covariance.
+- The default/model sample rate is documented in code as `2` Hz. `loading_utilities.py`
+  stores `sample_rate = 2 * upsample_factor`. A later unit audit should determine whether
+  `CREAMER_DT` should be `0.5` seconds for the released models.
+- Existing `models/*.pkl` files may later support eigenvalue/stability, covariance,
+  sigma-positive-definite, and omega-norm checks, but those checks require loading pickled
+  model objects and optional Creamer dependencies, so they were not run here.
+
+## Proposed Controlled Wording For Later Human Decision
+
+Candidate `CREAMER_D_TYPE` wording, not written to config:
+
+`discrete_time_dynamics_cov_process_noise_covariance_diag_in_paper`
+
+More cautious wording:
+
+`pending_human_decision_dynamics_cov_is_discrete_time_process_noise_covariance_not_continuous_D`
+
+## Unknown Until Later Loading/Decision
+
+- `CREAMER_TIME_CONVENTION`: likely discrete-time, but not written pending human review.
+- `CREAMER_DT`: likely derived from sample rate, but requires confirming the released
+  model's `sample_rate` and unit convention.
+- `CREAMER_MAX_EIGENVALUE` and `CREAMER_STABLE`: require loading the model matrix and
+  computing eigenvalues.
+- `CREAMER_DC_AVAILABLE`: likely yes via `dynamics_cov`, but should be recorded only after
+  loading/validating the actual model object and resolving discrete-time-to-Phase-0 mapping.
+- `CREAMER_LABEL_CONVENTION`: code uses `cell_ids` strings; exact convention requires
+  loading model metadata or inspecting source label files, which was outside this audit.
+- `CREAMER_SIGMA_POSDEF` and `CREAMER_OMEGA_NORM`: require numerical model loading and
+  computations, not performed.
+
+## Keyword Matches
+
+{chr(10).join(match_sections)}
+
+## Exact Excerpts
+
+{chr(10).join(excerpts)}
+"""
+
+
+def main() -> None:
+    report = build_report()
+    REPORT_PATH.parent.mkdir(parents=True, exist_ok=True)
+    REPORT_PATH.write_text(report, encoding="utf-8")
+    print(f"Wrote {REPORT_PATH}")
+
+
+if __name__ == "__main__":
+    main()

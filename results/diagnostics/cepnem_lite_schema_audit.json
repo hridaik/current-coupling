@@ -1,0 +1,2384 @@
+{
+  "top_level_keys": [
+    "_types",
+    "fit_results_lite"
+  ],
+  "n_recordings": 68,
+  "canonical_fields": [
+    "P",
+    "ang_vel",
+    "avg_timestep",
+    "curve",
+    "num_neurons",
+    "ranges",
+    "sampled_tau_vals",
+    "trace_array",
+    "trace_original",
+    "v",
+    "\u03b8h"
+  ],
+  "all_recordings_same_fields": true,
+  "sampling_rate_hz": {
+    "min": 1.3556534984053585,
+    "max": 1.6624564947106495,
+    "median": 1.6622967656532643,
+    "note": "H5-stored rate ~1.66 Hz, not the 5 Hz raw acquisition rate"
+  },
+  "n_neurons": {
+    "min": 105,
+    "max": 163,
+    "median": 138.5
+  },
+  "recording_id_alignment": {
+    "n_h5": 68,
+    "n_cepnem": 68,
+    "n_overlap": 68,
+    "n_cepnem_only": 0,
+    "n_h5_only": 0,
+    "perfect_alignment": true
+  },
+  "trace_array_vs_h5": {
+    "recording_id": "2022-04-12-04",
+    "h5_shape": [
+      1600,
+      151
+    ],
+    "cepnem_shape": [
+      1600,
+      151
+    ],
+    "max_abs_diff": 0.0,
+    "identical": true
+  },
+  "residual_availability": {
+    "residuals_directly_stored": false,
+    "beta_coefficients_stored": false,
+    "predicted_traces_stored": false,
+    "tau_posterior_samples_stored": true,
+    "behavioral_covariates_stored": true,
+    "trace_array_stored": true,
+    "computable_from_lite_with_ewma_regression": true,
+    "requires_future_computation_checkpoint": true,
+    "missing_relative_to_full_fit_results": [
+      "beta (behavioral encoding coefficients)",
+      "precomputed residuals",
+      "MCMC samples of beta posterior",
+      "log-likelihood values",
+      "convergence diagnostics"
+    ]
+  },
+  "per_recording_meta": [
+    {
+      "recording_id": "2022-04-12-04",
+      "T": 1600,
+      "num_neurons": 151,
+      "avg_timestep_s": 0.601577,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        151
+      ],
+      "trace_original_shape": [
+        1600,
+        151
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        151,
+        2
+      ]
+    },
+    {
+      "recording_id": "2022-04-18-04",
+      "T": 1600,
+      "num_neurons": 133,
+      "avg_timestep_s": 0.601568,
+      "sampling_hz": 1.6623,
+      "n_epochs": 3,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        133
+      ],
+      "trace_original_shape": [
+        1600,
+        133
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        133,
+        3
+      ]
+    },
+    {
+      "recording_id": "2022-06-14-07",
+      "T": 1600,
+      "num_neurons": 130,
+      "avg_timestep_s": 0.601568,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        130
+      ],
+      "trace_original_shape": [
+        1600,
+        130
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        130,
+        2
+      ]
+    },
+    {
+      "recording_id": "2022-02-08-04",
+      "T": 1600,
+      "num_neurons": 125,
+      "avg_timestep_s": 0.601578,
+      "sampling_hz": 1.6623,
+      "n_epochs": 3,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        125
+      ],
+      "trace_original_shape": [
+        1600,
+        125
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        125,
+        3
+      ]
+    },
+    {
+      "recording_id": "2023-01-17-01",
+      "T": 1615,
+      "num_neurons": 138,
+      "avg_timestep_s": 0.601568,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1615,
+        138
+      ],
+      "trace_original_shape": [
+        1615,
+        138
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        138,
+        2
+      ]
+    },
+    {
+      "recording_id": "2023-01-10-07",
+      "T": 1615,
+      "num_neurons": 144,
+      "avg_timestep_s": 0.601584,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1615,
+        144
+      ],
+      "trace_original_shape": [
+        1615,
+        144
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        144,
+        2
+      ]
+    },
+    {
+      "recording_id": "2022-06-14-13",
+      "T": 1600,
+      "num_neurons": 134,
+      "avg_timestep_s": 0.601568,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        134
+      ],
+      "trace_original_shape": [
+        1600,
+        134
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        134,
+        2
+      ]
+    },
+    {
+      "recording_id": "2022-01-17-01",
+      "T": 1600,
+      "num_neurons": 120,
+      "avg_timestep_s": 0.737651,
+      "sampling_hz": 1.3557,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        120
+      ],
+      "trace_original_shape": [
+        1600,
+        120
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        120,
+        2
+      ]
+    },
+    {
+      "recording_id": "2023-01-10-14",
+      "T": 1615,
+      "num_neurons": 142,
+      "avg_timestep_s": 0.601551,
+      "sampling_hz": 1.6624,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1615,
+        142
+      ],
+      "trace_original_shape": [
+        1615,
+        142
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        142,
+        2
+      ]
+    },
+    {
+      "recording_id": "2023-01-23-01",
+      "T": 1600,
+      "num_neurons": 151,
+      "avg_timestep_s": 0.601545,
+      "sampling_hz": 1.6624,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        151
+      ],
+      "trace_original_shape": [
+        1600,
+        151
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        151,
+        2
+      ]
+    },
+    {
+      "recording_id": "2022-06-28-01",
+      "T": 1600,
+      "num_neurons": 142,
+      "avg_timestep_s": 0.601599,
+      "sampling_hz": 1.6622,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        142
+      ],
+      "trace_original_shape": [
+        1600,
+        142
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        142,
+        2
+      ]
+    },
+    {
+      "recording_id": "2023-01-19-15",
+      "T": 1600,
+      "num_neurons": 144,
+      "avg_timestep_s": 0.601571,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        144
+      ],
+      "trace_original_shape": [
+        1600,
+        144
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        144,
+        2
+      ]
+    },
+    {
+      "recording_id": "2023-01-09-22",
+      "T": 1615,
+      "num_neurons": 146,
+      "avg_timestep_s": 0.601569,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1615,
+        146
+      ],
+      "trace_original_shape": [
+        1615,
+        146
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        146,
+        2
+      ]
+    },
+    {
+      "recording_id": "2023-01-13-07",
+      "T": 1615,
+      "num_neurons": 120,
+      "avg_timestep_s": 0.601573,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1615,
+        120
+      ],
+      "trace_original_shape": [
+        1615,
+        120
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        120,
+        2
+      ]
+    },
+    {
+      "recording_id": "2022-07-20-01",
+      "T": 1600,
+      "num_neurons": 144,
+      "avg_timestep_s": 0.601576,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        144
+      ],
+      "trace_original_shape": [
+        1600,
+        144
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        144,
+        2
+      ]
+    },
+    {
+      "recording_id": "2021-11-12-05",
+      "T": 1600,
+      "num_neurons": 141,
+      "avg_timestep_s": 0.608747,
+      "sampling_hz": 1.6427,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        141
+      ],
+      "trace_original_shape": [
+        1600,
+        141
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        141,
+        2
+      ]
+    },
+    {
+      "recording_id": "2021-08-04-06",
+      "T": 1600,
+      "num_neurons": 157,
+      "avg_timestep_s": 0.606652,
+      "sampling_hz": 1.6484,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        157
+      ],
+      "trace_original_shape": [
+        1600,
+        157
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        157,
+        2
+      ]
+    },
+    {
+      "recording_id": "2022-01-07-03",
+      "T": 1600,
+      "num_neurons": 105,
+      "avg_timestep_s": 0.737652,
+      "sampling_hz": 1.3557,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        105
+      ],
+      "trace_original_shape": [
+        1600,
+        105
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        105,
+        2
+      ]
+    },
+    {
+      "recording_id": "2021-11-12-01",
+      "T": 1600,
+      "num_neurons": 137,
+      "avg_timestep_s": 0.608756,
+      "sampling_hz": 1.6427,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        137
+      ],
+      "trace_original_shape": [
+        1600,
+        137
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        137,
+        2
+      ]
+    },
+    {
+      "recording_id": "2021-09-22-05",
+      "T": 1600,
+      "num_neurons": 145,
+      "avg_timestep_s": 0.608708,
+      "sampling_hz": 1.6428,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        145
+      ],
+      "trace_original_shape": [
+        1600,
+        145
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        145,
+        2
+      ]
+    },
+    {
+      "recording_id": "2023-01-09-08",
+      "T": 1615,
+      "num_neurons": 131,
+      "avg_timestep_s": 0.601584,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1615,
+        131
+      ],
+      "trace_original_shape": [
+        1615,
+        131
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        131,
+        2
+      ]
+    },
+    {
+      "recording_id": "2022-06-28-07",
+      "T": 1600,
+      "num_neurons": 142,
+      "avg_timestep_s": 0.601542,
+      "sampling_hz": 1.6624,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        142
+      ],
+      "trace_original_shape": [
+        1600,
+        142
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        142,
+        2
+      ]
+    },
+    {
+      "recording_id": "2023-01-23-08",
+      "T": 1600,
+      "num_neurons": 143,
+      "avg_timestep_s": 0.60159,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        143
+      ],
+      "trace_original_shape": [
+        1600,
+        143
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        143,
+        2
+      ]
+    },
+    {
+      "recording_id": "2022-04-14-04",
+      "T": 1600,
+      "num_neurons": 132,
+      "avg_timestep_s": 0.601555,
+      "sampling_hz": 1.6624,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        132
+      ],
+      "trace_original_shape": [
+        1600,
+        132
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        132,
+        2
+      ]
+    },
+    {
+      "recording_id": "2023-01-23-21",
+      "T": 1600,
+      "num_neurons": 126,
+      "avg_timestep_s": 0.601586,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        126
+      ],
+      "trace_original_shape": [
+        1600,
+        126
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        126,
+        2
+      ]
+    },
+    {
+      "recording_id": "2022-03-22-01",
+      "T": 1600,
+      "num_neurons": 135,
+      "avg_timestep_s": 0.601559,
+      "sampling_hz": 1.6623,
+      "n_epochs": 3,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        135
+      ],
+      "trace_original_shape": [
+        1600,
+        135
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        135,
+        3
+      ]
+    },
+    {
+      "recording_id": "2021-05-26-07",
+      "T": 1600,
+      "num_neurons": 143,
+      "avg_timestep_s": 0.637381,
+      "sampling_hz": 1.5689,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        143
+      ],
+      "trace_original_shape": [
+        1600,
+        143
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        143,
+        2
+      ]
+    },
+    {
+      "recording_id": "2022-08-02-01",
+      "T": 1600,
+      "num_neurons": 152,
+      "avg_timestep_s": 0.601555,
+      "sampling_hz": 1.6624,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        152
+      ],
+      "trace_original_shape": [
+        1600,
+        152
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        152,
+        2
+      ]
+    },
+    {
+      "recording_id": "2021-09-23-01",
+      "T": 1600,
+      "num_neurons": 150,
+      "avg_timestep_s": 0.608718,
+      "sampling_hz": 1.6428,
+      "n_epochs": 3,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        150
+      ],
+      "trace_original_shape": [
+        1600,
+        150
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        150,
+        3
+      ]
+    },
+    {
+      "recording_id": "2023-01-16-01",
+      "T": 1615,
+      "num_neurons": 139,
+      "avg_timestep_s": 0.601581,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1615,
+        139
+      ],
+      "trace_original_shape": [
+        1615,
+        139
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        139,
+        2
+      ]
+    },
+    {
+      "recording_id": "2021-10-26-01",
+      "T": 1600,
+      "num_neurons": 150,
+      "avg_timestep_s": 0.608737,
+      "sampling_hz": 1.6427,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        150
+      ],
+      "trace_original_shape": [
+        1600,
+        150
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        150,
+        2
+      ]
+    },
+    {
+      "recording_id": "2023-01-06-08",
+      "T": 1615,
+      "num_neurons": 125,
+      "avg_timestep_s": 0.601569,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1615,
+        125
+      ],
+      "trace_original_shape": [
+        1615,
+        125
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        125,
+        2
+      ]
+    },
+    {
+      "recording_id": "2021-06-11-01",
+      "T": 1600,
+      "num_neurons": 163,
+      "avg_timestep_s": 0.637369,
+      "sampling_hz": 1.569,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        163
+      ],
+      "trace_original_shape": [
+        1600,
+        163
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        163,
+        2
+      ]
+    },
+    {
+      "recording_id": "2022-03-15-04",
+      "T": 1600,
+      "num_neurons": 131,
+      "avg_timestep_s": 0.60152,
+      "sampling_hz": 1.6625,
+      "n_epochs": 3,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        131
+      ],
+      "trace_original_shape": [
+        1600,
+        131
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        131,
+        3
+      ]
+    },
+    {
+      "recording_id": "2023-01-06-01",
+      "T": 1615,
+      "num_neurons": 130,
+      "avg_timestep_s": 0.601567,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1615,
+        130
+      ],
+      "trace_original_shape": [
+        1615,
+        130
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        130,
+        2
+      ]
+    },
+    {
+      "recording_id": "2022-07-15-06",
+      "T": 1600,
+      "num_neurons": 128,
+      "avg_timestep_s": 0.601564,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        128
+      ],
+      "trace_original_shape": [
+        1600,
+        128
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        128,
+        2
+      ]
+    },
+    {
+      "recording_id": "2022-12-21-06",
+      "T": 1609,
+      "num_neurons": 126,
+      "avg_timestep_s": 0.601582,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1609,
+        126
+      ],
+      "trace_original_shape": [
+        1609,
+        126
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        126,
+        2
+      ]
+    },
+    {
+      "recording_id": "2023-01-19-01",
+      "T": 1600,
+      "num_neurons": 124,
+      "avg_timestep_s": 0.601596,
+      "sampling_hz": 1.6622,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        124
+      ],
+      "trace_original_shape": [
+        1600,
+        124
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        124,
+        2
+      ]
+    },
+    {
+      "recording_id": "2023-01-16-08",
+      "T": 1615,
+      "num_neurons": 137,
+      "avg_timestep_s": 0.60158,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1615,
+        137
+      ],
+      "trace_original_shape": [
+        1615,
+        137
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        137,
+        2
+      ]
+    },
+    {
+      "recording_id": "2021-09-06-09",
+      "T": 1600,
+      "num_neurons": 146,
+      "avg_timestep_s": 0.608717,
+      "sampling_hz": 1.6428,
+      "n_epochs": 3,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        146
+      ],
+      "trace_original_shape": [
+        1600,
+        146
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        146,
+        3
+      ]
+    },
+    {
+      "recording_id": "2023-01-18-01",
+      "T": 1615,
+      "num_neurons": 126,
+      "avg_timestep_s": 0.601553,
+      "sampling_hz": 1.6624,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1615,
+        126
+      ],
+      "trace_original_shape": [
+        1615,
+        126
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        126,
+        2
+      ]
+    },
+    {
+      "recording_id": "2021-08-17-01",
+      "T": 1600,
+      "num_neurons": 149,
+      "avg_timestep_s": 0.606699,
+      "sampling_hz": 1.6483,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        149
+      ],
+      "trace_original_shape": [
+        1600,
+        149
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        149,
+        2
+      ]
+    },
+    {
+      "recording_id": "2023-01-19-08",
+      "T": 1600,
+      "num_neurons": 147,
+      "avg_timestep_s": 0.601568,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        147
+      ],
+      "trace_original_shape": [
+        1600,
+        147
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        147,
+        2
+      ]
+    },
+    {
+      "recording_id": "2023-01-19-22",
+      "T": 1600,
+      "num_neurons": 153,
+      "avg_timestep_s": 0.601579,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        153
+      ],
+      "trace_original_shape": [
+        1600,
+        153
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        153,
+        2
+      ]
+    },
+    {
+      "recording_id": "2022-03-16-02",
+      "T": 1544,
+      "num_neurons": 120,
+      "avg_timestep_s": 0.601575,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1544,
+        120
+      ],
+      "trace_original_shape": [
+        1544,
+        120
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        120,
+        2
+      ]
+    },
+    {
+      "recording_id": "2021-09-30-01",
+      "T": 1600,
+      "num_neurons": 132,
+      "avg_timestep_s": 0.608747,
+      "sampling_hz": 1.6427,
+      "n_epochs": 3,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        132
+      ],
+      "trace_original_shape": [
+        1600,
+        132
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        132,
+        3
+      ]
+    },
+    {
+      "recording_id": "2022-04-05-01",
+      "T": 1600,
+      "num_neurons": 141,
+      "avg_timestep_s": 0.601568,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        141
+      ],
+      "trace_original_shape": [
+        1600,
+        141
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        141,
+        2
+      ]
+    },
+    {
+      "recording_id": "2023-01-05-18",
+      "T": 1615,
+      "num_neurons": 122,
+      "avg_timestep_s": 0.601579,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1615,
+        122
+      ],
+      "trace_original_shape": [
+        1615,
+        122
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        122,
+        2
+      ]
+    },
+    {
+      "recording_id": "2021-09-14-05",
+      "T": 1600,
+      "num_neurons": 141,
+      "avg_timestep_s": 0.608746,
+      "sampling_hz": 1.6427,
+      "n_epochs": 3,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        141
+      ],
+      "trace_original_shape": [
+        1600,
+        141
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        141,
+        3
+      ]
+    },
+    {
+      "recording_id": "2022-02-16-04",
+      "T": 1600,
+      "num_neurons": 138,
+      "avg_timestep_s": 0.601541,
+      "sampling_hz": 1.6624,
+      "n_epochs": 3,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        138
+      ],
+      "trace_original_shape": [
+        1600,
+        138
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        138,
+        3
+      ]
+    },
+    {
+      "recording_id": "2023-01-09-15",
+      "T": 1615,
+      "num_neurons": 147,
+      "avg_timestep_s": 0.601572,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1615,
+        147
+      ],
+      "trace_original_shape": [
+        1615,
+        147
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        147,
+        2
+      ]
+    },
+    {
+      "recording_id": "2023-01-05-01",
+      "T": 1615,
+      "num_neurons": 139,
+      "avg_timestep_s": 0.601568,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1615,
+        139
+      ],
+      "trace_original_shape": [
+        1615,
+        139
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        139,
+        2
+      ]
+    },
+    {
+      "recording_id": "2021-09-14-01",
+      "T": 1600,
+      "num_neurons": 147,
+      "avg_timestep_s": 0.608743,
+      "sampling_hz": 1.6427,
+      "n_epochs": 3,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        147
+      ],
+      "trace_original_shape": [
+        1600,
+        147
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        147,
+        3
+      ]
+    },
+    {
+      "recording_id": "2023-01-23-15",
+      "T": 1600,
+      "num_neurons": 147,
+      "avg_timestep_s": 0.601556,
+      "sampling_hz": 1.6624,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        147
+      ],
+      "trace_original_shape": [
+        1600,
+        147
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        147,
+        2
+      ]
+    },
+    {
+      "recording_id": "2021-08-18-01",
+      "T": 1600,
+      "num_neurons": 147,
+      "avg_timestep_s": 0.604636,
+      "sampling_hz": 1.6539,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        147
+      ],
+      "trace_original_shape": [
+        1600,
+        147
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        147,
+        2
+      ]
+    },
+    {
+      "recording_id": "2023-03-07-01",
+      "T": 1600,
+      "num_neurons": 153,
+      "avg_timestep_s": 0.601589,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        153
+      ],
+      "trace_original_shape": [
+        1600,
+        153
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        153,
+        2
+      ]
+    },
+    {
+      "recording_id": "2022-07-26-01",
+      "T": 1600,
+      "num_neurons": 133,
+      "avg_timestep_s": 0.601554,
+      "sampling_hz": 1.6624,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        133
+      ],
+      "trace_original_shape": [
+        1600,
+        133
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        133,
+        2
+      ]
+    },
+    {
+      "recording_id": "2023-01-06-15",
+      "T": 1615,
+      "num_neurons": 121,
+      "avg_timestep_s": 0.60159,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1615,
+        121
+      ],
+      "trace_original_shape": [
+        1615,
+        121
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        121,
+        2
+      ]
+    },
+    {
+      "recording_id": "2023-01-16-15",
+      "T": 1615,
+      "num_neurons": 123,
+      "avg_timestep_s": 0.601576,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1615,
+        123
+      ],
+      "trace_original_shape": [
+        1615,
+        123
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        123,
+        2
+      ]
+    },
+    {
+      "recording_id": "2022-01-09-01",
+      "T": 1600,
+      "num_neurons": 126,
+      "avg_timestep_s": 0.737638,
+      "sampling_hz": 1.3557,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        126
+      ],
+      "trace_original_shape": [
+        1600,
+        126
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        126,
+        2
+      ]
+    },
+    {
+      "recording_id": "2023-01-17-14",
+      "T": 1615,
+      "num_neurons": 144,
+      "avg_timestep_s": 0.601568,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1615,
+        144
+      ],
+      "trace_original_shape": [
+        1615,
+        144
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        144,
+        2
+      ]
+    },
+    {
+      "recording_id": "2022-07-15-12",
+      "T": 1600,
+      "num_neurons": 132,
+      "avg_timestep_s": 0.601571,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        132
+      ],
+      "trace_original_shape": [
+        1600,
+        132
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        132,
+        2
+      ]
+    },
+    {
+      "recording_id": "2022-03-16-01",
+      "T": 1600,
+      "num_neurons": 115,
+      "avg_timestep_s": 0.601548,
+      "sampling_hz": 1.6624,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        115
+      ],
+      "trace_original_shape": [
+        1600,
+        115
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        115,
+        2
+      ]
+    },
+    {
+      "recording_id": "2022-02-16-01",
+      "T": 1600,
+      "num_neurons": 124,
+      "avg_timestep_s": 0.601568,
+      "sampling_hz": 1.6623,
+      "n_epochs": 3,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        124
+      ],
+      "trace_original_shape": [
+        1600,
+        124
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        124,
+        3
+      ]
+    },
+    {
+      "recording_id": "2023-01-09-28",
+      "T": 1615,
+      "num_neurons": 145,
+      "avg_timestep_s": 0.601581,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1615,
+        145
+      ],
+      "trace_original_shape": [
+        1615,
+        145
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        145,
+        2
+      ]
+    },
+    {
+      "recording_id": "2023-01-16-22",
+      "T": 1614,
+      "num_neurons": 135,
+      "avg_timestep_s": 0.60159,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1614,
+        135
+      ],
+      "trace_original_shape": [
+        1614,
+        135
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        135,
+        2
+      ]
+    },
+    {
+      "recording_id": "2023-01-17-07",
+      "T": 1615,
+      "num_neurons": 144,
+      "avg_timestep_s": 0.601559,
+      "sampling_hz": 1.6623,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1615,
+        144
+      ],
+      "trace_original_shape": [
+        1615,
+        144
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        144,
+        2
+      ]
+    },
+    {
+      "recording_id": "2022-06-14-01",
+      "T": 1600,
+      "num_neurons": 109,
+      "avg_timestep_s": 0.601595,
+      "sampling_hz": 1.6622,
+      "n_epochs": 2,
+      "field_names": [
+        "P",
+        "ang_vel",
+        "avg_timestep",
+        "curve",
+        "num_neurons",
+        "ranges",
+        "sampled_tau_vals",
+        "trace_array",
+        "trace_original",
+        "v",
+        "\u03b8h"
+      ],
+      "trace_array_shape": [
+        1600,
+        109
+      ],
+      "trace_original_shape": [
+        1600,
+        109
+      ],
+      "sampled_tau_vals_shape": [
+        10001,
+        109,
+        2
+      ]
+    }
+  ]
+}

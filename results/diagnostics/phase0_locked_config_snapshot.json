@@ -1,0 +1,113 @@
+{
+  "_meta": {
+    "created": "2026-05-29",
+    "description": "Locked Phase 0 config values for Phase 1 handoff. Large arrays and diagnostics excluded. All listed values are frozen and must not be changed without human authorization and a new CHECKPOINT_LOG entry.",
+    "PHASE0_COMPLETE": false,
+    "PHASE0_METHOD_LOCK_COMPLETE": true
+  },
+  "methodology_lock": {
+    "PHASE0_COMPLETE": false,
+    "PHASE0_METHOD_LOCK_COMPLETE": true
+  },
+  "harmonization": {
+    "LR_POLICY": "separate",
+    "IDENTITY_CONFIDENCE_THRESHOLD": 2.5,
+    "COVERAGE_FRACTION": 0.8,
+    "N_COMMON_NEURONS": 61,
+    "N_RANDI_SUBGRAPH_NEURONS": 60,
+    "N_CREAMER_SUBGRAPH_NEURONS": 56,
+    "SUBGRAPH_ADEQUATE": true,
+    "SYNAPSE_COUNT_THRESHOLD": 1,
+    "SYNAPSE_COUNT_THRESHOLD_SENSITIVITY": 3
+  },
+  "randi_pairs": {
+    "RANDI_WT_Q_THRESHOLD": 0.05,
+    "RANDI_AMPLITUDE_GATE_DFF": null,
+    "N_RANDI_SUBGRAPH_PAIRS": 189
+  },
+  "creamer_lds": {
+    "CREAMER_TIME_CONVENTION": "discrete_time",
+    "CREAMER_DT": 0.5,
+    "CREAMER_MAX_EIGENVALUE": 0.996609,
+    "CREAMER_STABLE": true,
+    "CREAMER_DC_AVAILABLE": true,
+    "CREAMER_D_TYPE": "discrete_time_dynamics_cov_process_noise_covariance_diag_in_paper_not_continuous_D",
+    "CREAMER_LABEL_CONVENTION": "neuropal_str",
+    "CREAMER_SIGMA_POSDEF": true,
+    "CREAMER_OMEGA_NORM": 8.6089
+  },
+  "rc_roles": {
+    "RC_OUTPUT_NEURON_COORDS": false,
+    "RC_OUTPUT_JACOBIAN_AVAILABLE": false,
+    "RC_STATE_CONDITIONED": false,
+    "RC_NEURON_COVERAGE": 0,
+    "RC_ROLE_SAMPLING": "behavioral_eigenworm_only",
+    "RC_ROLE_JACOBIAN": "not_viable",
+    "RC_ROLE_DRIVE_SWEEP": "not_viable"
+  },
+  "preprocessing": {
+    "COORD_PRIMARY": "gcamp_trace_array_zscore",
+    "COORD_ROBUSTNESS_1": null,
+    "COORD_ROBUSTNESS_2": null,
+    "DECONV_AVAILABLE": false,
+    "NORMALIZATION": "z_score_global",
+    "MISSING_NEURON_POLICY": "nan_complete_case",
+    "BEHAVIOR_SCORE_SOURCE": "velocity_s",
+    "BEHAV_THRESHOLD": 0.284,
+    "BEHAV_THRESHOLD_RULE": "pooled_velocity_s_kde_trough_between_dwelling_and_roaming",
+    "EWMA_TIMESCALE_SECONDS": 20.0,
+    "W_TRANS_SECONDS": 10.0,
+    "MIN_BOUT_SECONDS": 10.0,
+    "COORD_INTERP_RULE": "gcamp_trace_array_zscore_only: ΔQ_significant → report as tentative state-conditional fluorescence structure; behavioral confound unresolved until CePNEM residual replication."
+  },
+  "neff_stationarity": {
+    "NEFF_METHOD": "cross_product_integrated_autocorrelation",
+    "NEFF_K_MAX_FRAMES": 200,
+    "ESTIMATOR_TIER": "pooled_hierarchical",
+    "NONSTATIONARITY_FRACTION": 1.0
+  },
+  "estimation": {
+    "OUTLIER_ANIMALS": [],
+    "EXCLUDED_ANIMALS_PRIMARY": [],
+    "POOLING_STRATEGY": "pooled",
+    "DISCOVERY_ESTIMATOR": "unstructured_stability_selection",
+    "CONFIRMATION_ESTIMATOR": "anatomy_guided_lasso",
+    "LAMBDA_ON": 0.04,
+    "LAMBDA_OFF": 0.45,
+    "LAMBDA_OFF_ON_RATIO": 11.25,
+    "NFOLDS": 5,
+    "CV_FOLD_ASSIGNMENTS_PATH": null
+  },
+  "enrichment": {
+    "PRIMARY_ENRICHMENT_STAT": "AUROC",
+    "SECONDARY_ENRICHMENT_STAT": "Fisher_topK",
+    "NULL_MODEL_PRIMARY": "simple_permutation",
+    "ENRICHMENT_POWER_AT_OR2": 1.0,
+    "PRIMARY_TOP_K": 50,
+    "D_ROBUSTNESS_RHO": 0.7
+  },
+  "hypothesis": {
+    "PRIMARY_HYPOTHESIS_TEXT": "The top 50 stable off-synaptic ΔQ entries in gcamp_trace_array_zscore (globally z-scored GCaMP calcium fluorescence; fallback coordinate — CePNEM residuals unavailable) — classified as off-connectome against both raw Cook/Witvliet connectome support and Creamer A_C support — are enriched for non-synaptic signaling annotations (neuropeptide connectome from Ripoll-Sánchez et al. 2023 or Randi unc-31-sensitive relationships from Randi et al. 2023), using simple permutation null restricted to the 61-neuron identified subgraph. Estimation uses pooled-hierarchical stability selection across all contributing NeuroPAL animals. Non-roaming is the primary regime (adequate power); roaming is exploratory (pooled, fragile). Covariance estimates represent time-averaged effective structure under confirmed within-recording drift (NONSTATIONARITY_FRACTION=1.0).",
+    "PRIMARY_TOP_K": 50,
+    "D_ROBUSTNESS_RHO": 0.7
+  },
+  "unresolved_deviations": {
+    "DEV_003": "NONSTATIONARITY_FRACTION=1.0; temporal covariance drift confirmed real; leading cause photobleaching; blocks real-data inference",
+    "DEV_004": "COORD_PRIMARY=gcamp_trace_array_zscore; CePNEM residuals unavailable; behavioral confounds unresolved; blocks real-data inference",
+    "DEV_005": "Stage 7 not completed; OUTLIER_ANIMALS=[]; CV fold assignments not generated; blocks real-data inference"
+  },
+  "verified_constants": {
+    "ATANAS_SAMPLING_HZ": 5.0,
+    "ATANAS_INDICATOR": "GCaMP6s",
+    "ATANAS_N_ANIMALS_APPROX": 30,
+    "N_NEURONS_TOTAL": 302,
+    "N_HEAD_NEURONS_APPROX": 180,
+    "COOK_N_NEURONS": 302,
+    "COOK_N_SYNAPSES_APPROX": 7000,
+    "RANDI_N_PAIRS": 23433,
+    "RANDI_PREPARATION": "immobilized",
+    "CREAMER_MODEL_TYPE": "noisy_linear_dynamical_system",
+    "CREAMER_CONNECTOME_CONSTRAINED": true,
+    "RANDOM_SEED": 20260527
+  }
+}

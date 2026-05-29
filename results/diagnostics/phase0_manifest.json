@@ -1,0 +1,26 @@
+{
+  "date": "2026-05-29",
+  "PHASE0_COMPLETE": true,
+  "N_COMMON_NEURONS": 61,
+  "BEHAV_THRESHOLD": 0.284,
+  "ESTIMATOR_TIER": "pooled_hierarchical",
+  "NULL_MODEL_PRIMARY": "simple_permutation",
+  "ENRICHMENT_POWER_AT_OR2": 1.0,
+  "PRIMARY_TOP_K": 50,
+  "D_ROBUSTNESS_RHO": 0.7,
+  "files": {
+    "phase0_config.py": "a000bfe17d59d9a0",
+    "src/estimators.py": "a7fb0336fda2effd",
+    "src/enrichment.py": "29374bace5f9b9d1",
+    "src/null_models.py": "5d6add977b84b6b3",
+    "results/hypothesis_lock.md": "50182774918f869c",
+    "results/diagnostics/stage06_neff_audit.md": "78b1a9b7eb6cf037",
+    "results/diagnostics/stage07_synthetic_estimator_dryrun.md": "f4b23a2743a32a97",
+    "results/diagnostics/stage08_nonstationary_synthetic_robustness.md": "b3f8c0de82682d34",
+    "results/diagnostics/stage08_synthetic_blockwise.md": "f9b2ab635856f1a9",
+    "results/diagnostics/stage09_synthetic_enrichment_power.md": "2bf538437f803e37",
+    "results/diagnostics/neff_report.json": "c008d421a6b6e607",
+    "results/diagnostics/stage09_power_results.json": "612ee36b35f13138",
+    "results/diagnostics/phase0_final_summary.md": "602060ae477c48f5"
+  }
+}
