@@ -1,18 +1,17 @@
-# AGENTS.md — C. elegans Phase 0 Session Contract
+# AGENTS.md — C. elegans Phase 1 Session Contract
 
 ## Role
 
-You are executing the feasibility and preprocessing lock for the C. elegans extension of
-the current-velocity diagnostic paper. Your job is to produce all computational outputs
-that allow a human researcher to make and lock the preprocessing and hypothesis decisions
-that must precede the main analysis.
+You are executing the first real-data inference for the C. elegans extension of the
+current-velocity diagnostic paper. Phase 0 locked all preprocessing, thresholds, estimator
+choices, and the primary hypothesis. Your job is to carry out the locked analysis plan
+faithfully, produce interpretable diagnostics at each stage, and halt at decision
+checkpoints.
 
-You compute. The human decides. These are not interchangeable.
+You execute. The locked specification decides the method. The human decides interpretation.
 
-The scientific goal: determine whether the neural conditional-dependence structure of
-identified C. elegans neurons differs between roaming and dwelling behavioral states in a
-way that cannot be attributed to the fixed synaptic connectome. You are building the
-infrastructure and feasibility evidence for that question. You are not answering it yet.
+The scientific goal is no longer "can the data support this test?" (Phase 0 answered yes).
+It is now: "what does the test show?"
 
 ---
 
@@ -20,140 +19,117 @@ infrastructure and feasibility evidence for that question. You are not answering
 
 **When a result disagrees with expectation, stop and understand why before changing anything.**
 
-Unexpected output is information, not an obstacle. A phase that produces a surprising
-number — a very small common subgraph, very low n_eff, large non-stationarity — is
-doing exactly its job. Do not tune parameters, lower thresholds, or change definitions to
-make the feasibility statistics look better. Diagnose first. Report honestly. Let the
-human decide whether to change scope.
+This rule carries over from Phase 0 and is even more important now. A surprising ΔQ,
+a failed enrichment, an influential animal, a D-robustness failure — each of these is a
+scientific finding, not a problem to fix. Do not adjust thresholds, estimator parameters,
+pair rankings, or null models to improve the result. Diagnose. Report. Let the human decide.
+
+Phase 1 results that look disappointing are still results. The locked plan protects their
+interpretability precisely because nothing is tuned after seeing the data.
 
 ---
 
-## The absolute constraint: no ΔQ on real data
+## The ordering constraint: CePNEM before precision
 
-This constraint is not a guideline. It is the reason Phase 0 exists.
+**No precision matrix may be computed from real data until Stage 1.0 (CePNEM residualization)
+passes all verification checks.**
 
-**Never compute:**
-- State-conditioned precision matrices Q_roam or Q_dwell from real Atanas behavioral data
-- Their difference ΔQ = Q_roam − Q_dwell
-- Any current-velocity statistic (D ΔQ, Ω_s, ΔΩ) from real behavioral data
-- Any enrichment test result using real ΔQ as input
+And further: once precision matrices exist in both coordinate systems, **do not examine one
+coordinate's enrichment results before the other coordinate's enrichment is also computed.**
+The coordinate comparison (Stage 1.7) requires both results to be available before the
+interpretation rule is applied. Previewing one could bias the other's evaluation.
 
-**You may compute:**
-- State-conditioned covariance matrices Σ_s (NOT their inverse) for n_eff and stationarity
-- Precision matrices on synthetic data to test the estimation pipeline
-- Power simulations on synthetic pair lists
-
-If any code you write computes Q_s^{-1} or ΔQ using real behavioral data, stop, write:
-
-`CRITICAL DEVIATION: ΔQ COMPUTED ON REAL DATA — [describe what happened]`
-
-then halt and wait for human instruction.
+In practice: run Stages 1.1–1.6 for CePNEM residuals and raw GCaMP in parallel or in
+immediate sequence, saving all outputs to disk. Then and only then open Stage 1.7.
 
 ---
 
 ## New sessions
 
-At the start of every new session, before doing anything else, read:
+At the start of every new session, read these files in order:
 
-- `task.md`
-- `AGENTS.md`
-- `PROGRESS.md`
-- `CONTEXT.md`
-- `CHECKPOINT_LOG.md`
-- `DEVIATIONS.md`
-- `phase0_config.py`
+1. `results/diagnostics/phase1_transition_manifest.md` (Phase 0 → Phase 1 handoff)
+2. `phase1_task.md` (this phase's specification)
+3. `phase1_AGENTS.md` (this contract)
+4. `phase0_config.py` (all locked parameters)
+5. `PROGRESS.md`
+6. `CONTEXT.md`
+7. `CHECKPOINT_LOG.md`
+8. `DEVIATIONS.md`
 
 Then write a summary containing:
 
-1. Current phase and what it requires
-2. What has been completed (key numbers: N_COMMON_NEURONS, ESTIMATOR_TIER, n_eff values)
+1. Current stage within Phase 1
+2. What has been completed (key numbers: CePNEM verification status, number of precision
+   matrices computed, ΔQ class counts, enrichment p-values if available)
 3. Current blocker, if any
-4. Whether any `phase0_config.py` HUMAN_DECISION fields are still None
+4. Whether `PHASE0_COMPLETE` is True in `phase0_config.py`
 5. Exact next action
 6. Whether a checkpoint is required before that action
 
 Then wait for explicit human go-ahead.
 
-Do not begin work before the human confirms the summary is accurate.
-
 ---
 
-## Scientific background
+## Scientific background for Phase 1
 
-### What this Phase 0 is for
+### What Phase 1 computes
 
-The main analysis will apply the current-velocity diagnostic from the paper to C. elegans
-neural data. The diagnostic asks: when the stationary conditional-dependence graph of a
-circuit (the precision matrix Q) differs from what the fixed wiring (A) predicts, is that
-difference driven by coupling (traceable to J) or by current (traceable to ∂v = Ω)?
+The primary empirical object is ΔQ = Q_roam − Q_dwell: the difference in conditional-
+dependence structure between behavioral states. This is computed from CePNEM-residualized
+calcium traces in 61 identified neurons, using stability selection (discovery) and
+anatomy-guided lasso (confirmation) as precision estimators.
 
-For C. elegans, the coupling reference is the synaptic connectome (Cook/Witvliet for A_raw,
-Creamer for the dynamically-fit A_C). The data comes from whole-brain calcium imaging during
-free behavior (Atanas 2023). The prediction is that state-switched off-connectome entries in
-ΔQ = Q_roam − Q_dwell are enriched for the neuropeptide signaling network (Ripoll-Sánchez)
-because neuropeptide-mediated links are state-dependent and extrasynaptic — exactly the
-signature of current-supported structure.
+ΔQ entries are classified into four classes by synaptic support. Class 4 (off-both-
+connectomes: no synapse in Cook/Witvliet AND no learned weight in Creamer A_C) is the
+primary target. The prediction from the paper is that Class 4 entries are enriched for
+non-synaptic signaling, specifically the neuropeptide connectome.
 
-Phase 0 determines whether the data can support this test credibly.
+### Why CePNEM residualization matters
 
-### The current-velocity identity
+Roaming and dwelling animals move differently. Those movement differences alter calcium
+fluorescence through both genuine neural activity and motion artifacts. Without CePNEM,
+any ΔQ could reflect different motor patterns rather than different neural state
+organization. CePNEM removes the behavioral encoding component from each neuron's trace,
+leaving the residual activity that is not explained by the animal's kinematics.
 
-For an overdamped stochastic system dX = f(X) dt + √(2D) dW with stationary density p:
+If the enrichment survives CePNEM residualization, the state-switching signal is in the
+residual neural dynamics, not in the behavioral kinematics. If it vanishes, the signal is
+behavior-mediated. Both outcomes are scientific findings; neither is a pipeline failure.
 
-```
-J − D H = ∂v = Ω
-```
+### Why two null models
 
-where J is the drift Jacobian (coupling), H = ∇∇ log p (conditional dependence,
-related to the precision Q via H = −Q for Gaussian systems), and Ω is the current-velocity
-Jacobian. At detailed balance, Ω = 0 and J = DH; away from it, Ω carries the discrepancy
-between coupling and conditional dependence.
+The simple permutation null (shuffle pair labels randomly) tests whether enrichment exceeds
+chance. The degree-preserving null (shuffle pair labels while preserving each neuron's
+synaptic and neuropeptide degree) tests whether enrichment exceeds what hub neurons produce
+by degree alone. Only enrichment significant under the degree-preserving null supports a
+neuropeptide-specific biological claim. Significance under simple permutation alone suggests
+a degree artifact.
 
-The main analysis will compute:
-- ΔQ = Q_roam − Q_dwell (state-switched conditional dependence; primary empirical object)
-- D_C ΔQ (Creamer-referenced current-like state-switching statistic; secondary)
-- Ω_C = A_C + D_C Q_C (current structure of the Creamer model itself; comparison baseline)
+### What D_C ΔQ means
 
-Phase 0 does not compute any of these from real data. It determines whether the computation
-will be credible when it is run.
+D_C ΔQ = D_C(Q_roam − Q_dwell) is the Creamer-referenced current-like state-switching
+statistic. It connects the empirical ΔQ to the paper's current-velocity framework by
+applying the Creamer noise model. If the top-ranked pairs are stable across different D
+models (D_C, diagonal residual, identity), D_C ΔQ is interpretable as a current-velocity
+bridge. If not, the bridge is inconclusive and the main claim rests on ΔQ alone.
 
-### Why the behavioral state threshold must not be informed by ΔQ
+### What "off-both-connectomes" means
 
-The threshold determines which timepoints are labeled roaming vs. dwelling. If the threshold
-is chosen after previewing ΔQ, it can be adjusted to inflate or deflate the apparent
-state-switching signal. Phase 5 requires the threshold to be determined from the CePNEM
-behavioral score distribution alone — its bimodality, the trough between modes — with no
-reference to any neural output. This is the most important single integrity constraint in
-Phase 0.
+A Class 4 pair (i, j) has A_raw(i,j) = 0 (no synapse in the Cook/Witvliet connectome)
+AND A_C(i,j) = 0 (no learned weight in Creamer's connectome-constrained model). This
+means neither the anatomy nor the dynamically-fit model predict a direct connection. If
+ΔQ(i,j) is nonzero, stable, and the pair is neuropeptide-supported, that is the signature
+of current-supported state-dependent structure: a statistical link with no structural
+path behind it, carried by non-synaptic signaling and present only in the driven state.
 
-### Why two estimators are needed
-
-The anatomy-guided lasso places a heavier L1 penalty on off-connectome precision entries
-than on on-connectome entries. This is a conservative prior: off-connectome entries must
-overcome extra penalization to be selected. This means:
-- An off-connectome entry that survives the anatomy-guided lasso is robustly detected
-- An off-connectome entry that appears only in the unstructured estimator has lower confidence
-- The circularity concern (using connectome as both prior and validation reference) is
-  addressed by requiring candidates to survive BOTH estimators, with the anatomy-guided
-  estimator acting conservatively, not liberally
-
-Never claim an off-connectome result using the anatomy-guided estimator alone. The
-unstructured discovery estimator must confirm it first.
-
-### What D_C is and why it matters
-
-D_C is the noise covariance from the Creamer LDS (the matrix in dX = A_C X dt + √(2D_C) dW).
-It converts ΔQ into D_C ΔQ, the Creamer-referenced current-like state-switching statistic.
-If D_C is diagonal (or approximately so), the formula simplifies to elementwise scaling.
-If D_C is dense, attribution is blockwise. Either way, if the ranking of the top off-connectome
-pairs is unstable under different D models (D_C, diagonal residual, I), the D_C ΔQ step is
-inconclusive and the main claim must rest on ΔQ alone.
+This is the C. elegans version of the paper's node-6–node-8 edge in the OU cascade.
 
 ---
 
 ## Checkpoint protocol
 
-Before any of the following actions, output exactly:
+Before any of the following, write:
 
 ```
 CHECKPOINT: [one-line description]
@@ -164,313 +140,276 @@ CHECKPOINT: [one-line description]
 [5] Failure looks like: ...
 ```
 
-Then wait for explicit human `go ahead` before proceeding.
+Then wait for explicit human `go ahead`.
 
-Checkpoints are required before:
+Checkpoints required before:
 
-- Any action requiring more than ~30 seconds of computation
-- Any parameter sweep
-- Any change to: the harmonization table, the behavioral state threshold, the transition
-  exclusion window, the precision estimator, the CV fold structure, the null model definition,
-  any metric definition, or any item in phase0_config.py
-- Any deviation from task.md
-- Any change to a test that was failing
-- Any action that could change the primary hypothesis or the enrichment test design
-- Any fix to an unexpected result (see diagnosis-before-action protocol)
-
-The checkpoint justification must be specific. "This should fix it" is not acceptable.
-
----
-
-## Human decision checkpoint protocol
-
-Several phases end with a HUMAN DECISION CHECKPOINT. These are not regular checkpoints:
-they require the human to write decisions into `phase0_config.py` before the agent proceeds.
-
-When a phase requiring a human decision is complete:
-
-1. Write the diagnostic summary (key numbers, figures, interpretation)
-2. List the specific decisions the human must make, with the config variable name for each
-3. Write: `HUMAN DECISION REQUIRED — waiting for phase0_config.py update`
-4. Halt. Do not proceed to the next phase.
-
-When the human confirms decisions have been recorded:
-
-5. Read `phase0_config.py`
-6. Verify all required HUMAN_DECISION fields for that phase are no longer None
-7. Summarize the decisions that were made
-8. Proceed to the next phase only after confirming in writing that the relevant fields are set
-
-Never infer a human decision from context. If a required field is still None, ask.
+- Setting `PHASE0_COMPLETE = True` (one-time gate at the start of Phase 1)
+- Running precision estimation on real data for the first time
+- Running any enrichment test
+- Running the LOO sensitivity analysis (compute-intensive)
+- Any change to any value in `phase0_config.py` (should not happen; see legitimacy test)
+- Any deviation from `phase1_task.md`
+- Any fix to an unexpected result
+- Any computation expected to take > 30 minutes
+- Opening Stage 1.7 (must confirm both coordinates' enrichment results are saved first)
 
 ---
 
 ## Diagnosis-before-action protocol
 
-When an unexpected result appears:
+Unchanged from Phase 0. When an unexpected result appears:
 
-1. Write a diagnostic that produces interpretable numbers — specific, not vague
-2. State explicitly what the numbers rule out
+1. Write a diagnostic producing specific, interpretable numbers
+2. State what the numbers rule out
 3. State what they imply about the root cause
-4. Only then, in a separate response, propose a fix
+4. Only then, in a separate response, propose an action
 
-You may not propose and implement a fix in the same response as the unexpected result.
+You may not propose and implement a fix in the same response.
 
-Unexpected results that trigger this protocol:
+Phase 1-specific unexpected results:
 
-- N_COMMON_NEURONS < 30
-- Creamer A_C eigenvalues ≥ 0 (or |λ| ≥ 1 for discrete-time)
-- Σ_C not positive definite
-- n_eff / N_COMMON_NEURONS < 1 even when pooling all animals
-- NONSTATIONARITY_FRACTION > 0.5
-- Estimation pipeline fails on synthetic data (negative eigenvalues, non-convergence)
-- Any pytest test failure
-- CePNEM behavioral scores show no bimodality in > 50% of animals
-- Any inconsistency between the harmonization table and a primary source
+- All Class 4 ΔQ entries near zero (no state-switching signal)
+- Enrichment significant under simple permutation but not degree-preserving null
+- CePNEM residualization eliminates the enrichment (raw GCaMP shows it, CePNEM does not)
+- D-robustness fails (rankings unstable across D models)
+- One animal drives > 30% of the top-50 list
+- Precision estimation fails to converge
+- CePNEM residual variance < 10% of raw variance for multiple neurons
+- Class 3 pairs appear (off-raw but on-Creamer — should not happen)
+
+Each of these is a legitimate scientific outcome. None should trigger parameter changes
+to make the result "work." Report the finding. Let the human interpret.
+
+---
+
+## Forbidden actions during Phase 1
+
+The following are never permitted, regardless of what the data shows:
+
+- Changing BEHAV_THRESHOLD, W_TRANS, MIN_BOUT, or any segmentation parameter
+- Changing LAMBDA_ON, LAMBDA_OFF, or any estimator parameter
+- Changing PRIMARY_TOP_K, D_ROBUSTNESS_RHO, or any enrichment parameter
+- Changing the neuron subgraph or harmonization table
+- Changing the synapse count threshold or connectome version
+- Changing the null model after seeing enrichment results
+- Re-running an enrichment test with a different K, null, or statistic after seeing results
+- Choosing which coordinate system to report based on which gives a better p-value
+- Excluding an animal from the analysis after seeing its LOO impact
+  (but flagging it as influential is required)
+
+All of these values were locked in Phase 0. If any must change due to a genuine
+implementation error discovered during Phase 1 (e.g., a bug in the harmonization table),
+the deviation must be flagged, justified, and the affected stages re-run from scratch.
+
+---
+
+## Legitimate actions during Phase 1
+
+The following are expected and do not require deviations:
+
+- Setting `PHASE0_COMPLETE = True` after human authorization
+- Updating `COORD_PRIMARY = "cepnem_residual"` to reflect DEV-004 resolution
+- Computing Q_s, ΔQ, enrichment on real data (the purpose of Phase 1)
+- Adding CePNEM-specific code to `src/cepnem_residualize.py`
+- Adding Phase 1 scripts to `scripts/phase1/`
+- Generating figures and tables
+- Recording scientific findings (including null findings) in PROGRESS.md and CONTEXT.md
 
 ---
 
 ## One-variable rule
 
-Every experiment changes exactly one thing from the previous run. Before any run, list:
+Unchanged from Phase 0. Every comparison changes exactly one thing.
 
-- What is changing
-- What is held constant
-- What outcome counts as success
-- What outcome counts as failure
+Phase 1-specific applications:
+- CePNEM vs. raw GCaMP: coordinate changes, everything else identical
+- Discovery vs. confirmation estimator: estimator changes, data identical
+- D_C vs. D_diag vs. I: diffusion model changes, ΔQ identical
+- Full analysis vs. LOO: one animal excluded, everything else identical
 
-The following each count as a change:
-- Behavioral state threshold
-- Transition exclusion window
-- Normalization method
-- Neuron confidence threshold
-- Synapse count threshold
-- Lasso regularization parameter
-- Number of stability selection bootstrap samples
-- CV fold count
-- Bootstrap subsample fraction
+If two things must change, stop and ask which to test first.
 
 ---
 
-## Legitimacy test for changes
+## Legitimacy test
 
-Before implementing any change, ask:
+Before implementing any change (even a minor one), ask:
 
-- Is this derived from the mathematical structure or the biological evidence, or am I
-  adjusting to make the feasibility statistics look better?
-- Does this fix the root cause or mask a symptom?
-- Does this preserve the independence of the behavioral state threshold from ΔQ?
-- Could this change invalidate the interpretation of the final enrichment test?
+- Is this specified in `phase1_task.md` or `phase0_config.py`?
+- If not, does it preserve the pre-specification of the primary hypothesis?
+- Could this change improve the enrichment p-value in a way that was not pre-specified?
+- Would I make this same change if the enrichment had already passed?
 
-The following changes are always illegitimate:
-
-- Setting the behavioral state threshold based on any neural output (ΔQ, covariance,
-  precision, or any derived quantity)
-- Lowering the identity confidence threshold to increase N_COMMON_NEURONS without
-  human approval
-- Using the anatomy-guided lasso as the discovery estimator
-- Changing the D-robustness criterion after ΔQ has been previewed
-- Modifying the primary hypothesis after seeing the enrichment direction
+If the answer to the third question is yes or the answer to the fourth is no, the change
+is illegitimate.
 
 ---
 
-## Unit and convention discipline
+## What done means for each stage
 
-**Neuron labels:** The canonical convention throughout is NeuroPAL (e.g., AVAL, AVAR, RIMR,
-RIML, AIYL, AIYR). Never use numeric indices without a documented mapping to NeuroPAL names.
-Every function that takes neuron labels must accept and return NeuroPAL names.
+### Stage 1.0 — CePNEM residualization
+Done when:
+- Residuals computed for all animals × common-subgraph neurons
+- Tau mapping verified
+- Behavioral decorrelation ≥ 50% reduction (median)
+- No neuron with residual variance ratio < 0.10 (or flagged)
+- Residualized traces saved to disk
 
-**Phase conventions:** Not applicable to this project (no phase oscillators). C. elegans
-analysis uses calcium fluorescence or CePNEM residuals as the dynamic variables.
+### Stage 1.1 — Precision estimation
+Done when:
+- 8 precision matrices computed (2 coords × 2 states × 2 estimators)
+- All positive definite and symmetric
+- Condition numbers and n_eff recorded
+- No convergence failures
 
-**Covariance vs. precision:** Σ = covariance (allowed in Phase 0). Q = Σ^{-1} = precision
-(FORBIDDEN on real behavioral data during Phase 0; allowed on synthetic data only).
+### Stage 1.2 — ΔQ and classification
+Done when:
+- 4 ΔQ matrices computed and classified
+- Class counts recorded; Class 4 count ≥ 20
+- Ranked pair lists saved to disk
+- No Class 3 pairs (or documented)
 
-**State-conditioned objects:** Any variable subscripted with _roam or _dwell that involves
-the precision matrix or its inverse is forbidden until Phase 0 is complete.
-Σ_roam and Σ_dwell (covariances) are allowed.
+### Stage 1.3 — LOO sensitivity
+Done when:
+- All contributing animals tested
+- Retention scores for top-50 pairs computed
+- Influential animals identified
+- Median retention ≥ 0.70
 
-**Connectome directionality:** A_raw is directed (from source to target). For enrichment
-tests, collapse to undirected by "either direction present" unless a directed test is
-explicitly secondary and pre-specified.
+### Stage 1.4 — D-robustness
+Done when:
+- Three D-scaled versions computed
+- Spearman correlations recorded
+- Go/no-go decision logged in CHECKPOINT_LOG.md
+
+### Stage 1.5 — Ω_C comparison
+Done when:
+- Ω̂_s^(C) computed for both states
+- ΔΩ̂^(C) matches D_C ΔQ within 1e-10
+- Caveat text present in output files
+
+### Stage 1.6 — Enrichment tests
+Done when:
+- All four tests run with both null models (8 test results minimum)
+- Degree-preserving null validated (preserves degree distributions)
+- Confirmation estimator check completed
+- All results saved before any figure
+
+### Stage 1.7 — Coordinate comparison
+Done when:
+- Both coordinates' enrichment results available (verified before opening)
+- Overlap statistics computed
+- Interpretation rule applied mechanically
+- Interpretation recorded with supporting numbers
+
+### Stage 1.8 — Summary and figures
+Done when:
+- Primary figure (6 panels) saved as PDF and PNG
+- Summary table saved
+- Named pair table with prediction column saved
+- Figure caption drafted
+- All source data saved separately
 
 ---
 
-## What done means for each phase
-
-### Phase 1 — Creamer and RC checks
-Done when:
-- CREAMER_TIME_CONVENTION set in phase0_config.py
-- CREAMER_MAX_EIGENVALUE recorded and Σ_C is positive definite
-- CREAMER_DC_AVAILABLE recorded
-- Ω_C computed and CREAMER_OMEGA_NORM recorded
-- RC_ROLE_* fields set in phase0_config.py
-- Human decision checkpoint completed
-
-### Phase 2 — Subgraph construction and harmonization
-Done when:
-- `neuron_harmonization.csv` complete with no unresolved ambiguities
-- N_COMMON_NEURONS recorded; A_raw, A_gj, A_chem, A_peptide computed and saved
-- Coverage fractions printed
-- Human decision checkpoint completed: SUBGRAPH_ADEQUATE set
-
-### Phase 3 — Randi pair extraction
-Done when:
-- DCV-sensitivity scores computed
-- Subgraph-restricted pair list saved to `randi_dcv_pairs.csv`
-- N_RANDI_SUBGRAPH_PAIRS recorded in phase0_config.py
-
-### Phase 4 — RC check
-Done when:
-- RC_ROLE_* fields confirmed (not only set from Phase 1 inference)
-- If RC_ROLE_JACOBIAN: J_RC saved
-- Human confirms RC role
-
-### Phase 5 — Coordinate system and behavioral-state threshold
-Done when:
-- Three coordinate systems implemented and tested on one animal
-- Behavioral score KDE plots saved
-- Bimodality statistics recorded
-- Human decision checkpoint completed:
-  BEHAV_THRESHOLD, W_trans, COORD_PRIMARY, COORD_INTERP_RULE all set in phase0_config.py
-
-### Phase 6 — n_eff and stationarity
-Done when:
-- n_eff computed from cross-products (not marginals)
-- ESTIMATOR_TIER recorded
-- NONSTATIONARITY_FRACTION recorded
-- Rolling covariance figures saved
-- `neff_report.json` saved
-
-### Phase 7 — Inter-animal variability and estimator selection
-Done when:
-- Inter-animal covariance consistency quantified
-- OUTLIER_ANIMALS recorded
-- Both estimators (stability selection, anatomy-guided lasso) implemented
-- CV folds defined and saved
-- Human decision checkpoint completed: POOLING_STRATEGY, LAMBDA_OFF, LAMBDA_ON, NFOLDS all set
-
-### Phase 8 — Estimation pipeline dry run
-Done when:
-- All pytest tests pass
-- Synthetic ΔQ recovery demonstrates TPR ≥ 0.6
-- Circularity control verified: off-connectome entries survive anatomy-guided lasso
-- No silent numerical failures
-
-### Phase 9 — Enrichment power analysis and null models
-Done when:
-- Primary enrichment test (AUROC + Fisher) implemented with correct null
-- Null model preserves degree, class, proximity, and neuropeptide-degree
-- Power curves computed and saved
-- ENRICHMENT_POWER_AT_OR2 recorded
-
-### Phase 10 — Hypothesis lock
-Done when:
-- All `phase0_config.py` HUMAN_DECISION fields populated
-- `hypothesis_lock.md` written, reviewed, and committed
-- Git tag `phase0_complete` created
-- All tests pass
-
----
-
-## Deviations from task.md
+## Deviations from phase1_task.md
 
 Any deviation must be:
 
-1. Flagged immediately with `DEVIATION: [description]`
-2. Justified scientifically (not for convenience or to improve appearance of results)
-3. Recorded in `DEVIATIONS.md` before proceeding
+1. Flagged: `DEVIATION: [description]`
+2. Justified scientifically (not to improve results)
+3. Recorded in `DEVIATIONS.md`
 
-Legitimate deviations preserve or improve scientific validity (e.g., using a more
-conservative stationarity test than specified because a concern was discovered).
+The following are always illegitimate deviations during Phase 1:
 
-The following are always illegitimate deviations:
-
-- Setting behavioral state threshold based on any neural output
-- Computing Q_s or ΔQ from real behavioral data
-- Using anatomy-guided lasso as the sole discovery estimator
-- Lowering N_COMMON_NEURONS threshold to pass a feasibility gate without human approval
-- Choosing K for the hypothesis lock after previewing the enrichment direction
-- Silently resolving neuron name ambiguities in the harmonization table
+- Changing any locked parameter from Phase 0
+- Choosing coordinate system based on which gives better enrichment
+- Excluding animals after seeing LOO impact (flagging is required; exclusion is not)
+- Re-running enrichment with different parameters after seeing the p-value
+- Reporting only the null model that gives the smaller p-value
+- Claiming "current-supported" without the CePNEM coordinate passing the interpretation rule
+- Reporting Ω̂_s^(C) without the preparation-mismatch caveat
 
 ---
 
 ## Context tracking
 
-When writing to `CONTEXT.md`, ask: "What would a technically informed reader expect here,
-and does the outcome match? If not, why not?"
+Write to `CONTEXT.md` when:
 
-Write context notes when:
-
-- N_COMMON_NEURONS differs substantially from ~50 (explain which datasets drive the intersection)
-- Creamer A_C has eigenvalues near but below 0 (borderline stability — record the margin)
-- n_eff is very low (τ_int > 100 frames) — explain whether this is calcium kinetics,
-  behavioral autocorrelation, or neural autocorrelation
-- CePNEM behavioral scores are not bimodal — explain what that implies for state segmentation
-- Harmnonization ambiguities involve named circuit neurons (AVA, RIM, AIY, AIA) — record why
-- Stability selection gives low stability scores on synthetic data — diagnose whether this
-  is a regularization problem or a genuine sample-size constraint
+- CePNEM residualization changes n_eff substantially (autocorrelation structure of residuals
+  differs from raw traces — document by how much)
+- Precision estimation condition numbers are very different between states (suggests one
+  state has a near-singular covariance — document which state and why)
+- Class 4 pair count is much higher or lower than expected from Phase 0 synthetic estimates
+- A named neuron pair (e.g., involving AVA, RIM, AIY, AIA) appears in the top-10 —
+  document its biological context and known functional role
+- The enrichment AUROC is near 0.5 (no enrichment) — document what the null distribution
+  looks like and whether the test has power
+- LOO reveals an influential animal — document its recording properties
 
 ---
 
 ## Progress tracking
 
-After every phase boundary and every human decision checkpoint, update `PROGRESS.md` with:
+After every stage boundary, update `PROGRESS.md` with:
 
-- Current phase
-- All human decision fields that are now set (with values)
-- Key numbers: N_COMMON_NEURONS, ESTIMATOR_TIER, n_eff values, NONSTATIONARITY_FRACTION
+- Current stage
+- Key numbers produced this stage (Class 4 count, AUROC, p-values, LOO retention, etc.)
+- Whether the interpretation rule has been applied (Stage 1.7) and what it yielded
 - Current blocker, if any
 - Exact next action on resume
-- Any deviation recorded in DEVIATIONS.md this session
 
-Commit all code with a descriptive message at each phase boundary:
-`Phase 0.N: [one-line description] — [key numbers]`
+Commit with: `Phase 1, Stage N: [one-line summary] — [key metric]`
 
 ---
 
 ## End-of-session protocol
 
-When the human says `wrap up`, `stopping now`, or equivalent:
+When the human says `wrap up` or equivalent:
 
-1. Append all checkpoints from this session to `CHECKPOINT_LOG.md` (date, phase, outcome)
-2. Update `PROGRESS.md` with current phase, passed checks, blocker, exact next action
+1. Append session checkpoints to `CHECKPOINT_LOG.md`
+2. Update `PROGRESS.md` with current stage, results so far, next action
 3. Update `DEVIATIONS.md` with any new deviations
-4. Update `CONTEXT.md` with any non-obvious reasoning from this session
-5. List any `phase0_config.py` fields that are still None and require human decisions
-6. Commit everything:
-   `Phase 0.N: [one-line summary] — [key numbers or BLOCKED]`
-
-Do not summarize in chat and skip the files. The files are the record.
+4. Update `CONTEXT.md` with any reasoning notes from this session
+5. List which stages are complete and which remain
+6. If any enrichment results exist but the coordinate comparison (Stage 1.7) has not been
+   done: **explicitly warn** that the interpretation rule has not yet been applied and the
+   results should not be interpreted until both coordinates are available
+7. Commit: `Phase 1, Stage N: [summary] — [INTERPRETATION PENDING / COMPLETE]`
 
 ---
 
 ## Compute discipline
 
-- Do not run any computation that touches Q_s or ΔQ on real data
-- Use n = N_COMMON_NEURONS (the restricted subgraph size) throughout; never the full 302
-- Synthetic data experiments use n = N_COMMON_NEURONS to match the real problem
-- Prefer analytic solutions (Lyapunov, closed-form covariance) over Monte Carlo when possible
-- If synthetic data generation is slow (> 60 seconds), use a reduced n=20 smoke test first;
-  full synthetic run requires a checkpoint
-- Do not increase bootstrap samples, CV folds, or permutation count without a checkpoint
+- CePNEM model evaluation may be slow (nonlinear model × many animals × many neurons).
+  Estimate wall time before running; checkpoint if > 10 minutes.
+- LOO sensitivity (Stage 1.3) requires ~80 stability selection runs. Estimate total
+  time from a 3-animal pilot before committing to the full run.
+- Enrichment permutation tests (10,000 iterations × 2 null models × 4 tests) may be
+  compute-intensive. Checkpoint if > 15 minutes.
+- Save all intermediate precision matrices and ΔQ matrices to disk before computing
+  enrichment. If the enrichment computation crashes, the expensive estimation does not
+  need to be re-run.
+- Never overwrite a saved precision matrix or ΔQ file. Use timestamped filenames or
+  versioned subdirectories if re-running.
 
 ---
 
 ## Coding expectations
 
-- Python 3.11+
-- Dependencies: `numpy`, `scipy`, `matplotlib`, `sklearn`, `pytest`, `networkx`, `pandas`
-- Additional dependencies (e.g., `wormneuroatlas`, `nilearn`, `statsmodels`) require
-  a brief checkpoint noting the dependency and its purpose
-- `phase0_config.py` is the single source of truth for all parameters and decisions
-  Never hard-code parameter values in scripts; always import from `phase0_config.py`
-- HUMAN_DECISION fields in `phase0_config.py` start as `None`
-  Any script that reads a HUMAN_DECISION field must assert it is not None before using it
-- Every covariance/precision computation must print its condition number
-- Save all numerical results in `results/diagnostics/` as `.npy`, `.csv`, or `.json`
-  before writing any figure
-- Every function that operates on neural data must accept a `neuron_list` argument
-  specifying which neurons to include; never use positional indexing without a named list
-- All random operations use a seed from `phase0_config.py` as `RANDOM_SEED`
-- Do not silently ignore scipy or numpy warnings; treat them as unexpected results
+Inherited from Phase 0, plus:
+
+- All new code in `src/` and `scripts/phase1/`
+- Every script that touches real data must check `PHASE0_COMPLETE == True` before running
+- Every precision matrix is verified for positive definiteness and symmetry immediately
+  after computation, before being saved or used downstream
+- Every enrichment test saves its results (AUROC, p-value, null distribution) to a JSON
+  file before generating any plot
+- Figure generation is always the last step in any script; never interleave figure creation
+  with statistical computation
+- The named pair table must include ALL annotation columns (peptide, randi, serotonin, PDF)
+  regardless of whether they are significant — the table is a complete record, not a
+  curated selection
+- Use `phase0_config.py` for all parameter values; never hard-code a threshold, lambda,
+  or K in a Phase 1 script

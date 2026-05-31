@@ -135,12 +135,11 @@ N_RANDI_SUBGRAPH_PAIRS = 189
 # behavioral-encoding components. Results must be interpreted as "effective
 # calcium fluorescence state-conditional differences" NOT "residual neural
 # organization beyond behavioral kinematics."
-COORD_PRIMARY = "gcamp_trace_array_zscore"  # fallback; approved Stage 10
+COORD_PRIMARY = "cepnem_residual"  # updated 2026-05-31: DEV-004 resolved; Stage 1.0 complete
 
-# COORD_ROBUSTNESS_1: Would be CePNEM residuals if fit files were available.
-# With COORD_PRIMARY = gcamp_trace_array_zscore, no distinct robustness
-# coordinate system is available. Set to None with documentation.
-COORD_ROBUSTNESS_1 = None   # CePNEM files unavailable; no robustness coord
+# COORD_ROBUSTNESS_1: raw GCaMP becomes the robustness coordinate now that
+# CePNEM residuals are the primary coordinate. Updated at Stage 1.0 completion.
+COORD_ROBUSTNESS_1 = "gcamp_trace_array_zscore"  # updated 2026-05-31: robustness coord
 
 # COORD_ROBUSTNESS_2: Deconvolved activity not available (requires CePNEM fits).
 COORD_ROBUSTNESS_2 = None   # CePNEM files unavailable
@@ -257,7 +256,7 @@ D_ROBUSTNESS_RHO = 0.7
 #   - COORD_ROBUSTNESS_1/2=None (single coordinate system) DEV-004
 #   - CV fold assignments not generated (NFOLDS=5 design only) DEV-005
 #   - NONSTATIONARITY_FRACTION=1.0 accepted but unresolved DEV-003
-PHASE0_COMPLETE = False
+PHASE0_COMPLETE = True   # authorized 2026-05-29; see PHASE1_CHECKPOINT_LOG.md
 
 # PHASE0_METHOD_LOCK_COMPLETE: methodology and synthetic validation are done.
 # Locked methodological choices, preprocessing parameters, estimator design,

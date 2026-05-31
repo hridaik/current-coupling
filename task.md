@@ -1,1202 +1,763 @@
-# task.md — C. elegans Phase 0
-## Feasibility Assessment, Preprocessing Lock, and Hypothesis Specification
-
----
-
-## Naming convention
-
-Throughout this document:
-
-- **Phase 0** refers to the entire pre-analysis program.
-- **Stages 1–10** refer to the operational steps within Phase 0.
-- Script names use `stage01_...` through `stage10_...`.
-- No state-conditioned precision matrix from real behavioral data may be computed until Phase 0 is complete.
+# task.md — C. elegans Phase 1
+## Real-Data Inference: State-Conditioned Precision, ΔQ, and Enrichment
 
 ---
 
 ## Scientific purpose
 
-This Phase 0 exists to protect the integrity of the main analysis. Its job is to determine
-everything that can be determined — about dataset compatibility, statistical feasibility,
-preprocessing choices, and the estimation pipeline — before any state-conditioned precision
-matrix is computed from real behavioral data. It produces four locked artefacts:
-
-1. A feasibility report from Stages 1–6
-2. A frozen preprocessing specification (`phase0_config.py`, fully populated)
-3. An estimation pipeline validated on synthetic data in Stage 8
-4. A locked primary hypothesis statement with pre-defined null models from Stages 9–10
-
-The main analysis (ΔQ, D_C ΔQ, enrichment against neuropeptide/serotonin/PDF resources,
-prospective mutant predictions) proceeds only after all four artefacts are complete and the
-human has signed off on each decision checkpoint.
-
-The scientific question the main analysis will address: does the conditional-dependence
+Phase 1 answers the question Phase 0 was built to protect: does the conditional-dependence
 structure of identified C. elegans neurons differ between roaming and dwelling behavioral
-states in a way that (a) cannot be attributed to the fixed synaptic connectome and (b) is
-enriched for non-synaptic signaling? Phase 0 determines whether the available data and
-methods can address that question credibly.
+states in a way that cannot be attributed to the fixed synaptic connectome, and is that
+difference enriched for non-synaptic signaling?
+
+Phase 0 locked all preprocessing decisions, validated the estimation pipeline on synthetic
+data, and confirmed statistical power. Phase 1 computes state-conditioned precision matrices
+from real behavioral data, classifies ΔQ entries against the synaptic connectome, tests for
+neuropeptide enrichment, and determines whether the result survives CePNEM residualization.
 
 ---
 
-## THE HARD CONSTRAINT: NO ΔQ ON REAL DATA DURING PHASE 0
+## CONSTRAINT: CePNEM RESIDUALIZATION BEFORE ANY PRECISION MATRIX
 
-The following are **ABSOLUTELY FORBIDDEN** during Phase 0:
+The single ordering constraint that governs Phase 1:
 
-- Computing state-conditioned precision matrices Q_roam or Q_dwell from real behavioral data
-- Computing ΔQ = Q_roam − Q_dwell from real behavioral data
-- Computing Ω_s, D_C ΔQ, or any current-velocity-based statistic from real behavioral data
-- Running any enrichment test against the neuropeptide, Randi, serotonin/PDF, or any
-  biological annotation resource using real ΔQ outputs as input
+**No precision matrix may be computed from real data until Stage 1.0 (CePNEM residualization)
+passes all verification checks.**
 
-The following are **PERMITTED** during Phase 0:
-
-- Computing state-conditioned covariance matrices Σ_s (not precision) for the purpose of
-  n_eff estimation, stationarity testing, and inter-animal variability assessment
-- Computing precision matrices on **synthetic** data to test the estimation pipeline
-- Running power simulations using synthetic pair lists
-
-The reason: all preprocessing decisions, threshold values, estimator choices, and the primary
-hypothesis must be locked before the state-conditioned precision structure is observed.
-Informing any decision with a preview of ΔQ makes the final enrichment test uninterpretable.
-
-**Any action that computes Q_s or ΔQ on real behavioral data is a critical deviation.
-Stop immediately and notify the human.**
+The reason: CePNEM residuals are the primary coordinate system. If precision matrices are
+computed in raw GCaMP first and the results are seen, there is a risk of interpretation
+contamination — knowing the raw-coordinate result biases evaluation of the CePNEM result.
+The correct order is: implement CePNEM, verify it works, then compute precision in both
+coordinate systems without previewing either before both are complete.
 
 ---
 
-## Code-level guardrail for the hard constraint
+## GUARDRAIL CHANGE FROM PHASE 0
 
-Every function that computes a precision matrix, graphical-lasso estimate, inverse covariance,
-or ΔQ-like object must require an explicit argument:
+Phase 0 prohibited all real-data precision computation via a RuntimeError guard in
+`src/estimators.py`. Phase 1 lifts this guard.
 
-```python
-data_kind: Literal["synthetic", "real"]
+Before beginning Stage 1.1, set `PHASE0_COMPLETE = True` in `phase0_config.py` and verify
+the guardrail permits `data_kind="real"`. This requires explicit human authorization and
+must be recorded in `CHECKPOINT_LOG.md` with date and rationale.
+
+The human must first acknowledge the three standing deviations from Phase 0:
+
+1. **DEV-003 (nonstationarity):** All recordings show temporal covariance drift
+   (photobleaching). Results are time-averaged effective structure, not stationary.
+   Interpretation rule: accepted as design constraint.
+
+2. **DEV-004 (coordinate system):** Now RESOLVED. CePNEM residuals are available and
+   become the primary coordinate system. Raw GCaMP becomes robustness coordinate.
+   Update `COORD_PRIMARY = "cepnem_residual"` in `phase0_config.py`.
+
+3. **DEV-005 (inter-animal variability):** Stage 7 was not completed. Leave-one-animal-out
+   sensitivity in Stage 1.3 compensates. Human confirms all-animal pooling without
+   prior outlier screening.
+
+---
+
+## Inherited locked parameters
+
+All values below are inherited from Phase 0 and must not be changed during Phase 1.
+They live in `phase0_config.py` and are imported by every script.
+
 ```
+# Subgraph
+N_COMMON_NEURONS                = 61
+N_RANDI_SUBGRAPH_NEURONS        = 60   (AWCL absent from funatlas)
+N_CREAMER_SUBGRAPH_NEURONS      = 56   (AIBL, AIBR, AWCL, IL1L, IL1R absent)
 
-During Phase 0:
+# Behavioral segmentation
+BEHAV_THRESHOLD                 = 0.284
+BEHAVIOR_SCORE_SOURCE           = "velocity_s"
+EWMA_TIMESCALE_SECONDS          = 20.0
+W_TRANS_SECONDS                 = 10.0
+MIN_BOUT_SECONDS                = 10.0
 
-* If `data_kind == "real"`, precision estimation must raise `RuntimeError`.
-* Synthetic precision estimation is allowed only for Stage 8 estimator validation.
-* Add a unit test verifying that real behavioral data cannot be passed into precision-estimation code during Phase 0.
+# Normalization
+NORMALIZATION                   = "z_score_global"
+MISSING_NEURON_POLICY           = "nan_complete_case"
+LR_POLICY                       = "separate"
+SYNAPSE_COUNT_THRESHOLD         = 1
 
-Real-data covariance estimation remains allowed.
+# Estimation
+ESTIMATOR_TIER                  = "pooled_hierarchical"
+POOLING_STRATEGY                = "pooled"
+DISCOVERY_ESTIMATOR             = "unstructured_stability_selection"
+CONFIRMATION_ESTIMATOR          = "anatomy_guided_lasso"
+LAMBDA_ON                       = 0.04
+LAMBDA_OFF                      = 0.45
 
----
+# Enrichment
+PRIMARY_ENRICHMENT_STAT         = "AUROC"
+SECONDARY_ENRICHMENT_STAT       = "Fisher_topK"
+PRIMARY_TOP_K                   = 50
+D_ROBUSTNESS_RHO                = 0.7
 
-## External data access
+# Creamer
+CREAMER_TIME_CONVENTION         = "discrete"
+CREAMER_DT                      = 0.5
+CREAMER_MAX_EIGENVALUE           = 0.9966
+CREAMER_DC_AVAILABLE            = True
+CREAMER_OMEGA_NORM              = 8.6089  # 56-neuron subspace
 
-If an external repository, supplementary file, package, Git LFS resource, or browser download
-cannot be accessed:
-
-1. Stop and report the exact missing resource.
-2. Record the issue in `PROGRESS.md` and `CONTEXT.md`.
-3. Do not substitute unrelated data.
-4. Use mock data only for synthetic pipeline tests, never for biological feasibility conclusions.
-
----
-
-## Primary references
-
-**Dataset: C. elegans whole-brain calcium imaging**
-Atanas AA, Kim J, Wang Z, et al. Brain-wide representations of behavior spanning multiple
-timescales and states in C. elegans. Cell 186:4134–4151.e31, 2023.
-GitHub: [https://github.com/flavell-lab/AtanasKim-Cell2023](https://github.com/flavell-lab/AtanasKim-Cell2023)
-Browser: [https://wormwideweb.org](https://wormwideweb.org)
-
-**Dataset: Connectome-constrained linear dynamical system**
-Creamer MS, Leifer AM, Pillow JW. Bridging the gap between the connectome and whole-brain
-activity in C. elegans. bioRxiv 2024.09.22.614271, 2024.
-GitHub: [https://github.com/Nondairy-Creamer/Creamer_LDS_2024](https://github.com/Nondairy-Creamer/Creamer_LDS_2024)
-
-**Dataset: C. elegans synaptic connectome**
-Cook SJ, Jarrell TA, Brittin CA, et al. Whole-animal connectomes of both C. elegans sexes.
-Nature 571:63–71, 2019.
-Witvliet D, Mulcahy B, Mitchell JK, et al. Connectomes across development reveal principles
-of brain maturation. Nature 596:257–261, 2021.
-Access via: [https://github.com/openworm/ConnectomeToolbox](https://github.com/openworm/ConnectomeToolbox) or wormneuroatlas
-
-**Dataset: Neural signal propagation atlas with optogenetic perturbations**
-Randi F, Sharma AK, Dvali S, Leifer AM. Neural signal propagation atlas of C. elegans.
-Nature 623:406–414, 2023.
-Access via: [https://github.com/francescorandi/wormneuroatlas](https://github.com/francescorandi/wormneuroatlas)
-
-**Dataset: Neuropeptide signaling connectome**
-Ripoll-Sánchez L, Watteyne J, Sun H, et al. The neuropeptidergic connectome of C. elegans.
-Neuron 111:3570–3589.e5, 2023.
-Supplementary data available from the Neuron paper.
-
-**Dataset: Serotonin brain-wide imaging and receptor genetics**
-Dag U, Nwabudike I, Kang D ... Flavell SW.
-Dissecting the functional organization of the C. elegans serotonergic system at whole-brain scale
-Cell, 2023; 186, 2574-2592.e20
-
-**Dataset: Roaming/dwelling circuit and neuromodulatory control**
-Ni Ji, Flavell SW. A neural circuit for flexible control of persistent behavioral states.
-eLife 10:e62889, 2021.
-
-**RC model (user-provided)**
-"Optimizing Reservoir Computing for Reconstructing Ergodic Properties" (arxiv preprint).
-Check user for exact citation and code location before beginning Stage 4.
-
-**Theory**
-Khurana H. One wiring, two functions: identifying state-dependent functional organization
-in driven circuits with a current-velocity diagnostic for approximate Markov blankets and
-polycomputing. Draft 2026. (The paper whose C. elegans extension this analysis implements.)
-
----
-
-## Verified dataset properties
-
-The following are established from the primary references and may be treated as ground truth.
-Hard-code in `phase0_config.py` under `VERIFIED`.
-
-```python
-# ---------------------------------------------------------------
-# VERIFIED — do not change without a new primary source
-# ---------------------------------------------------------------
-
-# Atanas 2023
-ATANAS_SAMPLING_HZ   = 5.0       # volumetric rate, Hz [Atanas 2023 methods]
-ATANAS_INDICATOR     = "GCaMP6s" # nuclear-localized [Atanas 2023 methods]
-ATANAS_N_ANIMALS_APPROX = 30     # ~30 animals with NeuroPAL identification [Atanas 2023]
-ATANAS_GITHUB        = "https://github.com/flavell-lab/AtanasKim-Cell2023"
-
-# C. elegans nervous system
-N_NEURONS_TOTAL      = 302       # hermaphrodite [White et al. 1986]
-N_HEAD_NEURONS_APPROX = 180      # head ganglion, approximate [multiple sources]
-
-# Cook / Witvliet connectome
-COOK_N_NEURONS       = 302       # both sexes [Cook et al. 2019]
-COOK_N_SYNAPSES_APPROX = 7000    # chemical + gap junction, approximate [Cook 2019]
-CONNECTOME_GITHUB    = "https://github.com/openworm/ConnectomeToolbox"
-
-# Randi 2023
-RANDI_N_PAIRS        = 23433     # measured neuron pairs, head [Randi 2023 abstract]
-RANDI_PREPARATION    = "immobilized"  # head ganglion [Randi 2023 methods]
-RANDI_GITHUB         = "https://github.com/francescorandi/wormneuroatlas"
-
-# Creamer 2024
-CREAMER_GITHUB       = "https://github.com/Nondairy-Creamer/Creamer_LDS_2024"
-CREAMER_MODEL_TYPE   = "noisy_linear_dynamical_system"  # [Creamer 2024 abstract]
-CREAMER_CONNECTOME_CONSTRAINED = True   # [Creamer 2024: nonzero weights only at synapses]
+# Validated regimes (from Phase 0 synthetic)
+# non_roaming: 39/40 animals, TPR=1.00 at optimistic T
+# roaming: 25/40 animals, TPR=0.90 at pooled T=1000; exploratory
 ```
 
 ---
 
-## Required `phase0_config.py` schema
+## Phase 1 repository additions
 
-Create `phase0_config.py` before Stage 1. It is the single source of truth for all paths,
-parameters, and human decisions. It must contain at least the following sections.
-
-```python
-# phase0_config.py — required schema
-
-# ----------------
-# VERIFIED
-# ----------------
-ATANAS_SAMPLING_HZ = 5.0
-ATANAS_INDICATOR = "GCaMP6s"
-ATANAS_N_ANIMALS_APPROX = 30
-ATANAS_GITHUB = "https://github.com/flavell-lab/AtanasKim-Cell2023"
-
-N_NEURONS_TOTAL = 302
-N_HEAD_NEURONS_APPROX = 180
-
-COOK_N_NEURONS = 302
-COOK_N_SYNAPSES_APPROX = 7000
-CONNECTOME_GITHUB = "https://github.com/openworm/ConnectomeToolbox"
-
-RANDI_N_PAIRS = 23433
-RANDI_PREPARATION = "immobilized"
-RANDI_GITHUB = "https://github.com/francescorandi/wormneuroatlas"
-
-CREAMER_GITHUB = "https://github.com/Nondairy-Creamer/Creamer_LDS_2024"
-CREAMER_MODEL_TYPE = "noisy_linear_dynamical_system"
-CREAMER_CONNECTOME_CONSTRAINED = True
-
-# ----------------
-# PATHS
-# ----------------
-DATA_ROOT = None
-ATANAS_PATH = None
-CREAMER_PATH = None
-CONNECTOME_PATH = None
-RANDI_PATH = None
-NEUROPEPTIDE_PATH = None
-RESULTS_DIR = "results"
-RANDOM_SEED = 20260527
-
-# ----------------
-# CREAMER
-# ----------------
-CREAMER_TIME_CONVENTION = None
-CREAMER_DT = None
-CREAMER_MAX_EIGENVALUE = None
-CREAMER_STABLE = None
-CREAMER_DC_AVAILABLE = None
-CREAMER_D_TYPE = None
-CREAMER_LABEL_CONVENTION = None
-CREAMER_SIGMA_POSDEF = None
-CREAMER_OMEGA_NORM = None
-
-# ----------------
-# RC
-# ----------------
-RC_CODE_PATH = None
-RC_OUTPUT_NEURON_COORDS = None
-RC_OUTPUT_JACOBIAN_AVAILABLE = None
-RC_STATE_CONDITIONED = None
-RC_NEURON_COVERAGE = None
-RC_ROLE_SAMPLING = None
-RC_ROLE_JACOBIAN = None
-RC_ROLE_DRIVE_SWEEP = None
-
-# ----------------
-# SUBGRAPH / HARMONIZATION
-# ----------------
-LR_POLICY = "separate"
-IDENTITY_CONFIDENCE_THRESHOLD = None
-N_COMMON_NEURONS = None
-SUBGRAPH_ADEQUATE = None
-SYNAPSE_COUNT_THRESHOLD = 1
-SYNAPSE_COUNT_THRESHOLD_SENSITIVITY = 3
-N_RANDI_SUBGRAPH_PAIRS = None
-
-# ----------------
-# PREPROCESSING / STATES
-# ----------------
-COORD_PRIMARY = None
-COORD_ROBUSTNESS_1 = None
-COORD_ROBUSTNESS_2 = None
-DECONV_AVAILABLE = None
-NORMALIZATION = "z_score_global"
-MISSING_NEURON_POLICY = "nan_complete_case"
-BEHAVIOR_SCORE_SOURCE = None
-BEHAV_THRESHOLD = None
-BEHAV_THRESHOLD_RULE = None
-W_TRANS_SECONDS = 30.0
-MIN_BOUT_SECONDS = None
-COORD_INTERP_RULE = None
-
-# ----------------
-# N_EFF / STATIONARITY
-# ----------------
-NEFF_METHOD = "cross_product_integrated_autocorrelation"
-NEFF_K_MAX_FRAMES = 200
-ESTIMATOR_TIER = None
-NONSTATIONARITY_FRACTION = None
-
-# ----------------
-# INTER-ANIMAL / ESTIMATION
-# ----------------
-OUTLIER_ANIMALS = None
-EXCLUDED_ANIMALS_PRIMARY = None
-POOLING_STRATEGY = None
-DISCOVERY_ESTIMATOR = "unstructured_stability_selection"
-CONFIRMATION_ESTIMATOR = "anatomy_guided_lasso"
-LAMBDA_ON = None
-LAMBDA_OFF = None
-LAMBDA_OFF_ON_RATIO = None
-NFOLDS = None
-CV_FOLD_ASSIGNMENTS_PATH = None
-
-# ----------------
-# ENRICHMENT / NULLS
-# ----------------
-PRIMARY_ENRICHMENT_STAT = "AUROC"
-SECONDARY_ENRICHMENT_STAT = "Fisher_topK"
-NULL_MODEL_PRIMARY = None
-ENRICHMENT_POWER_AT_OR2 = None
-
-# ----------------
-# HYPOTHESIS LOCK
-# ----------------
-PRIMARY_HYPOTHESIS_TEXT = None
-PRIMARY_TOP_K = None
-D_ROBUSTNESS_RHO = None
-PHASE0_COMPLETE = False
-```
-
-All human-decision fields start as `None`. Any script that uses such a field must assert
-that it has been set.
-
----
-
-## Repository scaffold
+Phase 0 code remains in `src/` and `scripts/`. Phase 1 adds:
 
 ```
 src/
-  data_access.py         # load Atanas, Creamer, connectome, Randi, neuropeptide data
-  harmonization.py       # neuron name mapping across all datasets; master table
-  preprocessing.py       # CePNEM residuals, raw GCaMP, deconvolution; normalization;
-                         # epoch segmentation; left/right policy; missing-neuron handling
-  neff.py                # integrated autocorrelation time; n_eff for cross-products
-  stationarity.py        # rolling covariance; first/second-half comparison; spectral checks
-  variability.py         # inter-animal covariance consistency; PCA summary
-  estimators.py          # stability selection; anatomy-guided lasso; connectome prior
-  enrichment.py          # Fisher test; AUROC; Mann-Whitney; GSEA-style ranking test
-  power_analysis.py      # enrichment power under synthetic null and synthetic signal
-  null_models.py         # degree-, class-, proximity-, neuropeptide-degree-aware permutation
-  plotting.py            # diagnostic figures
+  cepnem_residualize.py    # CePNEM model evaluation and residual computation
+  delta_q.py               # ΔQ computation, classification, ranking
+  d_robustness.py          # D-scaling and Spearman rank comparison
+  omega_comparison.py      # Ω̂_s^(C) and ΔΩ_model computation
+  coord_comparison.py      # cross-coordinate overlap and interpretation rule
 scripts/
-  stage01_creamer_check.py      # Stage 1: Creamer LDS feasibility checks
-  stage02_subgraph.py           # Stage 2: common identified-neuron subgraph construction
-  stage03_randi_extraction.py   # Stage 3: Randi unc-31-sensitive pair rankings, harmonization
-  stage04_rc_check.py           # Stage 4: RC implementation check
-  stage05_preprocessing.py      # Stage 5: implement coordinate systems and state threshold diagnostics
-  stage06_neff_stationarity.py  # Stage 6: n_eff from cross-products; stationarity testing
-  stage07_variability.py        # Stage 7: inter-animal consistency; estimator decision
-  stage08_estimator_dryrun.py   # Stage 8: estimation pipeline on synthetic data
-  stage09_power.py              # Stage 9: enrichment power; null model validation
-  stage10_hypothesis_lock.py    # Stage 10: format and verify hypothesis document
-phase0_config.py                # single source of truth for all parameters and decisions
-PROGRESS.md                     # updated after every stage and checkpoint
-CONTEXT.md                      # reasoning notes on non-obvious outcomes
-CHECKPOINT_LOG.md               # record of all checkpoints and their outcomes
-DEVIATIONS.md                   # record of all deviations from this spec
+  phase1/
+    stage0_cepnem.py             # CePNEM residualization and verification
+    stage1_precision.py          # state-conditioned precision estimation
+    stage2_delta_q.py            # ΔQ computation and classification
+    stage3_loo_sensitivity.py    # leave-one-animal-out
+    stage4_d_robustness.py       # D-robustness check and current-velocity bridge
+    stage5_omega_comparison.py   # Ω_C comparison (secondary)
+    stage6_enrichment.py         # all enrichment tests
+    stage7_coord_comparison.py   # cross-coordinate interpretation
+    stage8_summary.py            # figures, tables, named pairs
 results/
-  diagnostics/           # all Phase 0 numerical outputs (.npy, .csv, .json)
-  figures/               # all diagnostic figures
-tests/
-  test_harmonization.py  # verify name-mapping table on known cases
-  test_neff.py           # verify n_eff formula on AR(1) with known τ
-  test_estimators.py     # verify stability selection and lasso on synthetic data
-  test_enrichment.py     # verify enrichment tests on synthetic pair lists
-  test_nulls.py          # verify null models preserve degree/class/proximity distributions
-  test_phase0_guard.py   # verify real-data precision estimation is blocked during Phase 0
+  phase1/
+    data/          # all numerical outputs
+    figures/       # all figures
+    tables/        # summary tables, named pair lists
 ```
 
 ---
 
-## Stage 1 — Creamer feasibility check and provisional RC triage
+## Stage 1.0 — CePNEM residualization
 
 ### Purpose
 
-Determine whether the Creamer LDS can be used in the main analysis as intended, and make a
-provisional triage of RC capabilities. If Creamer A_C is unstable or D_C is unavailable,
-the current-velocity bridge step (D_C ΔQ) must use fallback estimates. If the RC does
-not expose an output-space Jacobian over identified neurons, it is restricted to a
-generative sampling or drive-sweep role.
+Implement and verify CePNEM residualization so that the primary coordinate system (residual
+neural activity after removing behavioral encoding) is available for all subsequent stages.
 
-Final RC role assignment is not locked until Stage 4.
+### Implementation
+
+The CePNEM model decomposes each neuron's calcium trace into a predicted behavioral
+component and a residual:
+
+```
+predicted_i(t) = model_nl8(posterior_median_params_i, behavioral_covariates(t))
+residual_i(t)  = trace_array_i(t) - predicted_i(t)
+```
+
+Source: `fit_results.jld2` contains `sampled_trace_params`, behavioral encoding posterior
+samples, behavioral covariates, epoch boundaries, and aligned recording identifiers.
+Precomputed residuals are NOT present; they must be computed here.
 
 ### Tasks
 
-**Creamer LDS:**
+1. Load `fit_results.jld2`. Extract posterior median parameters for each neuron.
+   Resolve the `sampled_trace_params[..., 6]` ↔ `sampled_tau_vals` mapping by checking
+   the CePNEM source code parameter ordering. Document the verified mapping.
 
-1. Clone or download the Creamer repository. Identify the exported model objects.
-2. Determine whether the model is continuous-time (dx/dt = A_C x + noise) or
-   discrete-time (x_{t+1} = A_C x_t + noise). Check the paper methods section and
-   the repository README. Record in `phase0_config.py` under `CREAMER_TIME_CONVENTION`.
-3. Load A_C. Check eigenvalues:
+2. For each animal and each identified neuron in the 61-neuron common subgraph:
+   - Evaluate the CePNEM nonlinear model at the posterior median parameters
+   - Compute residual = raw trace − predicted
+   - Apply the same z-score normalization used for raw GCaMP (`z_score_global`)
 
-   * Continuous-time: stability requires max Re(λ_i(A_C)) < 0
-   * Discrete-time: stability requires max |λ_i(A_C)| < 1
-     Record max Re(λ) or max |λ| in `CREAMER_MAX_EIGENVALUE`.
-4. If discrete-time: compute the continuous-time equivalent A_C^cont = (1/dt) log(A_C^disc)
-   for use in the continuous-time Lyapunov equation. Document the time step dt. If the
-   main analysis remains in discrete time, record that separately.
-5. Check whether D_C is exported. D_C is the process-noise covariance, diagonal variance,
-   or innovation covariance in the LDS equation. Record `CREAMER_DC_AVAILABLE = True/False`.
-   If not available, record what is available.
-6. Check neuron label convention in the Creamer model. Determine whether labels use
-   NeuroPAL names, numeric indices, or another convention. Record in `CREAMER_LABEL_CONVENTION`.
-7. If D_C is available and A_C is stable, compute Σ_C by solving the appropriate Lyapunov
-   equation. Check that Σ_C is positive definite.
-8. If Σ_C is positive definite, compute Ω_C = A_C + D_C Q_C where Q_C = Σ_C^{-1}.
-   Record ||Ω_C||_F in `CREAMER_OMEGA_NORM`.
-   This is the current structure the connectome-only model predicts — not zero in general.
+3. Verification checks (all must pass):
 
-Do not use a Frobenius-norm comparison between Creamer weights and raw synapse counts as a
-pass/fail criterion. Raw connectome support and weight/count correlations may be recorded
-later as diagnostics after Stage 2 harmonization.
+   a. **Behavioral decorrelation:** For each neuron, compute the Pearson correlation between
+      the residual and each primary behavioral covariate (velocity, angular velocity,
+      curvature). Compare to the same correlations for the raw trace. The median absolute
+      correlation with behavioral covariates must decrease by ≥ 50% after residualization.
 
-**Provisional RC triage:**
+   b. **Residual variance:** For each neuron, compute var(residual) / var(raw). If this
+      ratio < 0.10 for any neuron, the CePNEM model is overfitting that neuron; flag it
+      for potential exclusion from the CePNEM coordinate analysis (retain in raw GCaMP).
 
-1. Locate the RC code for "Optimizing Reservoir Computing for Reconstructing Ergodic
-   Properties." Ask the human for the exact location if not found in the repository.
-2. Determine whether the RC appears to produce outputs in identified-neuron coordinates
-   (i.e., whether there is an output map W_out such that x_predicted = W_out r, where x is
-   in identified-neuron space and r is the reservoir state).
-3. Determine whether the RC appears to accept a behavioral-state context variable as input
-   (enabling state-conditioned generation).
-4. Record provisional values:
+   c. **Epoch boundary artifacts:** Plot residuals around epoch boundaries for a
+      representative subset of animals. Verify no systematic transients at boundaries.
 
-   * `RC_OUTPUT_NEURON_COORDS`
-   * `RC_OUTPUT_JACOBIAN_AVAILABLE`
-   * `RC_STATE_CONDITIONED`
-   * `RC_NEURON_COVERAGE`
+   d. **Residual stationarity:** Compute the same rolling-covariance and first/second-half
+      drift metrics used in Phase 0 Stage 7. Compare NONSTATIONARITY_FRACTION for
+      CePNEM residuals vs. raw GCaMP. If residualization reduces drift (because
+      photobleaching is partially captured by the behavioral model), record the improvement.
 
-These are provisional until Stage 4 loads and runs the RC.
+4. Save residualized traces to `results/phase1/data/cepnem_residuals/` in the same
+   format as raw trace arrays.
 
 ### Pass conditions
 
 ```
-CREAMER_MAX_EIGENVALUE < 0 (continuous-time) or < 1 (discrete-time)
-Σ_C positive definite if D_C is available and Lyapunov solve is attempted
-Ω_C computed and recorded if D_C and Σ_C are available
-All values written to phase0_config.py
-CREAMER_DC_AVAILABLE recorded (True or False; fallback plan noted if False)
-Provisional RC capability fields recorded
+CePNEM model evaluated for all animals × common-subgraph neurons
+Tau parameter mapping verified and documented
+Behavioral decorrelation: median |r| reduction ≥ 50%
+No neuron with residual variance ratio < 0.10 (or flagged and documented)
+No epoch boundary artifacts
+Residualized traces saved to disk
 ```
 
-**HUMAN DECISION CHECKPOINT after Stage 1:**
-The human reviews the Creamer stability report, D_C availability, and provisional RC capability summary.
-Decisions to record in `phase0_config.py`:
-
-* Whether to use Creamer D_C, fallback diagonal D, or identity for the current-velocity bridge
-* Whether Stage 6/secondary Lyapunov comparison should proceed or fall back to sensitivity analysis
-* Whether Stage 4 should attempt a full RC implementation check
-
-Do not begin Stage 2 until the human has completed this checkpoint.
+**GATE: Do not proceed to Stage 1.1 until all Stage 1.0 checks pass.**
 
 ---
 
-## Stage 2 — Common identified-neuron subgraph construction and harmonization
+## Stage 1.1 — State-conditioned precision estimation
 
 ### Purpose
 
-Build the single resource that every subsequent analysis depends on: a master harmonization
-table mapping each identified neuron to its label in every dataset, and a common subgraph
-object containing only neurons with confirmed identity in the Atanas 2023 recordings.
+Compute state-conditioned precision matrices in both coordinate systems using both
+estimators. This is the first computation that was forbidden during Phase 0.
 
-### Tasks
+### Procedure
 
-**Master harmonization table:**
+**For each coordinate system** (CePNEM residual, raw GCaMP), **independently:**
 
-1. Extract neuron labels from each of the following sources:
+1. Segment recordings using locked parameters (BEHAV_THRESHOLD = 0.284 on EWMA velocity_s,
+   W_TRANS = 10s, MIN_BOUT = 10s). Record per-animal epoch counts and frame totals for
+   each state.
 
-   * Atanas 2023 identified neurons (NeuroPAL names from WormWideWeb / GitHub data files)
-   * Creamer LDS (whatever label convention was found in Stage 1)
-   * Cook/Witvliet connectome (traditional 3-letter names from White et al. 1986 + L/R suffix)
-   * Randi 2023 atlas (NeuroPAL or WormAtlas names from wormneuroatlas)
-   * Ripoll-Sánchez neuropeptide connectome (neuron labels from supplementary data)
-   * Serotonin/PDF annotations (from Wan et al. 2023 and Kim & Flavell 2021)
-2. Build a CSV table `results/diagnostics/neuron_harmonization.csv` with one row per
-   neuron and one column per dataset, containing the label as it appears in that dataset
-   (or NaN if absent). The canonical key column uses NeuroPAL names.
-3. For any neuron where the mapping is ambiguous (e.g., left/right homolog split differently
-   across datasets), flag the row and write the ambiguity to CONTEXT.md.
-   Do NOT silently resolve ambiguous mappings. Require human sign-off on each ambiguous case.
+2. Pool frames across animals within each state. Record:
+   - N_animals contributing to roaming (expected: ~25)
+   - N_animals contributing to dwelling (expected: ~39)
+   - Total frames per state
+   - Effective sample size per state (from Phase 0 n_eff computation, recomputed on
+     CePNEM residuals if the autocorrelation structure differs)
 
-**Left/right homolog policy:**
-The default is to treat bilateral pairs (e.g., AVAL / AVAR) as separate nodes. This must
-be implemented in the harmonization table. Record `LR_POLICY = "separate"` in `phase0_config.py`.
-The human may override this for specific neuron classes after reviewing the table.
+3. **Discovery estimator (stability selection with graphical lasso):**
+   - 50 bootstrap resamples of animals (draw half without replacement each time)
+   - For each resample: fit graphical lasso with BIC alpha selection
+   - Record stability score for each edge: fraction of resamples selecting it
+   - Threshold at 0.75 for edge inclusion
+   - Output: Q_s^disc (precision matrix), stability_s (edge stability matrix)
 
-**Common identified-neuron subgraph:**
+4. **Confirmation estimator (anatomy-guided lasso):**
+   - ADMM solver with per-entry penalty (LAMBDA_ON = 0.04 on-connectome, LAMBDA_OFF = 0.45
+     off-connectome)
+   - Output: Q_s^conf (precision matrix)
 
-4. Define the primary neuron set as: neurons identified with high confidence (confidence
-   score ≥ threshold; see Stage 5) in ≥ 80% of Atanas animals, and present in both the
-   Cook/Witvliet connectome and the Randi atlas. Record the count as `N_COMMON_NEURONS`.
-5. Construct four binary adjacency matrices restricted to this subgraph:
+5. For each precision matrix, verify:
+   - Positive definite
+   - Symmetric within tolerance (max |Q − Q^T| < 1e-10)
+   - Condition number < 10^6
+   - Print and record all diagnostics
 
-   * `A_raw`: synaptic support from Cook/Witvliet (1 if ≥ 1 synapse; chemical + gap junction)
-   * `A_gj`: gap junction only (for sensitivity)
-   * `A_chem`: chemical synapse only
-   * `A_peptide`: neuropeptide support from Ripoll-Sánchez (any ligand-receptor pair in
-     either direction; undirected union)
-6. Record synapse-count thresholds: primary uses ≥ 1 synapse; sensitivity uses ≥ 3 synapses.
-   Record `SYNAPSE_COUNT_THRESHOLD = 1` in `phase0_config.py`.
-7. Print the following statistics:
-
-   * N_COMMON_NEURONS
-   * Fraction of pairs that are synaptic (in A_raw)
-   * Fraction of pairs that are peptidergic but not synaptic (in A_peptide AND NOT A_raw)
-   * Fraction of Ripoll-Sánchez neuropeptide pairs in the common subgraph
-
-Randi unc-31-sensitive pair coverage is not computed in Stage 2, because the Randi pair list
-is extracted in Stage 3.
-
-**HUMAN DECISION CHECKPOINT after Stage 2:**
-The human reviews N_COMMON_NEURONS, the biological composition of the subgraph
-(which named neurons are included and excluded), and the coverage fractions.
-Decision: Is the common subgraph biologically adequate for testing the roaming/dwelling
-state-switch hypothesis? If critical neurons (AVA, RIM, AIY, AIA, RIG) are absent,
-the subgraph may need extension to a lower identity confidence threshold.
-Record decision in `phase0_config.py` as `SUBGRAPH_ADEQUATE = True/False` with justification.
+This stage produces 8 precision matrices total:
+{CePNEM, raw_GCaMP} × {roaming, dwelling} × {discovery, confirmation}
 
 ### Pass conditions
 
 ```
-Harmonization table built with no silent ambiguity resolutions
-All ambiguous cases flagged and noted in CONTEXT.md
-N_COMMON_NEURONS ≥ 30 for pairwise analysis (below this: HUMAN_DECISION required on scope)
-A_raw, A_gj, A_chem, A_peptide all restricted to common subgraph and saved to disk
-Coverage fractions printed and recorded in PROGRESS.md
-HUMAN DECISION CHECKPOINT completed and phase0_config.py updated
+All 8 precision matrices computed and saved
+All positive definite and symmetric
+Condition numbers recorded
+N_animals and n_eff per state per coordinate recorded
+No convergence failures in either estimator
 ```
 
 ---
 
-## Stage 3 — Randi unc-31-sensitive pair extraction
+## Stage 1.2 — ΔQ computation and connectome classification
 
 ### Purpose
 
-Build the ranked list of DCV-sensitive (neuropeptide-dependent) neuron pairs from Randi 2023.
-This list is used in the enrichment test (Stage 9). It must be built and restricted to the
-common subgraph before any ΔQ is computed.
+Compute the state-switching signal and classify every entry by its synaptic support status.
 
-### Tasks
+### Procedure
 
-1. Using the wormneuroatlas package (`pip install wormneuroatlas`), access the Randi 2023
-   wild-type and unc-31 functional atlas data. Alternatively, load from the supplementary
-   data files if the package is unavailable.
-2. Use Randi et al.'s published response and significance metrics if available. If no
-   published DCV-sensitivity metric is provided, compute:
-
+1. For each estimator × each coordinate system, compute:
    ```
-   DCV_score(i,j) = WT_response(i,j) - unc31_response(i,j)
+   ΔQ = Q_roam − Q_dwell
    ```
+   (4 ΔQ matrices total)
 
-   where response is the documented calcium signal amplitude following optogenetic stimulation.
-   Record the exact response amplitude and significance definition used.
-3. Produce a ranked table of pairs by |DCV_score|, restricted to pairs where WT response
-   is significant and unc-31 response is significantly reduced, if those significance labels
-   are available.
-4. Map all pairs to the common identified-neuron subgraph using the harmonization table.
-   Record how many pairs survive the subgraph restriction.
-5. Save the full ranked list and the subgraph-restricted list to
-   `results/diagnostics/randi_dcv_pairs.csv`.
-6. Report the fraction of Randi unc-31-sensitive pairs that fall in the common subgraph.
+2. For each off-diagonal entry (i, j), assign a support class based on the
+   61-neuron anatomical subgraph:
+
+   **Class 1 — On-both:** A_raw(i,j) ≥ 1 AND A_C(i,j) ≠ 0
+   **Class 2 — On-raw-only:** A_raw(i,j) ≥ 1 AND A_C(i,j) = 0
+   **Class 3 — Off-raw, on-Creamer:** A_raw(i,j) = 0 AND A_C(i,j) ≠ 0
+     (should not occur if Creamer is connectome-constrained; flag if present)
+   **Class 4 — Off-both:** A_raw(i,j) = 0 AND A_C(i,j) = 0
+     (primary candidates for current-supported state-dependent structure)
+
+3. Within Class 4, annotate each pair:
+   - `peptide_supported`: A_peptide(i,j) = 1 (either direction)
+   - `randi_dcv`: pair is among the 189 Randi DCV-sensitive pairs
+   - `serotonin_receptor`: either neuron expresses a serotonin receptor
+   - `pdf_receptor`: either neuron expresses PDFR-1
+
+4. Rank Class 4 pairs by a combined score:
+   ```
+   rank_score(i,j) = |ΔQ(i,j)| × min(stability_roam(i,j), stability_dwell(i,j))
+   ```
+   where stability comes from the discovery estimator. A pair that is not stably estimated
+   in both states gets a low score regardless of its ΔQ magnitude.
+
+5. Save the full classified and ranked pair list to
+   `results/phase1/data/delta_q_classified_[coord]_[estimator].csv`
+   with columns: neuron_i, neuron_j, class, ΔQ, stability_roam, stability_dwell,
+   rank_score, peptide_supported, randi_dcv, serotonin_receptor, pdf_receptor.
+
+6. Print summary statistics:
+   - Number of pairs in each class
+   - Number of Class 4 pairs with rank_score > 0 (nonzero ΔQ and stable in both states)
+   - Top-10 Class 4 pairs by rank_score (names and annotations)
 
 ### Pass conditions
 
 ```
-At least one successful data access route to Randi WT and unc-31 data
-DCV_score or published equivalent defined and documented
-Subgraph-restricted pair list saved
-N_RANDI_SUBGRAPH_PAIRS recorded in phase0_config.py
+All 4 ΔQ matrices computed and classified
+Class 3 count = 0 (or flagged with explanation)
+Class 4 pair count ≥ 20 (otherwise enrichment test is underpowered)
+Ranked pair lists saved for all 4 analysis variants
+Summary statistics recorded
 ```
 
 ---
 
-## Stage 4 — RC implementation check and role assignment
+## Stage 1.3 — Leave-one-animal-out sensitivity
 
 ### Purpose
 
-Confirm the specific capabilities of the RC model and assign its role in the main analysis.
-This stage requires the human to provide the RC code location if not already in the repository.
+Compensate for the missing inter-animal variability assessment (Phase 0 DEV-005) by
+testing whether the top-ranked pairs are driven by individual animals.
 
-Stage 1 records provisional RC capabilities. Stage 4 confirms them by loading and, if possible,
-running the RC. Final `RC_ROLE_*` fields are locked here.
+### Procedure
 
-### Tasks
+Run in the primary analysis variant only: CePNEM residuals × discovery estimator.
 
-1. Load the RC model. Verify it produces outputs in identified-neuron coordinates or
-   that outputs can be mapped back to identified neurons.
-2. Test state-conditioned generation if supported: provide a roaming context input and a
-   dwelling context input; verify that the RC produces stationary-like trajectories in each
-   condition. If the RC does not accept behavioral context, it can only be used for drive sweeps
-   or unconditional sampling.
-3. If an output-space Jacobian is available: compute J_RC as the Jacobian of the RC output
-   dynamics at the mean state in each behavioral context. Verify it is numerically stable and
-   has the correct dimensions (N_COMMON_NEURONS × N_COMMON_NEURONS). Do not use a hidden
-   reservoir Jacobian as a biological neuron-space J.
-4. Assign the RC to its specific roles in phase0_config.py:
+1. For each contributing animal a ∈ {1, ..., N_animals}:
+   - Recompute pooled ΔQ with animal a excluded (re-run stability selection on the
+     remaining animals for both states)
+   - Re-rank Class 4 pairs
 
-   ```
-   RC_ROLE_SAMPLING = True/False     # generate long Σ_s estimates
-   RC_ROLE_JACOBIAN = True/False     # provide J_RC for current-velocity bridge
-   RC_ROLE_DRIVE_SWEEP = True/False  # vary drive input; replicate OU cascade
-   ```
+2. For each of the top-50 Class 4 pairs from the full analysis:
+   - Compute retention: fraction of leave-one-out iterations where the pair remains
+     in the top-50
+   - A pair with retention ≥ 0.80 is animal-robust
+   - A pair with retention < 0.50 is flagged as potentially single-animal-driven
+
+3. Identify influential animals: any animal whose exclusion changes > 30% of the top-50
+   list. Record their IDs.
+
+4. Save a leave-one-out stability matrix to
+   `results/phase1/data/loo_retention_matrix.csv`
+
+### Computational note
+
+This stage requires N_animals × 2 (states) runs of stability selection. With 50
+bootstrap resamples per run and ~39 animals, this is ~3900 graphical lasso fits.
+Estimate wall time before running and request a checkpoint if > 30 minutes.
+
+For feasibility: run a quick 3-animal LOO pilot first (exclude animals 1, 15, 30)
+to verify the pipeline works and estimate per-iteration time.
 
 ### Pass conditions
 
 ```
-RC produces outputs in identified-neuron coordinates, or this is documented as impossible
-RC_ROLE_* fields populated in phase0_config.py
-If RC_ROLE_JACOBIAN: J_RC is N_COMMON_NEURONS × N_COMMON_NEURONS and saved
-HUMAN DECISION: human confirms RC role assignment
+LOO completed for all contributing animals
+Retention scores computed for top-50 pairs
+Median retention across top-50 ≥ 0.70
+Influential animals (if any) identified and recorded
+LOO retention matrix saved
 ```
 
 ---
 
-## Stage 5 — Coordinate system implementation and behavioral-state threshold lock
+## Stage 1.4 — D-robustness check and current-velocity bridge
 
 ### Purpose
 
-Implement three coordinate systems for the neural activity data and lock the behavioral-state
-threshold. The scientific default coordinate system is CePNEM residuals, but the final primary
-coordinate is locked only at the human decision checkpoint.
+Determine whether D_C ΔQ (the Creamer-referenced current-like statistic) is interpretable,
+and if so, compute it.
 
-### Coordinate systems
+### Procedure
 
-**Scientific default:** CePNEM residuals in identified-neuron coordinates.
-CePNEM (from Atanas 2023) decomposes each neuron's calcium trace into a behavioral encoding
-component and a residual. The residual controls for behavioral confounds: state-conditioned
-differences in CePNEM residuals reflect neural organization beyond what the behavioral
-kinematics explain.
+Restrict to the 56-neuron Creamer-compatible subspace. Use the CePNEM residual ΔQ from
+the discovery estimator.
 
-**Robustness 1:** Processed raw GCaMP traces (ΔF/F, normalized per neuron, smoothed).
-Results in raw GCaMP coordinates are interpreted as "current-like residuals in effective
-calcium dynamics."
+1. Compute three D-scaled versions of ΔQ (Class 4 entries only):
+   - `D_C ΔQ`: Creamer's diagonal D_C (available from Phase 0)
+   - `D_diag ΔQ`: diagonal D estimated from per-neuron CePNEM residual variance
+   - `I · ΔQ`: identity diffusion (unscaled ΔQ)
 
-**Robustness 2:** Deconvolved activity estimates, if stable deconvolution is available
-from the Atanas data pipeline. If deconvolution is not available or produces unstable
-estimates (negative values, large amplitudes), omit and record `DECONV_AVAILABLE = False`.
+2. Rank Class 4 pairs by magnitude in each version.
 
-### Behavioral-threshold independence requirement
+3. Compute pairwise Spearman correlations among all three rankings for the top-50 pairs.
 
-The behavioral threshold must be based only on behavioral variables or state scores that are
-independent of the neural residual covariance/precision analysis. If a proposed CePNEM state
-score is derived using the same neural activity traces being analyzed, stop and require human
-review before using it for state thresholding.
+4. Apply the locked decision rule:
+   - All three Spearman correlations ≥ D_ROBUSTNESS_RHO (0.7):
+     **D-robustness PASSES**. D_C ΔQ is the reported current-velocity bridge.
+   - Any correlation < 0.7:
+     **D-robustness FAILS**. ΔQ is the primary statistic. D_C ΔQ reported as inconclusive,
+     with the specific disagreeing pair listed.
 
-The threshold must not be chosen using any neural covariance, precision, ΔQ, enrichment,
-or current-velocity output.
-
-### Tasks
-
-**For each coordinate system:**
-
-1. Implement a preprocessing function in `src/preprocessing.py` that takes raw Atanas
-   data for one animal and returns the neural activity matrix (T × N_COMMON_NEURONS).
-2. Normalize: each neuron's trace has zero mean and unit variance across time,
-   within the full recording (not per epoch). Record this as `NORMALIZATION = "z_score_global"`.
-3. Handle missing neurons: if a neuron is absent from an animal's recording, fill with NaN
-   for that animal; do not impute. Record `MISSING_NEURON_POLICY = "nan_complete_case"`.
-
-**Freezing behavioral-state threshold:**
-
-4. Load behavioral scores for all animals. For each animal, plot the kernel density
-   estimate of the primary behavioral score across the full recording.
-5. Identify the presence or absence of bimodality (roaming peak vs. dwelling peak).
-   Record the KDE for each animal. Compute the Hartigan dip statistic for bimodality if
-   the required package is available; otherwise record the fallback bimodality diagnostic used.
-6. Print: fraction of animals with significant bimodality, median trough location
-   between peaks, interquartile range of trough location across animals.
-7. Save KDE plots to `results/figures/behavioral_score_kde.pdf`.
-
-**Transition exclusion:**
-
-8. Implement a transition exclusion window: epochs within W_trans seconds of a
-   roaming↔dwelling boundary are excluded. Use `W_trans = 30.0` seconds as the default
-   (recorded in `phase0_config.py`). The human may revise W_trans after seeing the
-   epoch-duration distribution.
-9. Compute the distribution of epoch durations after transition exclusion for both states.
-   Report: median epoch duration, fraction of total recording time retained per state.
-
-### Coordinate interpretation rule
-
-The human decision checkpoint must pre-specify the interpretation rule:
-
-* If ΔQ_CePNEM ≈ 0 but ΔQ_raw is significant: report as behavior-mediated state-dependent conditional structure.
-* If both ΔQ_CePNEM and ΔQ_raw are significant: report as residual neural state organization.
-* If ΔQ_CePNEM is significant but ΔQ_raw is weak: report as preprocessing-dependent or regression-unmasked; require robustness review.
-* If both are near zero: report as null in this subgraph/coordinate system.
-
-This rule must be recorded in `phase0_config.py` as `COORD_INTERP_RULE` before any real-data
-precision analysis.
+5. If D-robustness passes, save `results/phase1/data/dc_delta_q.csv` with the D_C-scaled
+   ranked pair list.
 
 ### Pass conditions
 
 ```
-Three coordinate systems implemented in src/preprocessing.py where available
-Preprocessing functions tested on one animal's data
-Behavioral score KDE plots saved
-Bimodality statistics computed and recorded
-Epoch duration distribution computed for default W_trans
-HUMAN DECISION CHECKPOINT:
-  - Behavioral state threshold (BEHAV_THRESHOLD) set in phase0_config.py
-  - Threshold justified by behavioral score distribution, NOT by neural output
-  - W_trans confirmed or revised
-  - COORD_PRIMARY, COORD_ROBUSTNESS_1, COORD_ROBUSTNESS_2 set
-  - COORD_INTERP_RULE set
+Three D-scaled ΔQ versions computed
+Spearman correlations recorded
+Go/no-go decision recorded in CHECKPOINT_LOG.md
+If PASS: D_C ΔQ saved; if FAIL: documented with specific disagreements
 ```
-
-Do not begin Stage 6 until the human has set BEHAV_THRESHOLD in phase0_config.py.
 
 ---
 
-## Stage 6 — n_eff computation and stationarity testing
+## Stage 1.5 — Ω_C comparison (secondary)
 
 ### Purpose
 
-Determine the effective sample size per behavioral state and assess whether within-state
-neural dynamics are sufficiently stationary for the precision matrix analysis. Both outcomes
-directly determine which estimation approach is used in Stage 7.
+Compare freely moving state-conditioned current-like structure to the Creamer model's
+own predicted current structure. This is secondary and carries a preparation mismatch
+caveat that must be stated in every result from this stage.
 
-### n_eff computation
+### Procedure
 
-For the primary coordinate system, within sustained behavioral state epochs using the
-threshold and exclusion window from Stage 5:
+In the 56-neuron Creamer subspace, using CePNEM residual precision matrices:
 
-1. For each animal, for each behavioral state s ∈ {roaming, dwelling}, extract all epoch
-   segments passing the inclusion criteria.
-
-2. Do not compute autocorrelation across epoch boundaries or animal boundaries. Compute
-   autocorrelation within each epoch, then aggregate effective sample sizes across independent
-   epoch blocks and animal blocks.
-
-3. Compute the integrated autocorrelation time for the cross-products x_i · x_j:
-
+1. Compute the Creamer-referenced current-like structure per state:
    ```
-   τ_int(i,j) = 1 + 2 · Σ_{k=1}^{K} ρ_ij(k)
+   Ω̂_s^(C) = A_C + D_C Q_s
    ```
 
-   where ρ_ij(k) is the sample autocorrelation of x_i(t)·x_j(t) at lag k within an epoch,
-   and K is the first lag where ρ_ij(k) < 2/sqrt(T) (standard 95% significance bound).
-   Use K_max = 200 frames (40 seconds) as a hard cutoff.
-
-4. Compute n_eff(i,j) ≈ T_epoch / τ_int(i,j) for each pair (i,j), epoch, animal, and state.
-   Aggregate additively across independent epoch blocks:
-
+2. Compute the departure from the Creamer model's own prediction:
    ```
-   n_eff_animal_state(i,j) = sum_epochs n_eff_epoch(i,j)
-   n_eff_pooled_state(i,j) = sum_animals n_eff_animal_state(i,j)
+   ΔΩ_model_s = Ω̂_s^(C) − Ω_C
    ```
+   where Ω_C = 8.6089 (Frobenius norm, computed in Phase 0).
 
-5. Report, per animal per state:
-
-   * Median n_eff across all pairs
-   * 25th percentile n_eff (conservative estimate)
-   * n_eff / N_COMMON_NEURONS ratio at median and 25th percentile
-
-6. Report pooled n_eff by summing animal-level n_eff values. Do not compute autocorrelation
-   across animal boundaries.
-
-7. Apply the decision rule:
-
+3. Compute the state difference:
    ```
-   If n_eff_25th_percentile / N_COMMON_NEURONS ≥ 5 per state per animal:
-       ESTIMATOR_TIER = "animal_level"   (animal-level precision estimation may be attempted)
-   If n_eff_25th_percentile / N_COMMON_NEURONS ∈ [1, 5):
-       ESTIMATOR_TIER = "pooled_hierarchical"  (must pool with hierarchical shrinkage)
-   If pooled n_eff / N_COMMON_NEURONS < 1:
-       ESTIMATOR_TIER = "blockwise"      (full precision estimation not feasible; descope)
+   ΔΩ̂^(C) = Ω̂_roam^(C) − Ω̂_dwell^(C) = D_C · ΔQ
    ```
+   Verify this equals D_C ΔQ from Stage 1.4 to numerical precision (< 1e-10).
 
-   Record ESTIMATOR_TIER in `phase0_config.py`.
+4. Save all matrices and their Frobenius norms.
 
-The final feasibility of animal-level precision estimation depends on Stage 8 synthetic recovery,
-not n_eff alone.
+### Caveat (must appear in every result)
 
-### Stationarity testing
+Ω̂_s^(C) mixes Creamer's (A_C, D_C) from immobilized optogenetic perturbation recordings
+with Atanas Q_s from freely moving spontaneous behavior. The absolute values of Ω̂_s^(C)
+and ΔΩ_model contain preparation mismatch, coordinate mismatch, and noise mismatch in
+addition to biological current. They are model-based residuals, not direct measurements
+of biological probability current.
 
-8. For each animal-state pair with ≥ 2 sustained epochs of ≥ 60 seconds each:
-
-   * Compute the sample covariance matrix Σ_first (first half of frames in state) and
-     Σ_second (second half of frames in state).
-   * Compute Frobenius distance ||Σ_first - Σ_second||_F / ||Σ_first||_F.
-   * Record as within-state covariance drift.
-
-9. Compute rolling covariance with window = 30 seconds and step = 10 seconds for a
-   representative subset of animals. Plot as heatmaps over time.
-   Save to `results/figures/rolling_covariance.pdf`.
-
-10. Perform a spectral check: compute the power spectrum of each neuron's trace within
-    roaming epochs. Flag any neurons with significant spectral power at periods > 120 seconds,
-    as these may indicate non-stationarity or cyclostationarity.
-
-11. Check bout-phase dependence: compare covariance in early, middle, and late portions of
-    sustained bouts when enough data are available. If covariance depends strongly on bout
-    phase, flag possible cyclostationarity.
-
-12. Record the fraction of animal/state/pair or animal/state/block combinations where
-    normalized within-state covariance drift > 0.3. Record as `NONSTATIONARITY_FRACTION`
-    in `phase0_config.py`.
-
-Stationarity metrics are diagnostic during Phase 0. Epoch or animal exclusion thresholds
-require human approval and must be locked before the main analysis.
+ΔΩ̂^(C) = D_C ΔQ is more robust because A_C cancels in the state difference.
 
 ### Pass conditions
 
 ```
-n_eff computed from cross-products x_i x_j (not marginals)
-n_eff decision rule applied and ESTIMATOR_TIER set
-Stationarity drift computed and NONSTATIONARITY_FRACTION recorded
-Cyclostationarity diagnostics recorded
-If NONSTATIONARITY_FRACTION > 0.3: flag for human review before Stage 7
-All outputs saved to results/diagnostics/neff_report.json
+Ω̂_s^(C) computed for both states
+ΔΩ̂^(C) matches D_C ΔQ from Stage 1.4 within 1e-10
+All matrices and norms saved
+Caveat text included in every output file header
 ```
 
 ---
 
-## Stage 7 — Inter-animal variability and estimator selection
+## Stage 1.6 — Enrichment tests
 
 ### Purpose
 
-Characterize how consistent the neural covariance structure is across animals within each
-behavioral state, and determine the final estimation strategy based on all feasibility
-findings so far.
+Test whether the off-connectome state-switched ΔQ entries are enriched for non-synaptic
+signaling annotations. This is the primary scientific result of Phase 1.
 
-### Tasks
+### Procedure
 
-1. For each animal, compute a summary covariance matrix Σ_animal_s by pooling that
-   animal's frames in state s. This is NOT the full precision matrix — compute covariance
-   only, not its inverse.
+Run in the primary analysis variant: CePNEM residuals × discovery estimator × Class 4 pairs.
 
-2. Compute the leading K=5 principal components of each Σ_animal_s.
-   Check that the top-K eigenvectors are consistent across animals using cosine similarity.
-   Report: median pairwise cosine similarity of top eigenvectors across all animal pairs.
+**Test 1 — Neuropeptide enrichment (AUROC) [PRIMARY]:**
 
-3. Compute the element-wise correlation of Σ_animal_s across animals:
-   for each pair (animal_a, animal_b), compute the Pearson correlation of
-   vec(Σ_animal_a_s) and vec(Σ_animal_b_s). Report the distribution of these correlations
-   separately for roaming and dwelling.
+- Pair list: all Class 4 pairs with rank_score > 0
+- Binary label: peptide_supported (from Stage 1.2)
+- Statistic: AUROC — how well does neuropeptide annotation predict high |ΔQ| rank?
+- Null model A (simple permutation): shuffle peptide labels across pairs, 10,000 iterations
+- Null model B (degree-preserving): shuffle peptide labels preserving each neuron's
+  degree in A_raw and in A_peptide within the 61-neuron subgraph, 10,000 iterations
+- Report: AUROC, p_simple, p_degree, 95% CI on AUROC
 
-4. Identify candidate outlier animals (bottom 10% by mean inter-animal covariance correlation).
-   Record their IDs in `phase0_config.py` as `OUTLIER_ANIMALS`.
-   Do not automatically exclude outlier animals from the primary analysis. Exclusion requires
-   a human decision and must be recorded in `EXCLUDED_ANIMALS_PRIMARY` with a technical
-   justification. Default is to retain all animals.
+**Test 2 — Neuropeptide enrichment (Fisher top-K) [SECONDARY]:**
 
-5. Based on ESTIMATOR_TIER (Stage 6), NONSTATIONARITY_FRACTION, and the inter-animal
-   consistency results, implement the estimation pipeline.
+- Take top-50 Class 4 pairs by rank_score
+- 2×2 table: (top-50 vs. rest) × (peptide_supported vs. not)
+- Fisher exact test under both null models
+- Report: odds ratio, p_simple, p_degree
 
-   **Discovery estimator (always implemented):**
-   Unstructured stability selection with graphical lasso. Procedure:
+**Test 3 — Randi unc-31-sensitive enrichment [SECONDARY]:**
 
-   * Define B = 50 bootstrap subsamples of animals (or of frames if animal count < 20).
-     Each subsample uses half the animals (or half the frames) drawn without replacement.
-   * For each subsample, fit graphical lasso with λ chosen by 5-fold cross-validation on
-     that subsample (or by BIC if n_eff is too low for CV).
-   * Stability score for each edge (i,j): fraction of subsamples where that edge is selected.
-   * Threshold stability at 0.75 for the primary result; report stability curves.
+- Restrict to the 60-neuron Randi subgraph
+- Binary label: randi_dcv
+- Same AUROC + Fisher framework as Tests 1–2
+- Report: AUROC, odds ratio, p-values under both nulls
 
-   **Confirmation estimator (always implemented):**
-   Anatomy-guided lasso. Connectome-weighted penalties:
+**Test 4 — Serotonin/PDF receptor enrichment [EXPLORATORY]:**
 
-   * λ_off = LAMBDA_OFF for positions where A_raw = 0 (off-connectome)
-   * λ_on  = LAMBDA_ON  for positions where A_raw = 1 (on-connectome)
-   * Default: LAMBDA_OFF = 10 × LAMBDA_ON (stronger penalty on off-connectome entries)
-   * Tune LAMBDA_ON by cross-validation on held-out animals.
-     Record LAMBDA_OFF and LAMBDA_ON in `phase0_config.py`.
+- Binary label: serotonin_receptor OR pdf_receptor for either neuron in the pair
+- AUROC + Fisher
+- Reported as exploratory; not part of the primary hypothesis
 
-   **Circularity / conservativeness control:**
-   The anatomy-guided estimator penalizes off-connectome entries MORE HEAVILY.
-   It is therefore conservative against off-connectome discoveries.
+**Confirmation estimator check:**
 
-   * Use the unstructured stability-selection estimator for discovery.
-   * Use the anatomy-guided estimator as conservative confirmation.
-   * If an off-connectome entry appears in both, it has higher confidence.
-   * If it appears only in the unstructured estimator and vanishes under anatomy-guided penalties,
-     it has lower confidence.
-   * Never use the anatomy-guided estimator alone to claim an off-connectome result.
+- Repeat Test 1 (neuropeptide AUROC) using the confirmation estimator's ΔQ
+- This tests whether the enrichment survives the heavier off-connectome penalty
+- If AUROC is comparable (within 0.1 of discovery estimate): circularity concern addressed
+- If AUROC drops substantially: the result may be estimator-dependent; flag
 
-6. Define nested animal-level cross-validation:
-
-   * Divide animals into NFOLDS = 5 folds, stratified by behavioral state balance where possible.
-   * Record fold assignments in `results/diagnostics/cv_folds.json`.
-   * Use leave-one-fold-out: preprocessing choices and regularization parameters are tuned
-     on the training folds; final pair stability is assessed on held-out folds.
-     Record NFOLDS in `phase0_config.py`.
-
-### Pass conditions
-
-```
-Inter-animal covariance consistency quantified and recorded
-Candidate outlier animals identified and recorded in OUTLIER_ANIMALS
-No animal excluded from primary analysis without human approval
-Stability selection pipeline implemented and tested on synthetic data in Stage 8
-Anatomy-guided lasso implemented
-CV fold structure defined and saved
-HUMAN DECISION CHECKPOINT:
-  - Human reviews inter-animal consistency, ESTIMATOR_TIER, NONSTATIONARITY_FRACTION
-  - Confirms LAMBDA_OFF / LAMBDA_ON ratio
-  - Confirms NFOLDS and fold strategy
-  - Signs off on ESTIMATOR_TIER or escalates to blockwise if needed
-  - Records POOLING_STRATEGY: "animal_level", "pooled", or "hierarchical"
-  - Records EXCLUDED_ANIMALS_PRIMARY, if any
-```
-
----
-
-## Stage 8 — Estimation pipeline dry run on synthetic data
-
-### Purpose
-
-Verify that the full estimation pipeline (stability selection + anatomy-guided lasso +
-nested CV) works correctly and produces interpretable output, before it is run on real
-behavioral data. Use synthetic data only.
-
-### Synthetic data generation
-
-Generate a synthetic Gaussian dataset with the following known structure:
+### Null model implementation for degree-preserving permutation
 
 ```python
-# Synthetic ground truth
-N = N_COMMON_NEURONS      # match real problem dimension
-T_synth = 10000           # sufficient for ground truth
-
-# True precision matrix: block structure matching connectome sparsity
-Q_true_roam  # sparse, with some off-connectome entries set to a specified effect size
-Q_true_dwell # same as Q_true_roam except selected off-connectome entries set to 0.0
-# True ΔQ is entirely off-connectome
+def degree_preserving_permutation(pair_list, labels, A_raw, A_peptide, n_perms=10000):
+    """
+    Permute pair labels while approximately preserving:
+    - each neuron's degree in A_raw within the subgraph
+    - each neuron's degree in A_peptide within the subgraph
+    Uses a Markov-chain edge-swap approach restricted to the pair list.
+    """
 ```
 
-Use pre-specified synthetic effect sizes corresponding to plausible standardized partial-correlation
-changes, for example 0.1, 0.2, and 0.3. The moderate effect setting is 0.2 unless the human
-sets a different value before this stage.
-
-1. Generate multivariate Gaussian samples X_roam ~ N(0, Q_true_roam^{-1}) and
-   X_dwell ~ N(0, Q_true_dwell^{-1}), with sample sizes matching empirical n_eff estimates.
-2. Run stability selection on X_roam and X_dwell separately.
-3. Run anatomy-guided lasso on X_roam and X_dwell.
-4. Compare recovered synthetic ΔQ to true synthetic ΔQ. Compute:
-
-   * True positive rate for off-connectome entries (recovered with stability ≥ 0.75 in
-     discovery estimator)
-   * False positive rate on on-connectome entries
-   * Whether the same off-connectome entries survive the anatomy-guided lasso
-5. Report whether the conservative confirmation control works: synthetic off-connectome
-   entries of the pre-specified effect size should survive the anatomy-guided lasso despite
-   heavier off-connectome penalty.
-
-### Unit tests for all core functions
-
-Run the full test suite before proceeding:
-
-```
-pytest tests/test_harmonization.py  # known-case name mappings
-pytest tests/test_neff.py           # AR(1) with known τ; verify n_eff
-pytest tests/test_estimators.py     # recovery on synthetic data
-pytest tests/test_enrichment.py     # enrichment test on synthetic pair list with known signal
-pytest tests/test_nulls.py          # null models preserve degree/class/proximity/peptide-degree
-pytest tests/test_phase0_guard.py   # real-data precision estimation blocked during Phase 0
-```
-
-All tests must pass before Stage 9.
+Validate the null model preserves both degree distributions (Kolmogorov-Smirnov test
+between original and permuted degree sequences, p > 0.05 for ≥ 95% of permutations).
 
 ### Pass conditions
 
 ```
-All pytest tests pass
-Synthetic ΔQ recovery at moderate effect size: true positive rate ≥ 0.6 at n_eff matching empirical estimates
-Conservative confirmation verified: synthetic off-connectome entries survive anatomy-guided lasso at moderate effect size
-No silent numerical failures (negative eigenvalues, NaN in Q, convergence warnings, etc.)
-```
-
-If Stage 8 fails because empirical n_eff is too low or the estimator is underpowered, stop and
-diagnose before changing any estimator, regularization value, or synthetic effect size.
-
----
-
-## Stage 9 — Enrichment power analysis and null model validation
-
-### Purpose
-
-Determine whether the enrichment tests planned for the main analysis are well-powered given
-the restricted subgraph, and validate the null models.
-
-### Tasks
-
-1. Implement the primary enrichment test:
-
-   * Input: synthetic ranked list of pairs by |ΔQ_ij| (off-connectome only)
-   * Annotation: binary label for each pair — is this pair in the neuropeptide connectome
-     (A_peptide)?
-   * Statistic: AUROC (ranking-based); secondary: Fisher test on top-K pairs
-   * Primary null: degree-, class-, proximity-, and neuropeptide-degree-aware permutation
-     restricted to the common identified-neuron subgraph.
-
-2. Null model fallback hierarchy:
-
-   * First attempt exact degree-preserving or degree-constrained rewiring/permutation where feasible.
-   * If exact preservation is infeasible in the restricted subgraph, use degree- and class-stratified permutation.
-   * If permutation constraints remain infeasible, use conditional logistic/ranking regression with covariates:
-     synaptic degree, neuropeptide degree, neuron class, spatial/anatomical proximity, and homolog status.
-   * Record which null model is primary and why.
-
-3. Run power simulation:
-
-   * Specify a range of true enrichment effects: OR = {1.5, 2.0, 3.0, 5.0} (odds ratios
-     for neuropeptide pairs appearing in top-K ΔQ)
-   * For each OR, simulate 200 synthetic ΔQ ranked lists with that enrichment level
-   * Compute power as fraction of simulations where enrichment p-value < 0.05
-   * Report power curves vs. K (top-K threshold) for Fisher test and vs. OR for AUROC
-   * Record `ENRICHMENT_POWER_AT_OR2` in `phase0_config.py`
-
-4. Validate the null model preserves or controls for all four properties:
-
-   * Node degree in A_raw
-   * Node class (sensory, inter, motor)
-   * Spatial/anatomical proximity or synaptic-hop distance
-   * Node degree in A_peptide
-
-5. Define the Randi unc-31-sensitive validation as a secondary test:
-
-   * Same structure as neuropeptide test, using the DCV_score ranked list from Stage 3
-   * Report power separately where possible
-
-### Pass conditions
-
-```
-AUROC and Fisher enrichment tests implemented with documented null
-Null model preserves or controls for degree, class, proximity, and neuropeptide degree
-Power curves computed and saved
-ENRICHMENT_POWER_AT_OR2 ≥ 0.6 (otherwise flag for human review — may require more animals
-  or descoping to block analysis)
-Randi secondary test implemented
+All 4 tests run with both null models
+p-values, AUROCs, odds ratios, and CIs saved to results/phase1/data/enrichment_results.json
+Confirmation estimator check completed
+Null model degree-preservation validated
+All results saved BEFORE any figure is generated
 ```
 
 ---
 
-## Stage 10 — Hypothesis lock
+## Stage 1.7 — Coordinate comparison
 
 ### Purpose
 
-Lock the primary hypothesis, D-robustness criterion, and secondary analysis definitions
-before any ΔQ is computed. This stage produces the locked hypothesis document.
+Determine whether the enrichment result survives CePNEM residualization. This is the key
+interpretive step that was impossible during Phase 0 (DEV-004) and is now the highest-value
+comparison in the analysis.
 
-### Tasks
+### Procedure
 
-The agent formats and checks internal consistency. The human writes the decision text.
+By this point, Stages 1.1–1.6 have been run independently in both coordinate systems.
 
-1. Format the locked hypothesis as a structured document `results/hypothesis_lock.md`.
-   The document must contain:
+1. Compare top-50 Class 4 pair lists:
+   - How many of the CePNEM top-50 also appear in the raw GCaMP top-50?
+   - Jaccard similarity of the two sets
+   - Spearman correlation of the rank_scores across all Class 4 pairs
 
-   **Primary hypothesis** (human-written):
+2. Compare enrichment results:
+   - CePNEM AUROC vs. raw GCaMP AUROC (Test 1 from Stage 1.6)
+   - Both p-values (simple and degree-preserving)
 
-   ```
-   The top [K] stable off-synaptic ΔQ entries in [COORD_PRIMARY] — classified against
-   both raw Cook/Witvliet connectome support and Creamer A_C support — are enriched for
-   non-synaptic signaling annotations (neuropeptide connectome or Randi unc-31-sensitive
-   relationships), using degree-, class-, proximity-, and neuropeptide-degree-aware
-   permutation or regression nulls restricted to the [N_COMMON_NEURONS]-neuron identified subgraph.
-   ```
+3. Apply the locked interpretation rule:
 
-   The human fills in K, COORD_PRIMARY, and N_COMMON_NEURONS and confirms the wording.
+   | CePNEM enrichment significant | Raw GCaMP enrichment significant | Interpretation |
+   |------|------|------|
+   | Yes (p < 0.05, degree-preserving) | Yes | **Residual neural state organization** — strong claim; the state-switching structure is not explained by behavioral kinematics or the synaptic connectome, and it targets non-synaptic signaling channels |
+   | Yes | No | **Neural organization masked by behavioral noise** — CePNEM reveals structure hidden in raw coordinates |
+   | No | Yes | **Behavior-mediated state structure** — the state-switching signal is present only in raw coordinates where behavioral confounds are uncontrolled; the CePNEM residual shows no enrichment; interpret cautiously |
+   | No | No | **Null result** — no evidence for current-supported state-dependent neuropeptide-enriched structure in this dataset under these methods |
 
-   **D-robustness go/no-go criterion** (human-written):
-
-   ```
-   Candidate rankings under D_C, residual diagonal D, and I must share a Spearman
-   correlation of ≥ [RHO] in the top-K pairs. If not, D_C ΔQ is reported as inconclusive
-   and the main claim rests on ΔQ alone.
-   ```
-
-   The human fills in RHO (suggested: 0.7).
-
-   **Coordinate interpretation rule**:
-   Copy COORD_INTERP_RULE from phase0_config.py into the document.
-
-   **Secondary analyses** (pre-specified):
-
-   * D_C ΔQ: current-velocity bridge (conditional on D-robustness)
-   * Ω_C comparison: departure from Creamer synapse-only model (secondary, preparation mismatch acknowledged)
-   * Sign-specific tests (positive vs. negative ΔQ entries, secondary)
-   * RC drive sweeps (if RC_ROLE_DRIVE_SWEEP = True)
-   * Homolog symmetrization sensitivity
-   * Mutant predictions from the top enriched pairs
-
-2. The agent checks the document for internal consistency:
-
-   * K ≤ N_COMMON_NEURONS · (N_COMMON_NEURONS - 1) / 2
-   * All referenced config values exist in phase0_config.py
-   * Secondary analyses list does not include any primary-analysis outputs that would require previewing real ΔQ during Phase 0
-
-3. Commit `results/hypothesis_lock.md` and tag the git repository as `phase0_complete`.
-   If this is not a git repository, write a manifest with filenames and checksums to
-   `results/diagnostics/phase0_manifest.json`.
+4. Record the interpretation in `results/phase1/data/coord_comparison_interpretation.json`
+   with the specific p-values, AUROCs, and overlap statistics that determined it.
 
 ### Pass conditions
 
 ```
-hypothesis_lock.md complete with all fields filled by human
-Agent consistency check passes
-Git tag `phase0_complete` created, or manifest written if git unavailable
-phase0_config.py fully populated (no None values in HUMAN_DECISION fields)
-All test suite checks pass
+Both coordinate analyses complete before comparison is evaluated
+Overlap statistics computed
+Interpretation rule applied mechanically (not post-hoc)
+Interpretation recorded with supporting numbers
+```
+
+---
+
+## Stage 1.8 — Summary, figures, and named pairs
+
+### Purpose
+
+Produce all deliverables for Phase 1: the primary figure, the summary table, and the
+named pair list that feeds Phase 4 (experimental predictions).
+
+### Primary figure (6 panels)
+
+**A.** ΔQ heatmap in CePNEM residual coordinates (61 × 61), with Class 4 entries
+highlighted (distinct border or overlay). Color scale: diverging, centered at zero.
+Neurons ordered by anatomical class (sensory, inter, motor) then alphabetically.
+
+**B.** Same heatmap in raw GCaMP coordinates, identical ordering and color scale.
+
+**C.** Ranked |ΔQ| × stability for Class 4 pairs (x-axis: rank; y-axis: score).
+Points colored by neuropeptide annotation (peptide_supported or not).
+Both coordinate systems overlaid or side-by-side.
+
+**D.** AUROC curve for neuropeptide enrichment in CePNEM coordinates.
+Null distribution (degree-preserving) shown as shaded area.
+p-value annotated.
+
+**E.** Leave-one-animal-out retention heatmap: top-50 pairs (rows) × animals (columns),
+colored by whether the pair remains in top-50 when that animal is excluded.
+
+**F.** D-robustness scatter: for each Class 4 pair, plot |D_C ΔQ| vs. |I · ΔQ| in
+56-neuron Creamer subspace. Color by neuropeptide annotation. Spearman ρ annotated.
+(Only if D-robustness passed in Stage 1.4.)
+
+### Summary table
+
+One row per analysis variant (coordinate × estimator), with columns:
+- N Class 4 pairs with rank_score > 0
+- Neuropeptide AUROC (degree-preserving p-value)
+- Neuropeptide Fisher OR (degree-preserving p-value)
+- Randi AUROC (degree-preserving p-value)
+- D-robustness outcome
+- LOO median retention
+
+### Named pair table (the Phase 4 input)
+
+The top-20 Class 4 pairs in CePNEM residual coordinates (discovery estimator), ranked by
+rank_score × LOO_retention, with columns:
+
+| neuron_i | neuron_j | ΔQ_cepnem | ΔQ_raw | rank_score | LOO_retention | peptide | randi_dcv | 5HT_receptor | PDF_receptor | prediction |
+
+The `prediction` column states, for each pair, the expected outcome of specific
+perturbations (to be developed in Phase 4):
+- `unc31_shrink`: ΔQ should shrink in unc-31 mutants (if peptide_supported)
+- `tph1_shrink_dwell`: ΔQ should shrink in tph-1 if the pair is dwelling-enriched and
+  serotonin-receptor-expressing
+- `pdfr1_shrink_roam`: ΔQ should shrink in pdfr-1 if roaming-enriched and PDF-expressing
+- `structural_robust`: ΔQ should survive ablation of any single neuron on the shortest
+  synaptic path between i and j (because no such path exists for Class 4 pairs)
+
+### Pass conditions
+
+```
+Figure saved as PDF and PNG to results/phase1/figures/
+Summary table saved to results/phase1/tables/summary.csv
+Named pair table saved to results/phase1/tables/named_pairs.csv
+All figure source data saved separately under results/phase1/data/
+Caption text drafted in results/phase1/figures/figure_caption.md
 ```
 
 ---
 
 ## Passing criteria — graded
 
-### Minimum viable
+### Minimum viable (sufficient to report a result)
 
 ```
-1. Creamer A_C stability verified; D_C availability recorded; Ω_C computed if D_C is available
-2. Common identified-neuron subgraph built with N_COMMON_NEURONS ≥ 30, or human-approved descope
-3. Harmonization table complete with no unresolved ambiguities
-4. Behavioral state threshold set and locked
-5. n_eff computed; ESTIMATOR_TIER determined
-6. Stationarity: NONSTATIONARITY_FRACTION < 0.5, or human-approved descope/alternative
-7. Estimation pipeline runs on synthetic data without errors
-8. hypothesis_lock.md complete and committed
+1. CePNEM residualization verified (Stage 1.0 passed)
+2. Precision matrices computed in both coordinates (Stage 1.1 passed)
+3. ΔQ computed and classified; Class 4 count ≥ 20 (Stage 1.2 passed)
+4. Neuropeptide AUROC computed with both null models (Stage 1.6 Test 1)
+5. Coordinate comparison completed; interpretation rule applied (Stage 1.7)
+6. Summary table produced
 ```
 
 ### Adequate
 
 All minimum plus:
-
 ```
-9. Inter-animal consistency characterized; candidate OUTLIER_ANIMALS identified
-10. Nested CV folds defined and saved
-11. Enrichment power ≥ 0.6 at OR = 2, or human-approved block/ranking-only descope
-12. All pytest tests pass
-13. D-robustness criterion defined in hypothesis_lock.md
-14. RC role assigned
+7. LOO sensitivity completed; median retention ≥ 0.70 (Stage 1.3)
+8. D-robustness check completed with go/no-go recorded (Stage 1.4)
+9. All four enrichment tests run with both nulls (Stage 1.6)
+10. Confirmation estimator enrichment check completed
+11. Named pair table produced with prediction column
 ```
 
 ### Good
 
 All adequate plus:
-
 ```
-15. Both discovery and confirmation estimators validated on synthetic data
-16. Randi unc-31-sensitive pair list restricted to subgraph
-17. Power curves for both enrichment tests saved
-18. Three coordinate systems implemented and tested where available
-19. All phase0_config.py values populated with justifications
+12. Neuropeptide enrichment significant (p < 0.05) under degree-preserving null
+    in CePNEM residual coordinates
+13. Enrichment survives CePNEM residualization (interpretation = row 1 or row 2 of table)
+14. D-robustness passes (Spearman ≥ 0.7 across all D models)
+15. Primary figure complete with all 6 panels
+16. LOO identifies no animal driving > 30% of top-50
+```
+
+### Best case
+
+All good plus:
+```
+17. Enrichment significant under degree-preserving null in BOTH coordinates (row 1)
+18. Randi unc-31-sensitive enrichment also significant (independent validation)
+19. Confirmation estimator AUROC within 0.10 of discovery estimator (circularity addressed)
+20. Named pairs include ≥ 5 pairs with both peptide and randi_dcv annotations
+    (convergent evidence from independent sources)
+21. Clear separation in the AUROC curve between annotated and unannotated pairs
 ```
 
 ---
 
-## Failure modes to diagnose before changing any parameter
+## Failure modes to diagnose before changing anything
 
-**Common subgraph smaller than expected:**
+**All Class 4 pairs have ΔQ ≈ 0:**
+- Check that Q_roam and Q_dwell actually differ (print ||Q_roam - Q_dwell||_F)
+- Check that stability selection is not over-regularizing (all edges pruned)
+- Check that the behavioral segmentation is producing distinct epochs (not mixing states)
+- Check that CePNEM residualization did not remove all state-dependent structure
+  (compare to raw GCaMP ΔQ)
 
-* Check NeuroPAL identity confidence thresholds in Atanas data
-* Check whether harmonization table has unresolved ambiguities reducing the intersection
-* Do NOT lower confidence threshold without human approval
+**Enrichment fails under degree-preserving null but passes simple permutation:**
+- This suggests the signal is driven by hub neurons appearing in both the ΔQ ranking
+  and the neuropeptide connectome by virtue of degree, not by neuropeptide-specific biology
+- Report as a degree artifact; do not claim neuropeptide enrichment
+- Check which specific neurons drive the discrepancy
 
-**Creamer A_C not stable:**
+**CePNEM residualization eliminates the signal (row 3 or 4 of interpretation table):**
+- This is not a failure — it is an interpretive finding
+- If raw GCaMP shows enrichment but CePNEM does not: the state-switching structure
+  is behavior-mediated (different motor patterns → different covariance → different precision)
+- Report honestly; this constrains what the framework can claim in C. elegans
 
-* Verify continuous vs. discrete-time convention (Stage 1, Task 2)
-* If discrete-time and eigenvalues inside unit circle: correct; convert to continuous-time only if required
-* If genuinely unstable: compute a nearest stable projection only as sensitivity; report clearly
+**D-robustness fails:**
+- This means the top-ranked pairs depend on which D model is used
+- The current-velocity bridge (D_C ΔQ) is not interpretable
+- The main claim rests on ΔQ alone (which does not require D)
+- Report the discrepancy and which D model disagrees
 
-**D_C not available:**
+**LOO sensitivity shows one influential animal:**
+- Identify the animal; check its recording quality, epoch durations, and neuron coverage
+- Recompute enrichment with that animal excluded
+- If enrichment disappears when one animal is removed: the result is fragile; report as such
 
-* Record what noise quantities are available
-* Use fallback hierarchy only after human approval:
-
-  1. diagonal residual D from state-specific LDS residuals
-  2. identity D in whitened coordinates
-  3. report D_C ΔQ bridge as unavailable
-
-**n_eff too low for pairwise estimation:**
-
-* Check that epoch segmentation is not too aggressive
-* Check autocorrelation length — if τ_int > 50 frames, the calcium signal is very slow
-* Do NOT reduce transition exclusion window to gain timepoints without human approval
-
-**Stationarity drift unexpectedly large:**
-
-* Check for within-epoch behavioral state transitions
-* Check for photobleaching or motion artifact trends
-* Report structure of the non-stationary covariance drift before changing anything
-
-**Estimation pipeline fails on synthetic data:**
-
-* Verify Q_true_roam is positive definite before sampling
-* Verify n_eff inputs to the synthetic data generation match empirical estimates
-* Check that graphical lasso is converging (increase max iterations only after checkpoint)
+**Precision estimation does not converge:**
+- Increase ADMM max iterations for anatomy-guided lasso
+- Check condition number of Σ_s — very high condition number indicates near-singular
+  covariance (too few effective samples or near-collinear neurons)
+- If persistent: fall back to blockwise analysis and report the descoping
 
 ---
 
-## Minimum viable success
+## Minimum viable success for Phase 1
 
-Phase 0 succeeds if it produces:
+Phase 1 succeeds if it produces:
 
-1. A common identified-neuron subgraph of N_COMMON_NEURONS ≥ 30, or a human-approved
-   block/subnetwork descope
-2. A locked behavioral state threshold justified by behavioral score distribution only
-3. An n_eff assessment determining whether pairwise or blockwise estimation is appropriate
-4. A functional estimation pipeline verified on synthetic data
-5. A completed `hypothesis_lock.md` with human-written primary hypothesis
+1. State-conditioned precision matrices in CePNEM residual coordinates for both
+   roaming and dwelling
+2. A classified ΔQ with Class 4 pairs ranked by |ΔQ| × stability
+3. A neuropeptide enrichment AUROC with p-value from degree-preserving null
+4. A coordinate comparison applying the locked interpretation rule
+5. A named pair table ready for Phase 4 experimental predictions
 
-This is sufficient to proceed to the main ΔQ analysis with scientific integrity.
+This is sufficient to state: "We applied the current-velocity diagnostic framework to
+whole-brain calcium imaging of freely behaving C. elegans. After CePNEM residualization
+to remove behavioral encoding, the state-switched conditional-dependence structure between
+roaming and dwelling, classified against the synaptic connectome, shows [significant /
+non-significant] enrichment for neuropeptide signaling in off-connectome neuron pairs."
+
+That sentence — with the specific numbers filled in — is the scientific output of Phase 1.

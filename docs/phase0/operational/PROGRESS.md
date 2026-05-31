@@ -2,6 +2,15 @@
 
 ## Current Stage
 
+**PHASE 0 ARCHIVED — METHODOLOGY LOCK COMPLETE — REAL-DATA INFERENCE STILL PROHIBITED** (2026-05-29).
+
+Archive location: docs/phase0/
+Phase 1 planning: not yet begun.
+Next action: human reviews docs/phase0/phase1_transition_manifest.md, authorizes
+  DEV-003/DEV-004/DEV-005, sets PHASE0_COMPLETE=True, then authorizes Phase 1 planning.
+
+---
+
 **PHASE 0 METHODOLOGY LOCK COMPLETE — REAL-DATA INFERENCE STILL PROHIBITED** (2026-05-29).
 
 Stage 10 hypothesis lock finalized. 41/41 consistency checks pass.

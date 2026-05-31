@@ -1,5 +1,20 @@
 # CONTEXT
 
+## Phase 0 archived (2026-05-29)
+
+Phase 0 has been archived in docs/phase0/. The archive is a historical record.
+- docs/phase0/PHASE0_EXECUTIVE_SUMMARY.md — human-readable outcomes summary
+- docs/phase0/PHASE0_ARCHIVE_INDEX.md — full artifact inventory
+- docs/phase0/hypothesis_lock.md — locked hypothesis (copy)
+- docs/phase0/phase0_final_summary.md — stage completion (copy)
+- docs/phase0/phase1_transition_manifest.md — handoff package (copy)
+- docs/phase0/phase0_locked_config_snapshot.json — frozen config values (copy)
+- docs/phase0/cepnem_full_schema_confirmation.md — CePNEM structure (copy)
+- PHASE1_STARTER_MANIFEST.md (repo root) — Phase 1 reference index
+
+phase0_config.py is unchanged (md5 f75f82212886b2c987da3586ed6f5b77).
+Phase 1 planning has not begun. Awaiting human authorization for DEV-003/004/005.
+
 ## CePNEM full archive — CONFIRMED findings (2026-05-29, updated)
 
 **File status**: FULLY DECOMPRESSED (19.55 GB). h5py opens without error.

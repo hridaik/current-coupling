@@ -408,6 +408,18 @@ Key results (200 simulations, n_total=1464, n_peptide=88 → 6%):
   Recommended NULL_MODEL_PRIMARY: simple_permutation
 Tests: 25/25 pass (8 estimator + 9 enrichment + 6 null + 2 guard)
 
+## 2026-05-29 — Phase 0 archival and repository organization
+
+Date: 2026-05-29
+Action: Created Phase 0 archive in docs/phase0/. Copied five lock documents.
+  Created PHASE0_EXECUTIVE_SUMMARY.md, PHASE0_ARCHIVE_INDEX.md (docs/phase0/).
+  Created PHASE1_STARTER_MANIFEST.md (repo root).
+  Updated PROGRESS.md, CHECKPOINT_LOG.md, CONTEXT.md.
+  phase0_config.py: UNCHANGED (md5 f75f82212886b2c987da3586ed6f5b77 verified).
+  No scientific analysis, no config changes, no Phase 1 planning.
+  Phase 1 planning explicitly deferred pending human authorization.
+Tests: test_phase0_guard.py — 4/4 PASSED
+
 ## 2026-05-29 — CePNEM full archive schema CONFIRMATION (direct inspection; file complete)
 
 Date: 2026-05-29
