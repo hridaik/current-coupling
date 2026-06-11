@@ -1,0 +1,79 @@
+{
+  "date": "2026-06-03",
+  "authorization": "Phase 3A.6",
+  "R1_reference": {
+    "rho_global": 0.06176246778317188,
+    "auroc_pdf": 0.9198134224450014,
+    "top10_overlap": 0,
+    "top20_overlap": 0,
+    "alpha_r": -26.251116591103543,
+    "alpha_d": -23.97309388670097
+  },
+  "R2_pdf_local": {
+    "alpha_r": -39.52400207519531,
+    "alpha_d": -39.52400207519531,
+    "rho_pdf_train": 0.0,
+    "rho_global_at_R2alpha": 0.0,
+    "auroc_pdf": 0.5,
+    "top10_overlap": 10,
+    "top20_overlap": 20,
+    "rho_M1_at_pdf_obj": -0.07214359794628716,
+    "delta_rho_pdf_R2_vs_R1": 0.07214359794628716
+  },
+  "R3_sparse_forward": {
+    "R3A_admm": {
+      "rho": 0.03342679243670592,
+      "auroc": 0.7790866054023948,
+      "nonzero": 110,
+      "top10": 0,
+      "top20": 1,
+      "top50": 4,
+      "top100": 11
+    },
+    "R3B_density_threshold": {
+      "rho": 0.03998792982277895,
+      "auroc": 0.9146895015316068,
+      "top10": 0,
+      "top20": 0,
+      "top50": 2
+    },
+    "R3C_admm_R2alpha": {
+      "rho": NaN,
+      "auroc": 0.5,
+      "top10": 10,
+      "top20": 20
+    }
+  },
+  "R4_degree_control": {
+    "n_rand": 100,
+    "null_type": "source-out-degree-preserving target shuffle",
+    "M1_rho": 0.06176246778317188,
+    "R4_median_rho": 0.06176246778317188,
+    "R4_p95_rho": 0.06176246778317188,
+    "empirical_pvalue": 1.0
+  },
+  "R5_sensitivity": {
+    "mean_sens_alphaD_pdf_pairs": 0.026168269403582353,
+    "mean_sens_alphaD_nonpdf": 0.0036510223258218013,
+    "concentration_ratio_dwell": 7.167381371104651,
+    "frob_sensitivity": 0.4584169417725162,
+    "frob_DQ_M1": 1.0340237230412255,
+    "leverage_ratio": 0.4433330991906455,
+    "nonzero_sens_pct": 1.0
+  },
+  "success_criteria": {
+    "crit1_M1_exceeds_degree_null_R4": {
+      "result": false,
+      "pval_R4": 1.0
+    },
+    "crit2_pdf_identity_beyond_degree": {
+      "result": false,
+      "margin": 0.0
+    },
+    "crit3_top20_overlap_improved": {
+      "result": true,
+      "best_top20": 20
+    },
+    "any_criterion_passed": true
+  }
+}

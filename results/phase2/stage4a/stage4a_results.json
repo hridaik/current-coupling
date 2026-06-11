@@ -1,0 +1,310 @@
+{
+  "date": "2026-06-01",
+  "stage": "4A",
+  "authorization": "2026-06-01 human supervisor",
+  "seed": 43,
+  "n_perm": 1000,
+  "n_bins_degree": 10,
+  "primary_top_k": 20,
+  "n_class4": 1321,
+  "annotation_summary": {
+    "Bentley_serotonin": 33,
+    "Bentley_PDF": 61,
+    "Bentley_serotonin_or_PDF": 94,
+    "CeNGEN_serotonin_or_PDF": 409
+  },
+  "results": {
+    "cepnem": {
+      "Bentley_serotonin": {
+        "annotation": "Bentley_serotonin",
+        "coord": "cepnem",
+        "n_annotated": 33,
+        "n_non_annotated": 1288,
+        "n_class4": 1321,
+        "annotation_density": 0.02498107494322483,
+        "auroc": {
+          "observed": 0.49525926971579143,
+          "p_mannwhitney": 0.5549402244771661,
+          "p_simple_perm": 0.557,
+          "p_degree_perm": 0.581,
+          "null_simple_mean": 0.49954773668360625,
+          "null_degree_mean": 0.5007533290984378,
+          "pass_fail": "FAIL"
+        },
+        "fisher": {
+          "k": 20,
+          "or_observed": 0.0,
+          "p_fisher_exact": 1.0,
+          "p_simple_perm": 1.0,
+          "p_degree_perm": 1.0,
+          "contingency": {
+            "a": 0,
+            "b": 20,
+            "c": 33,
+            "d": 1268
+          },
+          "top_k_annotated": 0,
+          "expected_in_topk": 0.5,
+          "pass_fail": "FAIL"
+        },
+        "pass_criterion": "AUROC>0.5 AND p_deg<0.05 (AUROC); OR>1 AND p_deg<0.05 (Fisher)",
+        "tier": "primary",
+        "description": "Bentley ESconnectome, transmitter==serotonin"
+      },
+      "Bentley_PDF": {
+        "annotation": "Bentley_PDF",
+        "coord": "cepnem",
+        "n_annotated": 61,
+        "n_non_annotated": 1260,
+        "n_class4": 1321,
+        "annotation_density": 0.04617713853141559,
+        "auroc": {
+          "observed": 0.5560109289617486,
+          "p_mannwhitney": 0.014289188797852216,
+          "p_simple_perm": 0.019,
+          "p_degree_perm": 0.023,
+          "null_simple_mean": 0.4999894678636481,
+          "null_degree_mean": 0.5014904892011449,
+          "pass_fail": "PASS"
+        },
+        "fisher": {
+          "k": 20,
+          "or_observed": 5.456140350877193,
+          "p_fisher_exact": 0.011437191884953455,
+          "p_simple_perm": 0.006,
+          "p_degree_perm": 0.008,
+          "contingency": {
+            "a": 4,
+            "b": 16,
+            "c": 57,
+            "d": 1244
+          },
+          "top_k_annotated": 4,
+          "expected_in_topk": 0.92,
+          "pass_fail": "PASS"
+        },
+        "pass_criterion": "AUROC>0.5 AND p_deg<0.05 (AUROC); OR>1 AND p_deg<0.05 (Fisher)",
+        "tier": "primary",
+        "description": "Bentley ESconnectome, transmitter contains pdf"
+      },
+      "Bentley_serotonin_or_PDF": {
+        "annotation": "Bentley_serotonin_or_PDF",
+        "coord": "cepnem",
+        "n_annotated": 94,
+        "n_non_annotated": 1227,
+        "n_class4": 1321,
+        "annotation_density": 0.07115821347464042,
+        "auroc": {
+          "observed": 0.5355780401949054,
+          "p_mannwhitney": 0.04423843608060553,
+          "p_simple_perm": 0.047,
+          "p_degree_perm": 0.055,
+          "null_simple_mean": 0.5003544235204356,
+          "null_degree_mean": 0.5017195113492517,
+          "pass_fail": "FAIL"
+        },
+        "fisher": {
+          "k": 20,
+          "or_observed": 3.363888888888889,
+          "p_fisher_exact": 0.04823271304867638,
+          "p_simple_perm": 0.06,
+          "p_degree_perm": 0.065,
+          "contingency": {
+            "a": 4,
+            "b": 16,
+            "c": 90,
+            "d": 1211
+          },
+          "top_k_annotated": 4,
+          "expected_in_topk": 1.42,
+          "pass_fail": "FAIL"
+        },
+        "pass_criterion": "AUROC>0.5 AND p_deg<0.05 (AUROC); OR>1 AND p_deg<0.05 (Fisher)",
+        "tier": "primary",
+        "description": "Bentley ESconnectome, serotonin OR PDF"
+      },
+      "CeNGEN_serotonin_or_PDF": {
+        "annotation": "CeNGEN_serotonin_or_PDF",
+        "coord": "cepnem",
+        "n_annotated": 409,
+        "n_non_annotated": 912,
+        "n_class4": 1321,
+        "annotation_density": 0.3096139288417865,
+        "auroc": {
+          "observed": 0.520822609702741,
+          "p_mannwhitney": 0.03648328336456153,
+          "p_simple_perm": 0.028,
+          "p_degree_perm": 0.033,
+          "null_simple_mean": 0.499912473727105,
+          "null_degree_mean": 0.4984739402372067,
+          "pass_fail": "PASS"
+        },
+        "fisher": {
+          "k": 20,
+          "or_observed": 0.7400990099009901,
+          "p_fisher_exact": 0.7920070513187109,
+          "p_simple_perm": 0.792,
+          "p_degree_perm": 0.764,
+          "contingency": {
+            "a": 5,
+            "b": 15,
+            "c": 404,
+            "d": 897
+          },
+          "top_k_annotated": 5,
+          "expected_in_topk": 6.19,
+          "pass_fail": "FAIL"
+        },
+        "pass_criterion": "AUROC>0.5 AND p_deg<0.05 (AUROC); OR>1 AND p_deg<0.05 (Fisher)",
+        "tier": "exploratory",
+        "description": "CeNGEN conservative threshold, directed ligand-receptor"
+      }
+    },
+    "gcamp": {
+      "Bentley_serotonin": {
+        "annotation": "Bentley_serotonin",
+        "coord": "gcamp",
+        "n_annotated": 33,
+        "n_non_annotated": 1288,
+        "n_class4": 1321,
+        "annotation_density": 0.02498107494322483,
+        "auroc": {
+          "observed": 0.4286420101637493,
+          "p_mannwhitney": 0.9384002644727505,
+          "p_simple_perm": 0.948,
+          "p_degree_perm": 0.935,
+          "null_simple_mean": 0.4992244965179748,
+          "null_degree_mean": 0.4971934876717486,
+          "pass_fail": "FAIL"
+        },
+        "fisher": {
+          "k": 20,
+          "or_observed": 2.0871710526315788,
+          "p_fisher_exact": 0.39931835879072114,
+          "p_simple_perm": 0.386,
+          "p_degree_perm": 0.367,
+          "contingency": {
+            "a": 1,
+            "b": 19,
+            "c": 32,
+            "d": 1269
+          },
+          "top_k_annotated": 1,
+          "expected_in_topk": 0.5,
+          "pass_fail": "FAIL"
+        },
+        "pass_criterion": "AUROC>0.5 AND p_deg<0.05 (AUROC); OR>1 AND p_deg<0.05 (Fisher)",
+        "tier": "primary",
+        "description": "Bentley ESconnectome, transmitter==serotonin"
+      },
+      "Bentley_PDF": {
+        "annotation": "Bentley_PDF",
+        "coord": "gcamp",
+        "n_annotated": 61,
+        "n_non_annotated": 1260,
+        "n_class4": 1321,
+        "annotation_density": 0.04617713853141559,
+        "auroc": {
+          "observed": 0.5259953161592505,
+          "p_mannwhitney": 0.22517713159876518,
+          "p_simple_perm": 0.226,
+          "p_degree_perm": 0.261,
+          "null_simple_mean": 0.5005372495446266,
+          "null_degree_mean": 0.5038649752797294,
+          "pass_fail": "FAIL"
+        },
+        "fisher": {
+          "k": 20,
+          "or_observed": 1.0885964912280701,
+          "p_fisher_exact": 0.6142555980725076,
+          "p_simple_perm": 0.612,
+          "p_degree_perm": 0.67,
+          "contingency": {
+            "a": 1,
+            "b": 19,
+            "c": 60,
+            "d": 1241
+          },
+          "top_k_annotated": 1,
+          "expected_in_topk": 0.92,
+          "pass_fail": "FAIL"
+        },
+        "pass_criterion": "AUROC>0.5 AND p_deg<0.05 (AUROC); OR>1 AND p_deg<0.05 (Fisher)",
+        "tier": "primary",
+        "description": "Bentley ESconnectome, transmitter contains pdf"
+      },
+      "Bentley_serotonin_or_PDF": {
+        "annotation": "Bentley_serotonin_or_PDF",
+        "coord": "gcamp",
+        "n_annotated": 94,
+        "n_non_annotated": 1227,
+        "n_class4": 1321,
+        "annotation_density": 0.07115821347464042,
+        "auroc": {
+          "observed": 0.49102637465536075,
+          "p_mannwhitney": 0.6252991014401779,
+          "p_simple_perm": 0.637,
+          "p_degree_perm": 0.674,
+          "null_simple_mean": 0.5016517106244256,
+          "null_degree_mean": 0.5022407142485564,
+          "pass_fail": "FAIL"
+        },
+        "fisher": {
+          "k": 20,
+          "or_observed": 1.460144927536232,
+          "p_fisher_exact": 0.4224223332829964,
+          "p_simple_perm": 0.444,
+          "p_degree_perm": 0.445,
+          "contingency": {
+            "a": 2,
+            "b": 18,
+            "c": 92,
+            "d": 1209
+          },
+          "top_k_annotated": 2,
+          "expected_in_topk": 1.42,
+          "pass_fail": "FAIL"
+        },
+        "pass_criterion": "AUROC>0.5 AND p_deg<0.05 (AUROC); OR>1 AND p_deg<0.05 (Fisher)",
+        "tier": "primary",
+        "description": "Bentley ESconnectome, serotonin OR PDF"
+      },
+      "CeNGEN_serotonin_or_PDF": {
+        "annotation": "CeNGEN_serotonin_or_PDF",
+        "coord": "gcamp",
+        "n_annotated": 409,
+        "n_non_annotated": 912,
+        "n_class4": 1321,
+        "annotation_density": 0.3096139288417865,
+        "auroc": {
+          "observed": 0.5437979882469008,
+          "p_mannwhitney": 0.0025372505304423966,
+          "p_simple_perm": 0.003,
+          "p_degree_perm": 0.002,
+          "null_simple_mean": 0.4996549216102603,
+          "null_degree_mean": 0.49913243415690817,
+          "pass_fail": "PASS"
+        },
+        "fisher": {
+          "k": 20,
+          "or_observed": 1.4962593516209477,
+          "p_fisher_exact": 0.2565206479906885,
+          "p_simple_perm": 0.264,
+          "p_degree_perm": 0.196,
+          "contingency": {
+            "a": 8,
+            "b": 12,
+            "c": 401,
+            "d": 900
+          },
+          "top_k_annotated": 8,
+          "expected_in_topk": 6.19,
+          "pass_fail": "FAIL"
+        },
+        "pass_criterion": "AUROC>0.5 AND p_deg<0.05 (AUROC); OR>1 AND p_deg<0.05 (Fisher)",
+        "tier": "exploratory",
+        "description": "CeNGEN conservative threshold, directed ligand-receptor"
+      }
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "date": "2026-06-03",
+  "M1_J_directed": {
+    "gamma": 6.1306768907479725,
+    "max_Re_lambda_J_base": -0.010000000000000583,
+    "alpha_max_P_norm": 0.067138671875,
+    "alpha_min_P_norm": -43.915557861328125
+  },
+  "M3_J_creamer": {
+    "available": true,
+    "gamma": 0.9351752130237183,
+    "max_Re_lambda_J_base": -0.010000000000000678,
+    "alpha_max_P_norm": 0.08697509765625,
+    "alpha_min_P_norm": -0.84228515625
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "date": "2026-06-03",
+  "authorization": "Phase 3A 2026-06-03",
+  "J_type": "directed White+Witvliet A_raw (binarized)",
+  "P_type": "directed Bentley PDF (pdf-1/pdf-2 \u2192 pdfr-1)",
+  "P_normalization": "Frobenius",
+  "alpha_grid_range": [
+    -39.52400207519531,
+    0.0604248046875
+  ],
+  "grid_n": 52,
+  "M0": {
+    "alpha_roam": 0.0,
+    "alpha_dwell": 0.0,
+    "rho_train": 0.0,
+    "auroc_pdf_train": 0.5
+  },
+  "M1": {
+    "alpha_roam": -26.251116591103543,
+    "alpha_dwell": -23.97309388670097,
+    "delta_alpha": 2.2780227044025736,
+    "rho_train": 0.06176246778317188,
+    "auroc_pdf_train": 0.9193176771041528,
+    "dist_instability_roam": 0.3353057383997942,
+    "dist_instability_dwell": 0.3928541958099554,
+    "grid_best_rho": 0.06089199765922496
+  },
+  "M2": {
+    "n_rand": 1000,
+    "median_rho": 0.060620070528348495,
+    "p95_rho": 0.060620070528348495,
+    "p99_rho": 0.060620070528348495,
+    "auroc_pdf_best": 0.9258827448367755
+  },
+  "M3": {
+    "available": true,
+    "J_type": "Creamer LDS dynamics_weights (154\u219256 subspace)",
+    "alpha_roam": -0.7954003097723827,
+    "alpha_dwell": -0.793907569525024,
+    "rho_train": 0.04249000565087319,
+    "auroc_pdf_train": 0.9579863424383744
+  },
+  "success_criteria": {
+    "criterion_1_auroc_M1_vs_M0": {
+      "result": true,
+      "M1": 0.9193176771041528,
+      "M0": 0.5,
+      "threshold": 0.05
+    },
+    "criterion_2_auroc_M1_vs_M2": {
+      "result": false,
+      "M1": 0.9193176771041528,
+      "M2_best": 0.9258827448367755,
+      "threshold": 0.03
+    },
+    "criterion_3_stability_margin": {
+      "result": true,
+      "margin": 0.3353057383997942,
+      "threshold": 0.1
+    }
+  },
+  "held_out_pairs": [
+    "ADEL-URYVR",
+    "ADEL-URYDL",
+    "ADEL-RMEL",
+    "ADEL-URXL"
+  ],
+  "held_out_evaluated": false
+}

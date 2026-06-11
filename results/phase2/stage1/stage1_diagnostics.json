@@ -1,0 +1,131 @@
+{
+  "date": "2026-06-01",
+  "precision_diagnostics": [
+    {
+      "name": "Q_cepnem_roam_disc",
+      "is_pd": false,
+      "is_symmetric": true,
+      "condition_number": Infinity,
+      "min_eigenvalue": -1.7095277652655534,
+      "max_eigenvalue": 56.83916708745925,
+      "n_nonzero_off_diag": 1768
+    },
+    {
+      "name": "Q_cepnem_roam_conf",
+      "is_pd": true,
+      "is_symmetric": true,
+      "condition_number": 3.5697511773993695,
+      "min_eigenvalue": 0.4250840719330393,
+      "max_eigenvalue": 1.5174443662766854,
+      "n_nonzero_off_diag": 461
+    },
+    {
+      "name": "Q_cepnem_dwell_disc",
+      "is_pd": false,
+      "is_symmetric": true,
+      "condition_number": Infinity,
+      "min_eigenvalue": -0.76,
+      "max_eigenvalue": 0.76,
+      "n_nonzero_off_diag": 1
+    },
+    {
+      "name": "Q_cepnem_dwell_conf",
+      "is_pd": true,
+      "is_symmetric": true,
+      "condition_number": 2.102728714107774,
+      "min_eigenvalue": 0.6335645496294273,
+      "max_eigenvalue": 1.3322143707465568,
+      "n_nonzero_off_diag": 305
+    },
+    {
+      "name": "Q_gcamp_roam_disc",
+      "is_pd": false,
+      "is_symmetric": true,
+      "condition_number": Infinity,
+      "min_eigenvalue": -1.0000000000000364,
+      "max_eigenvalue": 60.00000000000006,
+      "n_nonzero_off_diag": 1830
+    },
+    {
+      "name": "Q_gcamp_roam_conf",
+      "is_pd": true,
+      "is_symmetric": true,
+      "condition_number": 9.713764094126034,
+      "min_eigenvalue": 0.20737501921284152,
+      "max_eigenvalue": 2.0143920156483963,
+      "n_nonzero_off_diag": 745
+    },
+    {
+      "name": "Q_gcamp_dwell_disc",
+      "is_pd": false,
+      "is_symmetric": true,
+      "condition_number": Infinity,
+      "min_eigenvalue": -1.0891874865100661,
+      "max_eigenvalue": 59.67304609834949,
+      "n_nonzero_off_diag": 1830
+    },
+    {
+      "name": "Q_gcamp_dwell_conf",
+      "is_pd": true,
+      "is_symmetric": true,
+      "condition_number": 3.6085757883073724,
+      "min_eigenvalue": 0.4182785209806668,
+      "max_eigenvalue": 1.5093897435798516,
+      "n_nonzero_off_diag": 517
+    }
+  ],
+  "psd_diagnostics": {
+    "cepnem_dwell": {
+      "n_clipped": 0,
+      "neg_mass": 0.0,
+      "min_ev_before": 0.5732032631966024,
+      "max_ev": 3.6759629727445726,
+      "coord": "cepnem",
+      "state": "dwell"
+    },
+    "cepnem_roam": {
+      "n_clipped": 0,
+      "neg_mass": 0.0,
+      "min_ev_before": 0.36949974366763044,
+      "max_ev": 3.827119517951352,
+      "coord": "cepnem",
+      "state": "roam"
+    },
+    "gcamp_dwell": {
+      "n_clipped": 0,
+      "neg_mass": 0.0,
+      "min_ev_before": 0.37605034026471523,
+      "max_ev": 4.429742654782259,
+      "coord": "gcamp",
+      "state": "dwell"
+    },
+    "gcamp_roam": {
+      "n_clipped": 0,
+      "neg_mass": 0.0,
+      "min_ev_before": 0.1669232193438643,
+      "max_ev": 6.281591159123095,
+      "coord": "gcamp",
+      "state": "roam"
+    }
+  },
+  "halt_flags": [
+    "NOT_PD: Q_cepnem_roam_disc (min_ev=-1.710e+00)",
+    "HIGH_COND: Q_cepnem_roam_disc (cond=inf)",
+    "NOT_PD: Q_cepnem_dwell_disc (min_ev=-7.600e-01)",
+    "HIGH_COND: Q_cepnem_dwell_disc (cond=inf)",
+    "NOT_PD: Q_gcamp_roam_disc (min_ev=-1.000e+00)",
+    "HIGH_COND: Q_gcamp_roam_disc (cond=inf)",
+    "NOT_PD: Q_gcamp_dwell_disc (min_ev=-1.089e+00)",
+    "HIGH_COND: Q_gcamp_dwell_disc (cond=inf)"
+  ],
+  "halt_triggered": true,
+  "parameters": {
+    "LAMBDA_DISC": 0.15,
+    "N_BOOT": 25,
+    "STAB_THR": 0.75,
+    "LAMBDA_ON": 0.01,
+    "LAMBDA_OFF": 0.1,
+    "PSD_FLOOR": 1e-06,
+    "MIN_COPRES": 9
+  }
+}

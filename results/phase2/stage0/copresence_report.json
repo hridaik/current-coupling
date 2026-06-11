@@ -1,0 +1,301 @@
+{
+  "stage": "0.1",
+  "date": "2026-05-31",
+  "description": "Stage 0.1 co-observation structure characterization",
+  "neurons": [
+    "ADEL",
+    "AIBL",
+    "AIBR",
+    "AIZL",
+    "ASEL",
+    "ASGL",
+    "AUAL",
+    "AVAL",
+    "AVAR",
+    "AVDL",
+    "AVEL",
+    "AVER",
+    "AVJL",
+    "AVJR",
+    "AWAL",
+    "AWBL",
+    "AWCL",
+    "CEPDL",
+    "CEPDR",
+    "CEPVL",
+    "FLPL",
+    "I1L",
+    "I1R",
+    "I2L",
+    "I2R",
+    "I3",
+    "IL1DR",
+    "IL1L",
+    "IL1R",
+    "IL2DL",
+    "IL2DR",
+    "IL2VL",
+    "IL2VR",
+    "M1",
+    "M3L",
+    "M3R",
+    "M4",
+    "MI",
+    "NSML",
+    "NSMR",
+    "OLLL",
+    "OLLR",
+    "OLQDL",
+    "OLQDR",
+    "OLQVL",
+    "OLQVR",
+    "RICL",
+    "RID",
+    "RIVL",
+    "RMDDR",
+    "RMDL",
+    "RMDVL",
+    "RMDVR",
+    "RMEL",
+    "RMER",
+    "SMDVL",
+    "URBL",
+    "URXL",
+    "URYDL",
+    "URYVL",
+    "URYVR"
+  ],
+  "n_neurons": 61,
+  "n_pairs": 1830,
+  "n_recordings_total": 40,
+  "recording_ids": [
+    "2022-06-14-01",
+    "2022-06-14-07",
+    "2022-06-14-13",
+    "2022-06-28-01",
+    "2022-06-28-07",
+    "2022-07-15-06",
+    "2022-07-15-12",
+    "2022-07-20-01",
+    "2022-07-26-01",
+    "2022-08-02-01",
+    "2022-12-21-06",
+    "2023-01-05-01",
+    "2023-01-05-18",
+    "2023-01-06-01",
+    "2023-01-06-08",
+    "2023-01-06-15",
+    "2023-01-09-08",
+    "2023-01-09-15",
+    "2023-01-09-22",
+    "2023-01-09-28",
+    "2023-01-10-07",
+    "2023-01-10-14",
+    "2023-01-13-07",
+    "2023-01-16-01",
+    "2023-01-16-08",
+    "2023-01-16-15",
+    "2023-01-16-22",
+    "2023-01-17-01",
+    "2023-01-17-07",
+    "2023-01-17-14",
+    "2023-01-18-01",
+    "2023-01-19-01",
+    "2023-01-19-08",
+    "2023-01-19-15",
+    "2023-01-19-22",
+    "2023-01-23-01",
+    "2023-01-23-08",
+    "2023-01-23-15",
+    "2023-01-23-21",
+    "2023-03-07-01"
+  ],
+  "missingness_summary": {
+    "neurons_per_recording": {
+      "min": 33,
+      "p25": 52.0,
+      "median": 55.0,
+      "p75": 57.0,
+      "max": 61
+    },
+    "neurons_absent_from_any_recording": 57,
+    "neurons_absent_from_5plus_recordings": 35,
+    "neurons_absent_from_10plus_recordings": 0,
+    "most_absent_neurons": [
+      {
+        "neuron": "AVJR",
+        "n_absent": 8
+      },
+      {
+        "neuron": "IL1R",
+        "n_absent": 8
+      },
+      {
+        "neuron": "IL2VL",
+        "n_absent": 8
+      },
+      {
+        "neuron": "IL2VR",
+        "n_absent": 8
+      },
+      {
+        "neuron": "M1",
+        "n_absent": 8
+      },
+      {
+        "neuron": "OLQVR",
+        "n_absent": 8
+      },
+      {
+        "neuron": "RMDDR",
+        "n_absent": 8
+      },
+      {
+        "neuron": "URYVR",
+        "n_absent": 8
+      },
+      {
+        "neuron": "ADEL",
+        "n_absent": 7
+      },
+      {
+        "neuron": "AIZL",
+        "n_absent": 7
+      }
+    ]
+  },
+  "state_recording_counts": {
+    "roaming": {
+      "n_recordings_contributing": 19,
+      "total_frames": 5587
+    },
+    "dwelling": {
+      "n_recordings_contributing": 39,
+      "total_frames": 30583
+    }
+  },
+  "pairwise_coobservation_recordings": {
+    "roaming": {
+      "min": 9,
+      "p5": 12.0,
+      "p25": 14.0,
+      "median": 15.0,
+      "p75": 16.0,
+      "p95": 18.0,
+      "max": 19,
+      "n_pairs_below_5": 0,
+      "n_pairs_below_10": 3,
+      "n_pairs_below_15": 734,
+      "frac_below_5": 0.0,
+      "frac_below_10": 0.001639344262295082,
+      "frac_below_15": 0.4010928961748634
+    },
+    "dwelling": {
+      "min": 24,
+      "p5": 26.0,
+      "p25": 28.0,
+      "median": 30.0,
+      "p75": 33.0,
+      "p95": 36.0,
+      "max": 39,
+      "n_pairs_below_5": 0,
+      "n_pairs_below_10": 0,
+      "n_pairs_below_15": 0,
+      "frac_below_5": 0.0,
+      "frac_below_10": 0.0,
+      "frac_below_15": 0.0
+    }
+  },
+  "pairwise_coobservation_frames": {
+    "roaming": {
+      "min": 2336,
+      "p5": 3536.0,
+      "p25": 4277.75,
+      "median": 4730.5,
+      "p75": 5116.5,
+      "max": 5587,
+      "n_pairs_with_0_frames": 0
+    },
+    "dwelling": {
+      "min": 14354,
+      "p5": 18286.1,
+      "p25": 21070.25,
+      "median": 23113.5,
+      "p75": 25233.0,
+      "max": 30583,
+      "n_pairs_with_0_frames": 0
+    }
+  },
+  "coverage_graph": {
+    "connected_at_threshold_1": true,
+    "isolated_neurons": [],
+    "roaming": {
+      "fragile_pairs_below_10": [
+        {
+          "neuron_a": "AVEL",
+          "neuron_b": "URBL",
+          "n_recordings": 9
+        },
+        {
+          "neuron_a": "IL2VL",
+          "neuron_b": "URBL",
+          "n_recordings": 9
+        },
+        {
+          "neuron_a": "RMDL",
+          "neuron_b": "URBL",
+          "n_recordings": 9
+        }
+      ],
+      "fragile_pairs_below_15_count": 734,
+      "weakly_observed_neurons_worst_partner_below_10": [
+        "AVEL",
+        "IL2VL",
+        "RMDL",
+        "URBL"
+      ]
+    },
+    "dwelling": {
+      "fragile_pairs_below_10": [],
+      "weakly_observed_neurons_worst_partner_below_10": []
+    }
+  },
+  "neff_per_pair": {
+    "roaming": {
+      "n_pairs_valid": 1830,
+      "median": 224.30221194334337,
+      "p25": 172.08716791882784,
+      "p5": 104.93212770719653,
+      "min": 42.21546670410165,
+      "max": 678.9197977574606,
+      "n_pairs_below_20": 0,
+      "frac_below_20": 0.0
+    },
+    "dwelling": {
+      "n_pairs_valid": 1830,
+      "median": 1121.9588970939421,
+      "p25": 929.0526842548277,
+      "p5": 683.9358672283423,
+      "min": 316.81095991391237,
+      "max": 4066.703003753569,
+      "n_pairs_below_20": 0,
+      "frac_below_20": 0.0
+    }
+  },
+  "bootstrap_stability": {
+    "n_bootstrap": 50,
+    "roaming_subsample_size": 9,
+    "pairs_losing_all_coobs_in_any_bootstrap": 0,
+    "pairs_with_min_boot_coobs_below_3": 17,
+    "pairs_with_min_boot_coobs_below_5": 449,
+    "median_min_boot_coobs": 5.0,
+    "p5_min_boot_coobs": 3.0
+  },
+  "pass_conditions": {
+    "graph_connected": true,
+    "median_roaming_coobs_ge_25": false,
+    "median_dwelling_coobs_ge_25": true,
+    "frac_roaming_below_10_le_10pct": true,
+    "notes": "Roaming median co-obs = 15 < 25 (task.md threshold). Dwelling median = 30 >= 25 (PASS). Roaming <10 fraction = 0.5% << 10% (PASS). Roaming median fails the 25-recording threshold but is structurally limited by the corpus (only 19 roaming recordings total). n_eff is adequate for all pairs (min roaming n_eff = 42 >> 20). Human checkpoint required to evaluate acceptability of median=15 for roaming."
+  }
+}

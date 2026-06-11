@@ -1,0 +1,60 @@
+{
+  "date": "2026-06-03",
+  "task": "Phase 2D Task B \u2014 Drift Quantification (DEV-003 characterization)",
+  "description": "Temporal covariance drift quantification relative to behavioral \u0394Q",
+  "method": {
+    "split": "Each recording split at T//2 (first half vs second half, time-based, state-independent)",
+    "estimator": "Same ADMM confirmation estimator as Phase 2 (\u03bb_on=0.01, \u03bb_off=0.10)",
+    "drift_metric": "\u0394Q_drift = Q_conf_first - Q_conf_second",
+    "ratio_metric": "|\u0394Q_drift_ij| / |\u0394Q_behavior_ij| for each Class 4 pair (where |\u0394Q_behavior| > 0)",
+    "psd_floor": "1e-6 (same as Phase 2)",
+    "min_copresence": "5 recordings per half (relaxed from 9 for full recordings)"
+  },
+  "drift_psd_clipping": {
+    "cepnem_first": 0,
+    "cepnem_second": 0,
+    "gcamp_first": 0,
+    "gcamp_second": 0
+  },
+  "drift_admm_convergence": {
+    "cepnem_first": true,
+    "cepnem_second": true,
+    "gcamp_first": true,
+    "gcamp_second": true
+  },
+  "drift_ratios_cepnem": {
+    "n_pairs": 243,
+    "median": 0.0,
+    "p75": 0.5343089284583766,
+    "p95": 4.9053015440360666,
+    "max": 104.25418629016437,
+    "frac_lt1": 0.8024691358024691,
+    "frac_gt2": 0.102880658436214
+  },
+  "drift_ratios_gcamp": {
+    "n_pairs": 585,
+    "median": 0.00014781934065710744,
+    "p75": 0.800844280967777,
+    "p95": 5.209370371193401,
+    "max": 331.72141388335075,
+    "frac_lt1": 0.7777777777777778,
+    "frac_gt2": 0.11623931623931624
+  },
+  "epoch_time_segregation": {
+    "n_recordings_roam": 19,
+    "n_recordings_dwell": 39,
+    "mean_normalized_position_roam_weighted": 0.3443822829363934,
+    "mean_normalized_position_dwell_weighted": 0.5117172992570848,
+    "mean_normalized_position_roam_unweighted": 0.23403449631828346,
+    "mean_normalized_position_dwell_unweighted": 0.5242595658241382,
+    "difference_roam_minus_dwell_unweighted": -0.2902250695058548,
+    "difference_roam_minus_dwell_weighted": -0.16733501632069137,
+    "interpretation": "0.5 = uniform in recording time; <0.5 = concentrated early; >0.5 = concentrated late",
+    "confounding_flag": true
+  },
+  "interpretation": {
+    "median_ratio_cepnem": 0.0,
+    "median_ratio_gcamp": 0.00014781934065710744,
+    "state_time_confounding": "DETECTED"
+  }
+}

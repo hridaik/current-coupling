@@ -1,0 +1,726 @@
+{
+  "date": "2026-06-03",
+  "authorization": "Phase 3D",
+  "D1_metrics": {
+    "cepnem": {
+      "frob_deltaD": 0.775726248491435,
+      "frob_D_roam": 3.349469453830714,
+      "relative_change": 0.2315967526153296,
+      "diag_roam_mean": 0.41762584044857076,
+      "diag_dwell_mean": 0.3989723880734135,
+      "diag_roam_cv": 0.17688885236936816,
+      "diag_dwell_cv": 0.10498376296886494,
+      "diag_delta_range": [
+        -0.16707000946856976,
+        0.22473893281765644
+      ],
+      "offdiag_delta_range": [
+        -0.027651485072460565,
+        0.027283938531452487
+      ],
+      "spearman_diag_roam_dwell": 0.13849814912744576,
+      "cond_roam": 3.0781907702684577,
+      "cond_dwell": 3.0315649354883933,
+      "spearman_deltaD_deltaQ": 0.05569266181211396
+    },
+    "gcamp": {
+      "frob_deltaD": 0.5373531519210262,
+      "frob_D_roam": 1.934353253814545,
+      "relative_change": 0.2777947362310197,
+      "diag_roam_mean": 0.23781421470635197,
+      "diag_dwell_mean": 0.22836112966757263,
+      "diag_roam_cv": 0.23411116402795676,
+      "diag_dwell_cv": 0.1675268027030601,
+      "diag_delta_range": [
+        -0.11239313163576842,
+        0.1617924640775718
+      ],
+      "offdiag_delta_range": [
+        -0.017201880207994683,
+        0.021113678093722773
+      ],
+      "spearman_diag_roam_dwell": 0.20058170280274987,
+      "cond_roam": 3.7115001334557998,
+      "cond_dwell": 3.3469151353500646,
+      "spearman_deltaD_deltaQ": 0.031149112346145563
+    }
+  },
+  "D1_rank_correlations": {
+    "rho_DO_pooled_DQ": 0.5656827683752038,
+    "rho_DO_ss_diag_DQ": 0.9998157481314809,
+    "rho_DO_ss_full_DQ": 0.3310745897981739,
+    "rho_DO_ss_full_pooled": 0.2540652510762373,
+    "rho_DO_ss_diag_pooled": 0.5655940633919317
+  },
+  "D1_pdf_enrichment": {
+    "cepnem": {
+      "\u0394Q": {
+        "auroc": 0.5560109289617486,
+        "fisher_or": 5.456140350877193,
+        "k_ann": 4
+      },
+      "\u0394\u03a9_pooled": {
+        "auroc": 0.6644418423106948,
+        "fisher_or": 7.410714285714286,
+        "k_ann": 5
+      },
+      "\u0394\u03a9_ss_diag": {
+        "auroc": 0.5564532916991933,
+        "fisher_or": 3.781947261663286,
+        "k_ann": 3
+      },
+      "\u0394\u03a9_ss_full": {
+        "auroc": 0.5328519385896435,
+        "fisher_or": 5.456140350877193,
+        "k_ann": 4
+      }
+    },
+    "gcamp": {
+      "\u0394Q": {
+        "auroc": 0.5259953161592505,
+        "fisher_or": 1.0885964912280701,
+        "k_ann": 1
+      },
+      "\u0394\u03a9_pooled": {
+        "auroc": 0.4878870673952641,
+        "fisher_or": 1.0885964912280701,
+        "k_ann": 1
+      },
+      "\u0394\u03a9_ss_diag": {
+        "auroc": 0.5297944314337757,
+        "fisher_or": 1.0885964912280701,
+        "k_ann": 1
+      },
+      "\u0394\u03a9_ss_full": {
+        "auroc": 0.5386677075201666,
+        "fisher_or": 1.0885964912280701,
+        "k_ann": 1
+      }
+    }
+  },
+  "D2_module_rank_correlations": {
+    "rho_DO_pooled_DQ": 0.9796304768047382,
+    "rho_DO_ss_diag_DQ": 0.9872418358886784,
+    "rho_DO_ss_full_DQ": 0.6802339824538327
+  },
+  "D2_DA_URY_ranks": {
+    "\u0394Q": 2,
+    "\u0394\u03a9_pooled": 2,
+    "\u0394\u03a9_ss_diag": 2,
+    "\u0394\u03a9_ss_full": 2
+  },
+  "D2_top10_dq": [
+    {
+      "b1": "RME",
+      "b2": "RME",
+      "mean": 0.057909561173292184,
+      "n": 1
+    },
+    {
+      "b1": "DA_mech",
+      "b2": "URY_URX",
+      "mean": 0.026720997356791936,
+      "n": 12
+    },
+    {
+      "b1": "RID",
+      "b2": "IL1_IL2",
+      "mean": 0.019259556274429025,
+      "n": 5
+    },
+    {
+      "b1": "RME",
+      "b2": "URY_URX",
+      "mean": 0.01880835795031732,
+      "n": 8
+    },
+    {
+      "b1": "DA_mech",
+      "b2": "RME",
+      "mean": 0.01650787697626032,
+      "n": 7
+    },
+    {
+      "b1": "command_IN",
+      "b2": "command_IN",
+      "mean": 0.01592644212259576,
+      "n": 2
+    },
+    {
+      "b1": "URY_URX",
+      "b2": "IL1_IL2",
+      "mean": 0.015921433069231557,
+      "n": 20
+    },
+    {
+      "b1": "URY_URX",
+      "b2": "URY_URX",
+      "mean": 0.015803189131588735,
+      "n": 5
+    },
+    {
+      "b1": "RID",
+      "b2": "URY_URX",
+      "mean": 0.013205360110675168,
+      "n": 3
+    },
+    {
+      "b1": "URY_URX",
+      "b2": "RMD_SMD",
+      "mean": 0.012406427239103278,
+      "n": 13
+    }
+  ],
+  "D2_top10_do_ssf": [
+    {
+      "b1": "RME",
+      "b2": "RME",
+      "mean": 0.025446968705615892,
+      "n": 1
+    },
+    {
+      "b1": "DA_mech",
+      "b2": "URY_URX",
+      "mean": 0.01959764783971361,
+      "n": 12
+    },
+    {
+      "b1": "DA_mech",
+      "b2": "RME",
+      "mean": 0.014967122781225996,
+      "n": 7
+    },
+    {
+      "b1": "URY_URX",
+      "b2": "URY_URX",
+      "mean": 0.01387255990503925,
+      "n": 5
+    },
+    {
+      "b1": "RID",
+      "b2": "RME",
+      "mean": 0.012999642941532472,
+      "n": 2
+    },
+    {
+      "b1": "RME",
+      "b2": "URY_URX",
+      "mean": 0.011119291351596432,
+      "n": 8
+    },
+    {
+      "b1": "URY_URX",
+      "b2": "command_IN",
+      "mean": 0.010891832563223822,
+      "n": 17
+    },
+    {
+      "b1": "RID",
+      "b2": "pharyngeal",
+      "mean": 0.010743095833220973,
+      "n": 12
+    },
+    {
+      "b1": "command_IN",
+      "b2": "command_IN",
+      "mean": 0.010703273145902106,
+      "n": 2
+    },
+    {
+      "b1": "URY_URX",
+      "b2": "RMD_SMD",
+      "mean": 0.010390536924346033,
+      "n": 13
+    }
+  ],
+  "per_neuron_D": {
+    "ADEL": {
+      "D_roam_diag_cepnem": 0.4953430776237515,
+      "D_dwell_diag_cepnem": 0.41915684425843575,
+      "delta_D_diag_cepnem": 0.07618623336531577,
+      "D_roam_diag_gcamp": 0.33600442444846756,
+      "D_dwell_diag_gcamp": 0.2682321268145052,
+      "delta_D_diag_gcamp": 0.06777229763396236
+    },
+    "AIBL": {
+      "D_roam_diag_cepnem": 0.2685496823878899,
+      "D_dwell_diag_cepnem": 0.35751707778984876,
+      "delta_D_diag_cepnem": -0.08896739540195886,
+      "D_roam_diag_gcamp": 0.15274168897082793,
+      "D_dwell_diag_gcamp": 0.21208852155771368,
+      "delta_D_diag_gcamp": -0.05934683258688575
+    },
+    "AIBR": {
+      "D_roam_diag_cepnem": 0.42650522445326194,
+      "D_dwell_diag_cepnem": 0.39084665034228305,
+      "delta_D_diag_cepnem": 0.03565857411097889,
+      "D_roam_diag_gcamp": 0.25162797813268006,
+      "D_dwell_diag_gcamp": 0.22993017516932943,
+      "delta_D_diag_gcamp": 0.021697802963350638
+    },
+    "AIZL": {
+      "D_roam_diag_cepnem": 0.3432922216532671,
+      "D_dwell_diag_cepnem": 0.5103622311218369,
+      "delta_D_diag_cepnem": -0.16707000946856976,
+      "D_roam_diag_gcamp": 0.21877338208544855,
+      "D_dwell_diag_gcamp": 0.33116651372121697,
+      "delta_D_diag_gcamp": -0.11239313163576842
+    },
+    "ASEL": {
+      "D_roam_diag_cepnem": 0.3837000490876103,
+      "D_dwell_diag_cepnem": 0.40968999047455684,
+      "delta_D_diag_cepnem": -0.025989941386946547,
+      "D_roam_diag_gcamp": 0.23370638041391548,
+      "D_dwell_diag_gcamp": 0.271734527085463,
+      "delta_D_diag_gcamp": -0.0380281466715475
+    },
+    "ASGL": {
+      "D_roam_diag_cepnem": 0.5191259266617354,
+      "D_dwell_diag_cepnem": 0.34321122549777233,
+      "delta_D_diag_cepnem": 0.17591470116396307,
+      "D_roam_diag_gcamp": 0.2830833043135915,
+      "D_dwell_diag_gcamp": 0.1927854611628161,
+      "delta_D_diag_gcamp": 0.09029784315077541
+    },
+    "AUAL": {
+      "D_roam_diag_cepnem": 0.40728029291617546,
+      "D_dwell_diag_cepnem": 0.41839461878526607,
+      "delta_D_diag_cepnem": -0.011114325869090613,
+      "D_roam_diag_gcamp": 0.21968732798049612,
+      "D_dwell_diag_gcamp": 0.22736930467279665,
+      "delta_D_diag_gcamp": -0.0076819766923005295
+    },
+    "AVAL": {
+      "D_roam_diag_cepnem": 0.47535347989081694,
+      "D_dwell_diag_cepnem": 0.4298705595261181,
+      "delta_D_diag_cepnem": 0.045482920364698864,
+      "D_roam_diag_gcamp": 0.3256583735554258,
+      "D_dwell_diag_gcamp": 0.2781973543009744,
+      "delta_D_diag_gcamp": 0.0474610192544514
+    },
+    "AVAR": {
+      "D_roam_diag_cepnem": 0.4009019599724131,
+      "D_dwell_diag_cepnem": 0.3069179379969567,
+      "delta_D_diag_cepnem": 0.09398402197545641,
+      "D_roam_diag_gcamp": 0.23610440801035995,
+      "D_dwell_diag_gcamp": 0.17192778271565037,
+      "delta_D_diag_gcamp": 0.06417662529470958
+    },
+    "AVDL": {
+      "D_roam_diag_cepnem": 0.3689069726593121,
+      "D_dwell_diag_cepnem": 0.3809878101773967,
+      "delta_D_diag_cepnem": -0.012080837518084586,
+      "D_roam_diag_gcamp": 0.20167503066194334,
+      "D_dwell_diag_gcamp": 0.2183792911796536,
+      "delta_D_diag_gcamp": -0.016704260517710262
+    },
+    "AVEL": {
+      "D_roam_diag_cepnem": 0.45913655859418406,
+      "D_dwell_diag_cepnem": 0.4142948005514035,
+      "delta_D_diag_cepnem": 0.044841758042780566,
+      "D_roam_diag_gcamp": 0.2336697770963822,
+      "D_dwell_diag_gcamp": 0.20676943684321203,
+      "delta_D_diag_gcamp": 0.026900340253170174
+    },
+    "AVER": {
+      "D_roam_diag_cepnem": 0.4100330087024972,
+      "D_dwell_diag_cepnem": 0.37881184873061013,
+      "delta_D_diag_cepnem": 0.03122115997188707,
+      "D_roam_diag_gcamp": 0.22673924430151685,
+      "D_dwell_diag_gcamp": 0.1866744983077936,
+      "delta_D_diag_gcamp": 0.040064745993723255
+    },
+    "AVJL": {
+      "D_roam_diag_cepnem": 0.4431773430372079,
+      "D_dwell_diag_cepnem": 0.41357000733193616,
+      "delta_D_diag_cepnem": 0.029607335705271742,
+      "D_roam_diag_gcamp": 0.27444983484669355,
+      "D_dwell_diag_gcamp": 0.2585498281202215,
+      "delta_D_diag_gcamp": 0.01590000672647207
+    },
+    "AVJR": {
+      "D_roam_diag_cepnem": 0.30475602146565184,
+      "D_dwell_diag_cepnem": 0.45508507203569115,
+      "delta_D_diag_cepnem": -0.1503290505700393,
+      "D_roam_diag_gcamp": 0.13588005864264935,
+      "D_dwell_diag_gcamp": 0.2128231653052736,
+      "delta_D_diag_gcamp": -0.07694310666262424
+    },
+    "AWAL": {
+      "D_roam_diag_cepnem": 0.33663122881617435,
+      "D_dwell_diag_cepnem": 0.39874792761845723,
+      "delta_D_diag_cepnem": -0.06211669880228288,
+      "D_roam_diag_gcamp": 0.17358965491021133,
+      "D_dwell_diag_gcamp": 0.2202921380462662,
+      "delta_D_diag_gcamp": -0.04670248313605488
+    },
+    "AWBL": {
+      "D_roam_diag_cepnem": 0.4520046996965307,
+      "D_dwell_diag_cepnem": 0.3873283993115194,
+      "delta_D_diag_cepnem": 0.06467630038501126,
+      "D_roam_diag_gcamp": 0.24427153374666655,
+      "D_dwell_diag_gcamp": 0.20683644837475706,
+      "delta_D_diag_gcamp": 0.03743508537190948
+    },
+    "AWCL": {
+      "D_roam_diag_cepnem": 0.466597063597071,
+      "D_dwell_diag_cepnem": 0.42220822561542193,
+      "delta_D_diag_cepnem": 0.044388837981649054,
+      "D_roam_diag_gcamp": 0.28554664464182156,
+      "D_dwell_diag_gcamp": 0.28713417966412574,
+      "delta_D_diag_gcamp": -0.0015875350223041873
+    },
+    "CEPDL": {
+      "D_roam_diag_cepnem": 0.39761825592850464,
+      "D_dwell_diag_cepnem": 0.4126108197958229,
+      "delta_D_diag_cepnem": -0.014992563867318287,
+      "D_roam_diag_gcamp": 0.19351044507647297,
+      "D_dwell_diag_gcamp": 0.24606309679633628,
+      "delta_D_diag_gcamp": -0.052552651719863314
+    },
+    "CEPDR": {
+      "D_roam_diag_cepnem": 0.409566149898598,
+      "D_dwell_diag_cepnem": 0.39965629127933305,
+      "delta_D_diag_cepnem": 0.009909858619264966,
+      "D_roam_diag_gcamp": 0.23047474424419231,
+      "D_dwell_diag_gcamp": 0.21440250867255076,
+      "delta_D_diag_gcamp": 0.016072235571641558
+    },
+    "CEPVL": {
+      "D_roam_diag_cepnem": 0.37899588610356577,
+      "D_dwell_diag_cepnem": 0.34855735324167486,
+      "delta_D_diag_cepnem": 0.03043853286189091,
+      "D_roam_diag_gcamp": 0.21887914972074188,
+      "D_dwell_diag_gcamp": 0.22367301148022167,
+      "delta_D_diag_gcamp": -0.004793861759479795
+    },
+    "FLPL": {
+      "D_roam_diag_cepnem": 0.5196781992269992,
+      "D_dwell_diag_cepnem": 0.36954722512504906,
+      "delta_D_diag_cepnem": 0.15013097410195014,
+      "D_roam_diag_gcamp": 0.25464152370194276,
+      "D_dwell_diag_gcamp": 0.16505685703202497,
+      "delta_D_diag_gcamp": 0.0895846666699178
+    },
+    "I1L": {
+      "D_roam_diag_cepnem": 0.37607049060979886,
+      "D_dwell_diag_cepnem": 0.3973137350954423,
+      "delta_D_diag_cepnem": -0.021243244485643464,
+      "D_roam_diag_gcamp": 0.19231033272852868,
+      "D_dwell_diag_gcamp": 0.22777566653728365,
+      "delta_D_diag_gcamp": -0.03546533380875497
+    },
+    "I1R": {
+      "D_roam_diag_cepnem": 0.37188055726944697,
+      "D_dwell_diag_cepnem": 0.3899534288275874,
+      "delta_D_diag_cepnem": -0.018072871558140413,
+      "D_roam_diag_gcamp": 0.21002436858089987,
+      "D_dwell_diag_gcamp": 0.20686334199234424,
+      "delta_D_diag_gcamp": 0.003161026588555632
+    },
+    "I2L": {
+      "D_roam_diag_cepnem": 0.4730678683394359,
+      "D_dwell_diag_cepnem": 0.38689600342720476,
+      "delta_D_diag_cepnem": 0.08617186491223117,
+      "D_roam_diag_gcamp": 0.2855438484320658,
+      "D_dwell_diag_gcamp": 0.19946332545638698,
+      "delta_D_diag_gcamp": 0.08608052297567884
+    },
+    "I2R": {
+      "D_roam_diag_cepnem": 0.3060316227677349,
+      "D_dwell_diag_cepnem": 0.36928665984630743,
+      "delta_D_diag_cepnem": -0.06325503707857255,
+      "D_roam_diag_gcamp": 0.1757780085632586,
+      "D_dwell_diag_gcamp": 0.215667171500927,
+      "delta_D_diag_gcamp": -0.03988916293766842
+    },
+    "I3": {
+      "D_roam_diag_cepnem": 0.4507319857519141,
+      "D_dwell_diag_cepnem": 0.38777182162152596,
+      "delta_D_diag_cepnem": 0.06296016413038813,
+      "D_roam_diag_gcamp": 0.23009603922221233,
+      "D_dwell_diag_gcamp": 0.22461836511720126,
+      "delta_D_diag_gcamp": 0.005477674105011071
+    },
+    "IL1DR": {
+      "D_roam_diag_cepnem": 0.27750837006565954,
+      "D_dwell_diag_cepnem": 0.3721162725495354,
+      "delta_D_diag_cepnem": -0.09460790248387585,
+      "D_roam_diag_gcamp": 0.1615136938475686,
+      "D_dwell_diag_gcamp": 0.23678861731056342,
+      "delta_D_diag_gcamp": -0.0752749234629948
+    },
+    "IL1L": {
+      "D_roam_diag_cepnem": 0.4567569825759859,
+      "D_dwell_diag_cepnem": 0.2602476044361053,
+      "delta_D_diag_cepnem": 0.19650937813988062,
+      "D_roam_diag_gcamp": 0.29712991902557534,
+      "D_dwell_diag_gcamp": 0.1506960902040625,
+      "delta_D_diag_gcamp": 0.14643382882151285
+    },
+    "IL1R": {
+      "D_roam_diag_cepnem": 0.4700873734532494,
+      "D_dwell_diag_cepnem": 0.3942215466869153,
+      "delta_D_diag_cepnem": 0.07586582676633413,
+      "D_roam_diag_gcamp": 0.21830975921532111,
+      "D_dwell_diag_gcamp": 0.188803997098239,
+      "delta_D_diag_gcamp": 0.029505762117082113
+    },
+    "IL2DL": {
+      "D_roam_diag_cepnem": 0.40021046724239473,
+      "D_dwell_diag_cepnem": 0.36696858478259925,
+      "delta_D_diag_cepnem": 0.03324188245979548,
+      "D_roam_diag_gcamp": 0.21248719467182292,
+      "D_dwell_diag_gcamp": 0.19789568705546112,
+      "delta_D_diag_gcamp": 0.014591507616361798
+    },
+    "IL2DR": {
+      "D_roam_diag_cepnem": 0.3810623299820242,
+      "D_dwell_diag_cepnem": 0.39626114199504536,
+      "delta_D_diag_cepnem": -0.015198812013021146,
+      "D_roam_diag_gcamp": 0.2454565118643993,
+      "D_dwell_diag_gcamp": 0.22291519981360483,
+      "delta_D_diag_gcamp": 0.02254131205079446
+    },
+    "IL2VL": {
+      "D_roam_diag_cepnem": 0.37172965585915246,
+      "D_dwell_diag_cepnem": 0.4178166980270784,
+      "delta_D_diag_cepnem": -0.04608704216792592,
+      "D_roam_diag_gcamp": 0.21593457453800732,
+      "D_dwell_diag_gcamp": 0.22240653201778693,
+      "delta_D_diag_gcamp": -0.006471957479779605
+    },
+    "IL2VR": {
+      "D_roam_diag_cepnem": 0.45377982970952213,
+      "D_dwell_diag_cepnem": 0.4720477560731542,
+      "delta_D_diag_cepnem": -0.01826792636363206,
+      "D_roam_diag_gcamp": 0.2865252413568571,
+      "D_dwell_diag_gcamp": 0.3009508475005926,
+      "delta_D_diag_gcamp": -0.014425606143735503
+    },
+    "M1": {
+      "D_roam_diag_cepnem": 0.4605563568420458,
+      "D_dwell_diag_cepnem": 0.36168346295364673,
+      "delta_D_diag_cepnem": 0.0988728938883991,
+      "D_roam_diag_gcamp": 0.24039158555892387,
+      "D_dwell_diag_gcamp": 0.22639620266982752,
+      "delta_D_diag_gcamp": 0.013995382889096353
+    },
+    "M3L": {
+      "D_roam_diag_cepnem": 0.39644053295123527,
+      "D_dwell_diag_cepnem": 0.433644593235056,
+      "delta_D_diag_cepnem": -0.03720406028382073,
+      "D_roam_diag_gcamp": 0.2010202731210607,
+      "D_dwell_diag_gcamp": 0.24254418880639117,
+      "delta_D_diag_gcamp": -0.04152391568533048
+    },
+    "M3R": {
+      "D_roam_diag_cepnem": 0.3321147982853469,
+      "D_dwell_diag_cepnem": 0.4363973029895242,
+      "delta_D_diag_cepnem": -0.10428250470417733,
+      "D_roam_diag_gcamp": 0.18393793882516188,
+      "D_dwell_diag_gcamp": 0.2949662629366269,
+      "delta_D_diag_gcamp": -0.11102832411146504
+    },
+    "M4": {
+      "D_roam_diag_cepnem": 0.47500990190052433,
+      "D_dwell_diag_cepnem": 0.4319810850582159,
+      "delta_D_diag_cepnem": 0.043028816842308415,
+      "D_roam_diag_gcamp": 0.29538886462631714,
+      "D_dwell_diag_gcamp": 0.2306265363843684,
+      "delta_D_diag_gcamp": 0.06476232824194875
+    },
+    "MI": {
+      "D_roam_diag_cepnem": 0.408185373471059,
+      "D_dwell_diag_cepnem": 0.3122897244689308,
+      "delta_D_diag_cepnem": 0.09589564900212821,
+      "D_roam_diag_gcamp": 0.2024234596796537,
+      "D_dwell_diag_gcamp": 0.1389013345151309,
+      "delta_D_diag_gcamp": 0.0635221251645228
+    },
+    "NSML": {
+      "D_roam_diag_cepnem": 0.411880180723607,
+      "D_dwell_diag_cepnem": 0.4403228666479285,
+      "delta_D_diag_cepnem": -0.02844268592432153,
+      "D_roam_diag_gcamp": 0.24756214814814856,
+      "D_dwell_diag_gcamp": 0.20105706083983765,
+      "delta_D_diag_gcamp": 0.046505087308310905
+    },
+    "NSMR": {
+      "D_roam_diag_cepnem": 0.3204364927829302,
+      "D_dwell_diag_cepnem": 0.34022791432813865,
+      "delta_D_diag_cepnem": -0.019791421545208465,
+      "D_roam_diag_gcamp": 0.16527187347735758,
+      "D_dwell_diag_gcamp": 0.17163977963223537,
+      "delta_D_diag_gcamp": -0.006367906154877784
+    },
+    "OLLL": {
+      "D_roam_diag_cepnem": 0.2782140890889194,
+      "D_dwell_diag_cepnem": 0.4108389612766168,
+      "delta_D_diag_cepnem": -0.13262487218769736,
+      "D_roam_diag_gcamp": 0.15632706488565104,
+      "D_dwell_diag_gcamp": 0.23347666846352613,
+      "delta_D_diag_gcamp": -0.07714960357787509
+    },
+    "OLLR": {
+      "D_roam_diag_cepnem": 0.4273246064369823,
+      "D_dwell_diag_cepnem": 0.3848137685020636,
+      "delta_D_diag_cepnem": 0.042510837934918666,
+      "D_roam_diag_gcamp": 0.20989700279063236,
+      "D_dwell_diag_gcamp": 0.19783140086592588,
+      "delta_D_diag_gcamp": 0.012065601924706487
+    },
+    "OLQDL": {
+      "D_roam_diag_cepnem": 0.45987828126888364,
+      "D_dwell_diag_cepnem": 0.4677217302409931,
+      "delta_D_diag_cepnem": -0.007843448972109479,
+      "D_roam_diag_gcamp": 0.2201786579039106,
+      "D_dwell_diag_gcamp": 0.2161828334986853,
+      "delta_D_diag_gcamp": 0.003995824405225307
+    },
+    "OLQDR": {
+      "D_roam_diag_cepnem": 0.439915431848446,
+      "D_dwell_diag_cepnem": 0.4010630531298121,
+      "delta_D_diag_cepnem": 0.038852378718633895,
+      "D_roam_diag_gcamp": 0.255932457754934,
+      "D_dwell_diag_gcamp": 0.2254551054938796,
+      "delta_D_diag_gcamp": 0.030477352261054413
+    },
+    "OLQVL": {
+      "D_roam_diag_cepnem": 0.5163675391373707,
+      "D_dwell_diag_cepnem": 0.4160755592143203,
+      "delta_D_diag_cepnem": 0.10029197992305033,
+      "D_roam_diag_gcamp": 0.2387729394441364,
+      "D_dwell_diag_gcamp": 0.24072821134189246,
+      "delta_D_diag_gcamp": -0.0019552718977560446
+    },
+    "OLQVR": {
+      "D_roam_diag_cepnem": 0.4077318191839743,
+      "D_dwell_diag_cepnem": 0.43773282357518706,
+      "delta_D_diag_cepnem": -0.030001004391212782,
+      "D_roam_diag_gcamp": 0.193415209792081,
+      "D_dwell_diag_gcamp": 0.2662679426938733,
+      "delta_D_diag_gcamp": -0.07285273290179234
+    },
+    "RICL": {
+      "D_roam_diag_cepnem": 0.4700184216341252,
+      "D_dwell_diag_cepnem": 0.4181233670553658,
+      "delta_D_diag_cepnem": 0.051895054578759425,
+      "D_roam_diag_gcamp": 0.30426790927535174,
+      "D_dwell_diag_gcamp": 0.252012218533551,
+      "delta_D_diag_gcamp": 0.05225569074180075
+    },
+    "RID": {
+      "D_roam_diag_cepnem": 0.49633567134158346,
+      "D_dwell_diag_cepnem": 0.4776119612324519,
+      "delta_D_diag_cepnem": 0.01872371010913154,
+      "D_roam_diag_gcamp": 0.33372524410774745,
+      "D_dwell_diag_gcamp": 0.3186656721682974,
+      "delta_D_diag_gcamp": 0.015059571939450067
+    },
+    "RIVL": {
+      "D_roam_diag_cepnem": 0.3612048722546314,
+      "D_dwell_diag_cepnem": 0.371071572320634,
+      "delta_D_diag_cepnem": -0.009866700066002598,
+      "D_roam_diag_gcamp": 0.20746622297692807,
+      "D_dwell_diag_gcamp": 0.21181379758129523,
+      "delta_D_diag_gcamp": -0.00434757460436716
+    },
+    "RMDDR": {
+      "D_roam_diag_cepnem": 0.46988779173823414,
+      "D_dwell_diag_cepnem": 0.40653488082086187,
+      "delta_D_diag_cepnem": 0.06335291091737227,
+      "D_roam_diag_gcamp": 0.3178308073641704,
+      "D_dwell_diag_gcamp": 0.25171436991478985,
+      "delta_D_diag_gcamp": 0.06611643744938056
+    },
+    "RMDL": {
+      "D_roam_diag_cepnem": 0.34656088634751997,
+      "D_dwell_diag_cepnem": 0.4178545895195292,
+      "delta_D_diag_cepnem": -0.07129370317200923,
+      "D_roam_diag_gcamp": 0.15734554119355204,
+      "D_dwell_diag_gcamp": 0.24974138851079342,
+      "delta_D_diag_gcamp": -0.09239584731724138
+    },
+    "RMDVL": {
+      "D_roam_diag_cepnem": 0.6133234876550628,
+      "D_dwell_diag_cepnem": 0.3885845548374064,
+      "delta_D_diag_cepnem": 0.22473893281765644,
+      "D_roam_diag_gcamp": 0.3703253656922111,
+      "D_dwell_diag_gcamp": 0.23989151981351903,
+      "delta_D_diag_gcamp": 0.13043384587869206
+    },
+    "RMDVR": {
+      "D_roam_diag_cepnem": 0.3683812901763307,
+      "D_dwell_diag_cepnem": 0.349639207153399,
+      "delta_D_diag_cepnem": 0.018742083022931677,
+      "D_roam_diag_gcamp": 0.21590167593877113,
+      "D_dwell_diag_gcamp": 0.2047614188669558,
+      "delta_D_diag_gcamp": 0.011140257071815318
+    },
+    "RMEL": {
+      "D_roam_diag_cepnem": 0.35638471305212005,
+      "D_dwell_diag_cepnem": 0.3994615755152173,
+      "delta_D_diag_cepnem": -0.043076862463097276,
+      "D_roam_diag_gcamp": 0.2146840422989335,
+      "D_dwell_diag_gcamp": 0.23214958716153328,
+      "delta_D_diag_gcamp": -0.01746554486259977
+    },
+    "RMER": {
+      "D_roam_diag_cepnem": 0.43520065060341884,
+      "D_dwell_diag_cepnem": 0.40604985956999884,
+      "delta_D_diag_cepnem": 0.029150791033419998,
+      "D_roam_diag_gcamp": 0.25457505584387863,
+      "D_dwell_diag_gcamp": 0.2099657644680873,
+      "delta_D_diag_gcamp": 0.04460929137579134
+    },
+    "SMDVL": {
+      "D_roam_diag_cepnem": 0.37707941388003363,
+      "D_dwell_diag_cepnem": 0.47699971205667463,
+      "delta_D_diag_cepnem": -0.099920298176641,
+      "D_roam_diag_gcamp": 0.22394433141271586,
+      "D_dwell_diag_gcamp": 0.317880606445444,
+      "delta_D_diag_gcamp": -0.09393627503272817
+    },
+    "URBL": {
+      "D_roam_diag_cepnem": 0.49717518840496355,
+      "D_dwell_diag_cepnem": 0.3925047670174799,
+      "delta_D_diag_cepnem": 0.10467042138748367,
+      "D_roam_diag_gcamp": 0.2919125222062118,
+      "D_dwell_diag_gcamp": 0.20881561028385331,
+      "delta_D_diag_gcamp": 0.08309691192235846
+    },
+    "URXL": {
+      "D_roam_diag_cepnem": 0.6113626119060247,
+      "D_dwell_diag_cepnem": 0.4033385020678475,
+      "delta_D_diag_cepnem": 0.2080241098381772,
+      "D_roam_diag_gcamp": 0.41301008703488407,
+      "D_dwell_diag_gcamp": 0.25121762295731226,
+      "delta_D_diag_gcamp": 0.1617924640775718
+    },
+    "URYDL": {
+      "D_roam_diag_cepnem": 0.389742027846822,
+      "D_dwell_diag_cepnem": 0.4007260182924226,
+      "delta_D_diag_cepnem": -0.010983990445600611,
+      "D_roam_diag_gcamp": 0.23300176040660373,
+      "D_dwell_diag_gcamp": 0.20840074409456213,
+      "delta_D_diag_gcamp": 0.02460101631204159
+    },
+    "URYVL": {
+      "D_roam_diag_cepnem": 0.5637841173241347,
+      "D_dwell_diag_cepnem": 0.4151053121704574,
+      "delta_D_diag_cepnem": 0.14867880515367732,
+      "D_roam_diag_gcamp": 0.3269526098404075,
+      "D_dwell_diag_gcamp": 0.25307710850940124,
+      "delta_D_diag_gcamp": 0.07387550133100629
+    },
+    "URYVR": {
+      "D_roam_diag_cepnem": 0.32860888327694543,
+      "D_dwell_diag_cepnem": 0.360642777252149,
+      "delta_D_diag_cepnem": -0.032033893975203565,
+      "D_roam_diag_gcamp": 0.1693800439381688,
+      "D_dwell_diag_gcamp": 0.20891688364297661,
+      "delta_D_diag_gcamp": -0.039536839704807814
+    }
+  }
+}

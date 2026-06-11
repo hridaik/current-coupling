@@ -1,0 +1,729 @@
+{
+  "date": "2026-06-03",
+  "authorization": "Phase 3C-H",
+  "H1_fisher": {
+    "Bentley_PDF": {
+      "n": 61,
+      "auroc_dq": 0.5560109289617486,
+      "p_deg_auroc_dq": 0.026,
+      "auroc_do": 0.6644418423106948,
+      "p_deg_auroc_do": 0.0,
+      "or_dq": 5.456140350877193,
+      "p_deg_fish_dq": 0.014,
+      "k_dq": 4,
+      "or_do": 7.410714285714286,
+      "p_deg_fish_do": 0.0,
+      "k_do": 5,
+      "exp_topk": 0.9235427706283119,
+      "delta_auroc": 0.10843091334894617,
+      "delta_or": 1.954573934837093
+    },
+    "Bentley_serotonin": {
+      "n": 33,
+      "auroc_dq": 0.49525926971579143,
+      "p_deg_auroc_dq": 0.546,
+      "auroc_do": 0.5367259552042161,
+      "p_deg_auroc_do": 0.308,
+      "or_dq": 0.0,
+      "p_deg_fish_dq": 1.0,
+      "k_dq": 0,
+      "or_do": 0.0,
+      "p_deg_fish_do": 1.0,
+      "k_do": 0,
+      "exp_topk": 0.4996214988644966,
+      "delta_auroc": 0.04146668548842464,
+      "delta_or": 0.0
+    },
+    "Bentley_combined": {
+      "n": 94,
+      "auroc_dq": 0.5355780401949054,
+      "p_deg_auroc_dq": 0.048,
+      "auroc_do": 0.6231164056945673,
+      "p_deg_auroc_do": 0.0,
+      "or_dq": 3.363888888888889,
+      "p_deg_fish_dq": 0.064,
+      "k_dq": 4,
+      "or_do": 4.53932584269663,
+      "p_deg_fish_do": 0.008,
+      "k_do": 5,
+      "exp_topk": 1.4231642694928084,
+      "delta_auroc": 0.08753836549966187,
+      "delta_or": 1.1754369538077407
+    },
+    "CeNGEN_ser_PDF": {
+      "n": 382,
+      "auroc_dq": 0.5221467641302712,
+      "p_deg_auroc_dq": 0.026,
+      "auroc_do": 0.517373946885681,
+      "p_deg_auroc_do": 0.148,
+      "or_dq": 0.8169761273209549,
+      "p_deg_fish_dq": 0.694,
+      "k_dq": 5,
+      "or_do": 1.0543313069908815,
+      "p_deg_fish_do": 0.536,
+      "k_do": 6,
+      "exp_topk": 5.783497350492051,
+      "delta_auroc": -0.004772817244590222,
+      "delta_or": 0.23735517966992659
+    },
+    "Randi_unc31": {
+      "n": 91,
+      "auroc_dq": 0.5007326007326007,
+      "p_deg_auroc_dq": 0.484,
+      "auroc_do": 0.49051192709729297,
+      "p_deg_auroc_do": 0.676,
+      "or_dq": 0.0,
+      "p_deg_fish_dq": 1.0,
+      "k_dq": 0,
+      "or_do": 0.0,
+      "p_deg_fish_do": 1.0,
+      "k_do": 0,
+      "exp_topk": 1.3777441332323996,
+      "delta_auroc": -0.010220673635307764,
+      "delta_or": 0.0
+    }
+  },
+  "H2_adel": {
+    "adel_pdf": [
+      {
+        "k": 4,
+        "pair": "ADEL\u2013URYVR",
+        "dq": 0.12215820457863846,
+        "do": 0.059458886069888785,
+        "rank_dq": 5,
+        "rank_do": 5,
+        "delta": 0,
+        "pdf": true
+      },
+      {
+        "k": 8,
+        "pair": "ADEL\u2013URYDL",
+        "dq": 0.0980002533362548,
+        "do": 0.04851429300373188,
+        "rank_dq": 9,
+        "rank_do": 7,
+        "delta": 2,
+        "pdf": true
+      },
+      {
+        "k": 9,
+        "pair": "ADEL\u2013RMEL",
+        "dq": 0.09565655648982868,
+        "do": 0.046280323345766795,
+        "rank_dq": 10,
+        "rank_do": 8,
+        "delta": 2,
+        "pdf": true
+      },
+      {
+        "k": 58,
+        "pair": "ADEL\u2013URXL",
+        "dq": 0.04497524818911772,
+        "do": 0.01944942946963264,
+        "rank_dq": 59,
+        "rank_do": 59,
+        "delta": 0,
+        "pdf": true
+      },
+      {
+        "k": 120,
+        "pair": "ADEL\u2013OLQVR",
+        "dq": 0.021501215018849384,
+        "do": 0.007997394942216676,
+        "rank_dq": 121,
+        "rank_do": 140,
+        "delta": -19,
+        "pdf": true
+      },
+      {
+        "k": 522,
+        "pair": "ADEL\u2013URYVL",
+        "dq": 0.0,
+        "do": 0.00030128382336413865,
+        "rank_dq": 523,
+        "rank_do": 1172,
+        "delta": -649,
+        "pdf": true
+      },
+      {
+        "k": 540,
+        "pair": "ADEL\u2013OLQDL",
+        "dq": 0.0,
+        "do": 0.0024910877399978337,
+        "rank_dq": 541,
+        "rank_do": 373,
+        "delta": 168,
+        "pdf": true
+      },
+      {
+        "k": 541,
+        "pair": "ADEL\u2013OLQDR",
+        "dq": 0.0,
+        "do": 0.001442984230416111,
+        "rank_dq": 542,
+        "rank_do": 642,
+        "delta": -100,
+        "pdf": true
+      },
+      {
+        "k": 548,
+        "pair": "ADEL\u2013OLLR",
+        "dq": 0.0,
+        "do": 0.0013675872805913988,
+        "rank_dq": 549,
+        "rank_do": 673,
+        "delta": -124,
+        "pdf": true
+      },
+      {
+        "k": 921,
+        "pair": "ADEL\u2013I1L",
+        "dq": 0.0,
+        "do": 0.002082007966176922,
+        "rank_dq": 922,
+        "rank_do": 459,
+        "delta": 463,
+        "pdf": true
+      },
+      {
+        "k": 931,
+        "pair": "ADEL\u2013I1R",
+        "dq": 0.0,
+        "do": 0.00010603553987404788,
+        "rank_dq": 932,
+        "rank_do": 1263,
+        "delta": -331,
+        "pdf": true
+      },
+      {
+        "k": 1138,
+        "pair": "ADEL\u2013OLQVL",
+        "dq": 0.0,
+        "do": 0.0018389369003028889,
+        "rank_dq": 1139,
+        "rank_do": 516,
+        "delta": 623,
+        "pdf": true
+      }
+    ],
+    "adel_nonpdf": [
+      {
+        "k": 25,
+        "pair": "ADEL\u2013I2L",
+        "dq": 0.06238222107806825,
+        "do": 0.030930635757059625,
+        "rank_dq": 26,
+        "rank_do": 18,
+        "delta": 8,
+        "pdf": false
+      },
+      {
+        "k": 96,
+        "pair": "ADEL\u2013AUAL",
+        "dq": 0.03054513511794043,
+        "do": 0.010494311067656303,
+        "rank_dq": 97,
+        "rank_do": 113,
+        "delta": -16,
+        "pdf": false
+      },
+      {
+        "k": 98,
+        "pair": "ADEL\u2013RID",
+        "dq": 0.029719398498143396,
+        "do": 0.01466210271969389,
+        "rank_dq": 99,
+        "rank_do": 86,
+        "delta": 13,
+        "pdf": false
+      },
+      {
+        "k": 118,
+        "pair": "ADEL\u2013NSMR",
+        "dq": 0.021856828974389564,
+        "do": 0.010185156639059896,
+        "rank_dq": 119,
+        "rank_do": 118,
+        "delta": 1,
+        "pdf": false
+      },
+      {
+        "k": 127,
+        "pair": "ADEL\u2013AVER",
+        "dq": 0.019792183287288143,
+        "do": 0.007137957557438203,
+        "rank_dq": 128,
+        "rank_do": 149,
+        "delta": -21,
+        "pdf": false
+      },
+      {
+        "k": 153,
+        "pair": "ADEL\u2013NSML",
+        "dq": 0.015459282518764127,
+        "do": 0.00645645710204613,
+        "rank_dq": 154,
+        "rank_do": 157,
+        "delta": -3,
+        "pdf": false
+      },
+      {
+        "k": 235,
+        "pair": "ADEL\u2013IL2VR",
+        "dq": 0.001143750354282498,
+        "do": 0.0013235630969879232,
+        "rank_dq": 236,
+        "rank_do": 686,
+        "delta": -450,
+        "pdf": false
+      },
+      {
+        "k": 517,
+        "pair": "ADEL\u2013RICL",
+        "dq": 0.0,
+        "do": 0.0038648495722495044,
+        "rank_dq": 518,
+        "rank_do": 236,
+        "delta": 282,
+        "pdf": false
+      },
+      {
+        "k": 518,
+        "pair": "ADEL\u2013RMDDR",
+        "dq": 0.0,
+        "do": 9.464206561462837e-05,
+        "rank_dq": 519,
+        "rank_do": 1275,
+        "delta": -756,
+        "pdf": false
+      },
+      {
+        "k": 519,
+        "pair": "ADEL\u2013RMDVL",
+        "dq": 0.0,
+        "do": 0.0010074768246419743,
+        "rank_dq": 520,
+        "rank_do": 834,
+        "delta": -314,
+        "pdf": false
+      },
+      {
+        "k": 520,
+        "pair": "ADEL\u2013RMDVR",
+        "dq": 0.0,
+        "do": 0.002102898576111477,
+        "rank_dq": 521,
+        "rank_do": 453,
+        "delta": 68,
+        "pdf": false
+      },
+      {
+        "k": 530,
+        "pair": "ADEL\u2013SMDVL",
+        "dq": 0.0,
+        "do": 0.000918322388374467,
+        "rank_dq": 531,
+        "rank_do": 870,
+        "delta": -339,
+        "pdf": false
+      },
+      {
+        "k": 531,
+        "pair": "ADEL\u2013IL2DL",
+        "dq": 0.0,
+        "do": 0.0023608952867210232,
+        "rank_dq": 532,
+        "rank_do": 403,
+        "delta": 129,
+        "pdf": false
+      },
+      {
+        "k": 532,
+        "pair": "ADEL\u2013IL2DR",
+        "dq": 0.0,
+        "do": 0.0012103439589945782,
+        "rank_dq": 533,
+        "rank_do": 730,
+        "delta": -197,
+        "pdf": false
+      },
+      {
+        "k": 533,
+        "pair": "ADEL\u2013IL2VL",
+        "dq": 0.0,
+        "do": 0.0001765808241422271,
+        "rank_dq": 534,
+        "rank_do": 1228,
+        "delta": -694,
+        "pdf": false
+      },
+      {
+        "k": 534,
+        "pair": "ADEL\u2013M1",
+        "dq": 0.0,
+        "do": 0.001570747734475228,
+        "rank_dq": 535,
+        "rank_do": 595,
+        "delta": -60,
+        "pdf": false
+      },
+      {
+        "k": 535,
+        "pair": "ADEL\u2013M3L",
+        "dq": 0.0,
+        "do": 0.0016514079881076638,
+        "rank_dq": 536,
+        "rank_do": 569,
+        "delta": -33,
+        "pdf": false
+      },
+      {
+        "k": 536,
+        "pair": "ADEL\u2013M3R",
+        "dq": 0.0,
+        "do": 0.0017183875997220832,
+        "rank_dq": 537,
+        "rank_do": 546,
+        "delta": -9,
+        "pdf": false
+      },
+      {
+        "k": 537,
+        "pair": "ADEL\u2013M4",
+        "dq": 0.0,
+        "do": 9.593768667595126e-05,
+        "rank_dq": 538,
+        "rank_do": 1273,
+        "delta": -735,
+        "pdf": false
+      },
+      {
+        "k": 538,
+        "pair": "ADEL\u2013MI",
+        "dq": 0.0,
+        "do": 0.002535162288271565,
+        "rank_dq": 539,
+        "rank_do": 367,
+        "delta": 172,
+        "pdf": false
+      },
+      {
+        "k": 914,
+        "pair": "ADEL\u2013ASGL",
+        "dq": 0.0,
+        "do": 0.00293143076902771,
+        "rank_dq": 915,
+        "rank_do": 325,
+        "delta": 590,
+        "pdf": false
+      },
+      {
+        "k": 915,
+        "pair": "ADEL\u2013AVJL",
+        "dq": 0.0,
+        "do": 0.00046647658139728796,
+        "rank_dq": 916,
+        "rank_do": 1081,
+        "delta": -165,
+        "pdf": false
+      },
+      {
+        "k": 916,
+        "pair": "ADEL\u2013AVJR",
+        "dq": 0.0,
+        "do": 0.004787517487559688,
+        "rank_dq": 917,
+        "rank_do": 194,
+        "delta": 723,
+        "pdf": false
+      },
+      {
+        "k": 917,
+        "pair": "ADEL\u2013AWAL",
+        "dq": 0.0,
+        "do": 0.0014828438179806758,
+        "rank_dq": 918,
+        "rank_do": 623,
+        "delta": 295,
+        "pdf": false
+      },
+      {
+        "k": 918,
+        "pair": "ADEL\u2013AWBL",
+        "dq": 0.0,
+        "do": 0.0017329396122828073,
+        "rank_dq": 919,
+        "rank_do": 543,
+        "delta": 376,
+        "pdf": false
+      },
+      {
+        "k": 919,
+        "pair": "ADEL\u2013CEPDR",
+        "dq": 0.0,
+        "do": 0.00147450069963749,
+        "rank_dq": 920,
+        "rank_do": 627,
+        "delta": 293,
+        "pdf": false
+      },
+      {
+        "k": 920,
+        "pair": "ADEL\u2013CEPVL",
+        "dq": 0.0,
+        "do": 0.0020815019610109817,
+        "rank_dq": 921,
+        "rank_do": 460,
+        "delta": 461,
+        "pdf": false
+      },
+      {
+        "k": 923,
+        "pair": "ADEL\u2013I2R",
+        "dq": 0.0,
+        "do": 0.001431289681410611,
+        "rank_dq": 924,
+        "rank_do": 646,
+        "delta": 278,
+        "pdf": false
+      },
+      {
+        "k": 927,
+        "pair": "ADEL\u2013AIZL",
+        "dq": 0.0,
+        "do": 0.0005424331152107185,
+        "rank_dq": 928,
+        "rank_do": 1053,
+        "delta": -125,
+        "pdf": false
+      },
+      {
+        "k": 928,
+        "pair": "ADEL\u2013IL1DR",
+        "dq": 0.0,
+        "do": 0.002350094720987865,
+        "rank_dq": 929,
+        "rank_do": 406,
+        "delta": 523,
+        "pdf": false
+      },
+      {
+        "k": 929,
+        "pair": "ADEL\u2013I3",
+        "dq": 0.0,
+        "do": 0.001013202231950635,
+        "rank_dq": 930,
+        "rank_do": 830,
+        "delta": 100,
+        "pdf": false
+      },
+      {
+        "k": 940,
+        "pair": "ADEL\u2013ASEL",
+        "dq": 0.0,
+        "do": 0.0022729206894514667,
+        "rank_dq": 941,
+        "rank_do": 420,
+        "delta": 521,
+        "pdf": false
+      }
+    ],
+    "adel_pdf_mean_delta": 2.9166666666666665,
+    "adel_nonpdf_mean_delta": 28.625,
+    "adel_pdf_top20_dq": 3,
+    "adel_pdf_top20_do": 3,
+    "adel_pdf_top50_dq": 3,
+    "adel_pdf_top50_do": 3
+  },
+  "H3_blockwise": {
+    "da_ury_rank_dq": 2,
+    "da_ury_rank_do": 2,
+    "top10_dq": [
+      {
+        "pair": "RME\u2194RME",
+        "mean": 0.057909561173292184,
+        "n": 1
+      },
+      {
+        "pair": "DA_mech\u2194URY_URX",
+        "mean": 0.026720997356791936,
+        "n": 12
+      },
+      {
+        "pair": "RID\u2194IL1_IL2",
+        "mean": 0.019259556274429025,
+        "n": 5
+      },
+      {
+        "pair": "RME\u2194URY_URX",
+        "mean": 0.01880835795031732,
+        "n": 8
+      },
+      {
+        "pair": "DA_mech\u2194RME",
+        "mean": 0.01650787697626032,
+        "n": 7
+      },
+      {
+        "pair": "command_IN\u2194command_IN",
+        "mean": 0.01592644212259576,
+        "n": 2
+      },
+      {
+        "pair": "URY_URX\u2194IL1_IL2",
+        "mean": 0.015921433069231557,
+        "n": 20
+      },
+      {
+        "pair": "URY_URX\u2194URY_URX",
+        "mean": 0.015803189131588735,
+        "n": 5
+      },
+      {
+        "pair": "RID\u2194URY_URX",
+        "mean": 0.013205360110675168,
+        "n": 3
+      },
+      {
+        "pair": "URY_URX\u2194RMD_SMD",
+        "mean": 0.012406427239103278,
+        "n": 13
+      }
+    ],
+    "top10_do": [
+      {
+        "pair": "RME\u2194RME",
+        "mean": 0.020052566721204933,
+        "n": 1
+      },
+      {
+        "pair": "DA_mech\u2194URY_URX",
+        "mean": 0.014443579329058862,
+        "n": 12
+      },
+      {
+        "pair": "DA_mech\u2194RME",
+        "mean": 0.010136390562366112,
+        "n": 7
+      },
+      {
+        "pair": "URY_URX\u2194URY_URX",
+        "mean": 0.010047637099771889,
+        "n": 5
+      },
+      {
+        "pair": "RID\u2194IL1_IL2",
+        "mean": 0.009940902286459701,
+        "n": 5
+      },
+      {
+        "pair": "RME\u2194URY_URX",
+        "mean": 0.00950470606901518,
+        "n": 8
+      },
+      {
+        "pair": "RID\u2194URY_URX",
+        "mean": 0.009034560942191766,
+        "n": 3
+      },
+      {
+        "pair": "command_IN\u2194command_IN",
+        "mean": 0.008008364678663182,
+        "n": 2
+      },
+      {
+        "pair": "URY_URX\u2194IL1_IL2",
+        "mean": 0.0077443695143244356,
+        "n": 20
+      },
+      {
+        "pair": "RID\u2194RME",
+        "mean": 0.007402244828806781,
+        "n": 2
+      }
+    ]
+  },
+  "H4_sparsity": {
+    "Bentley_PDF": {
+      "n_total": 61,
+      "n_rescued": 44,
+      "n_both_nonzero": 17,
+      "n_both_zero": 0,
+      "frac_rescued": 0.7213114754098361
+    },
+    "Bentley_serotonin": {
+      "n_total": 33,
+      "n_rescued": 27,
+      "n_both_nonzero": 6,
+      "n_both_zero": 0,
+      "frac_rescued": 0.8181818181818182
+    },
+    "Bentley_combined": {
+      "n_total": 94,
+      "n_rescued": 71,
+      "n_both_nonzero": 23,
+      "n_both_zero": 0,
+      "frac_rescued": 0.7553191489361702
+    },
+    "CeNGEN_ser_PDF": {
+      "n_total": 382,
+      "n_rescued": 300,
+      "n_both_nonzero": 82,
+      "n_both_zero": 0,
+      "frac_rescued": 0.7853403141361257
+    },
+    "Randi_unc31": {
+      "n_total": 91,
+      "n_rescued": 74,
+      "n_both_nonzero": 17,
+      "n_both_zero": 0,
+      "frac_rescued": 0.8131868131868132
+    },
+    "unannotated": {
+      "n_total": 817,
+      "n_rescued": 678,
+      "n_both_nonzero": 139,
+      "n_both_zero": 0,
+      "frac_rescued": 0.8298653610771114
+    }
+  },
+  "H5_localization": {
+    "ADEL": {
+      "n_pairs": 12,
+      "auroc_dq": 0.40476190476190477,
+      "auroc_do": 0.6708333333333333,
+      "delta_auroc": 0.2660714285714285,
+      "delta_concordant": 4023
+    },
+    "RID": {
+      "n_pairs": 14,
+      "auroc_dq": 0.2574829931972789,
+      "auroc_do": 0.7121315192743765,
+      "delta_auroc": 0.45464852607709755,
+      "delta_concordant": 8020
+    },
+    "RMEL": {
+      "n_pairs": 14,
+      "auroc_dq": 0.4077097505668934,
+      "auroc_do": 0.7967687074829932,
+      "delta_auroc": 0.3890589569160998,
+      "delta_concordant": 6863
+    },
+    "RMER": {
+      "n_pairs": 13,
+      "auroc_dq": 0.21257631257631257,
+      "auroc_do": 0.6993284493284493,
+      "delta_auroc": 0.4867521367521367,
+      "delta_concordant": 7973
+    },
+    "AVDL": {
+      "n_pairs": 15,
+      "auroc_dq": 0.18031746031746032,
+      "auroc_do": 0.5438624338624338,
+      "delta_auroc": 0.3635449735449735,
+      "delta_concordant": 6871
+    }
+  },
+  "H5_total_delta_concordant": 31082,
+  "H5_attributed_concordant": 33750
+}

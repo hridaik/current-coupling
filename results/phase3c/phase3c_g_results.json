@@ -1,0 +1,1763 @@
+{
+  "date": "2026-06-03",
+  "authorization": "Phase 3C-G",
+  "n_pdf_c4": 61,
+  "auroc_dq": 0.5560109289617486,
+  "auroc_do": 0.6644418423106948,
+  "delta_auroc": 0.10843091334894617,
+  "mean_rank_dq": 610.344262295082,
+  "mean_rank_do": 453.8032786885246,
+  "pair_movements": [
+    {
+      "k": 1273,
+      "pair": "I1R\u2013RMEL",
+      "i": 22,
+      "j": 53,
+      "dq": 0.0,
+      "do": 0.003947762473208553,
+      "rank_dq": 1274,
+      "rank_do": 232,
+      "delta_rank": 1042,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "RMEL"
+      ]
+    },
+    {
+      "k": 1084,
+      "pair": "FLPL\u2013RMEL",
+      "i": 20,
+      "j": 53,
+      "dq": 0.0,
+      "do": 0.004418470436456616,
+      "rank_dq": 1085,
+      "rank_do": 207,
+      "delta_rank": 878,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "RMEL"
+      ]
+    },
+    {
+      "k": 994,
+      "pair": "OLQDR\u2013RMEL",
+      "i": 43,
+      "j": 53,
+      "dq": 0.0,
+      "do": 0.0048674019987216014,
+      "rank_dq": 995,
+      "rank_do": 192,
+      "delta_rank": 803,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "RMEL"
+      ]
+    },
+    {
+      "k": 1076,
+      "pair": "I1L\u2013RMEL",
+      "i": 21,
+      "j": 53,
+      "dq": 0.0,
+      "do": 0.002791948531664009,
+      "rank_dq": 1077,
+      "rank_do": 334,
+      "delta_rank": 743,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "RMEL"
+      ]
+    },
+    {
+      "k": 904,
+      "pair": "OLQVR\u2013RMEL",
+      "i": 45,
+      "j": 53,
+      "dq": 0.0,
+      "do": 0.004184327855002851,
+      "rank_dq": 905,
+      "rank_do": 221,
+      "delta_rank": 684,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "RMEL"
+      ]
+    },
+    {
+      "k": 887,
+      "pair": "RID\u2013URYDL",
+      "i": 47,
+      "j": 58,
+      "dq": 0.0,
+      "do": 0.004190254295675907,
+      "rank_dq": 888,
+      "rank_do": 218,
+      "delta_rank": 670,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": true,
+      "is_rme": false,
+      "is_rid": true,
+      "source_names": [
+        "RID"
+      ]
+    },
+    {
+      "k": 888,
+      "pair": "RID\u2013URYVR",
+      "i": 47,
+      "j": 60,
+      "dq": 0.0,
+      "do": 0.004090655528375073,
+      "rank_dq": 889,
+      "rank_do": 224,
+      "delta_rank": 665,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": true,
+      "is_rme": false,
+      "is_rid": true,
+      "source_names": [
+        "RID"
+      ]
+    },
+    {
+      "k": 1001,
+      "pair": "OLQVL\u2013RID",
+      "i": 44,
+      "j": 47,
+      "dq": 0.0,
+      "do": 0.00276578407062152,
+      "rank_dq": 1002,
+      "rank_do": 337,
+      "delta_rank": 665,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": true,
+      "source_names": [
+        "RID"
+      ]
+    },
+    {
+      "k": 1138,
+      "pair": "ADEL\u2013OLQVL",
+      "i": 0,
+      "j": 44,
+      "dq": 0.0,
+      "do": 0.0018389369003028889,
+      "rank_dq": 1139,
+      "rank_do": 516,
+      "delta_rank": 623,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": true,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": false,
+      "source_names": [
+        "ADEL"
+      ]
+    },
+    {
+      "k": 895,
+      "pair": "OLQVL\u2013RMEL",
+      "i": 44,
+      "j": 53,
+      "dq": 0.0,
+      "do": 0.0031854543290689907,
+      "rank_dq": 896,
+      "rank_do": 292,
+      "delta_rank": 604,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "RMEL"
+      ]
+    },
+    {
+      "k": 1077,
+      "pair": "I1L\u2013RMER",
+      "i": 21,
+      "j": 54,
+      "dq": 0.0,
+      "do": 0.001992230875841789,
+      "rank_dq": 1078,
+      "rank_do": 479,
+      "delta_rank": 599,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "RMER"
+      ]
+    },
+    {
+      "k": 1085,
+      "pair": "FLPL\u2013RMER",
+      "i": 20,
+      "j": 54,
+      "dq": 0.0,
+      "do": 0.0018921538189599395,
+      "rank_dq": 1086,
+      "rank_do": 501,
+      "delta_rank": 585,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "RMER"
+      ]
+    },
+    {
+      "k": 991,
+      "pair": "OLQDR\u2013RID",
+      "i": 43,
+      "j": 47,
+      "dq": 0.0,
+      "do": 0.002276897994376723,
+      "rank_dq": 992,
+      "rank_do": 419,
+      "delta_rank": 573,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": true,
+      "source_names": [
+        "RID"
+      ]
+    },
+    {
+      "k": 1278,
+      "pair": "I1R\u2013RID",
+      "i": 22,
+      "j": 47,
+      "dq": 0.0,
+      "do": 0.0012396547853356424,
+      "rank_dq": 1279,
+      "rank_do": 713,
+      "delta_rank": 566,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": true,
+      "source_names": [
+        "RID"
+      ]
+    },
+    {
+      "k": 963,
+      "pair": "OLLL\u2013RID",
+      "i": 40,
+      "j": 47,
+      "dq": 0.0,
+      "do": 0.002263039879231402,
+      "rank_dq": 964,
+      "rank_do": 422,
+      "delta_rank": 542,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": true,
+      "source_names": [
+        "RID"
+      ]
+    },
+    {
+      "k": 967,
+      "pair": "OLLL\u2013RMER",
+      "i": 40,
+      "j": 54,
+      "dq": 0.0,
+      "do": 0.002060152776195899,
+      "rank_dq": 968,
+      "rank_do": 464,
+      "delta_rank": 504,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "RMER"
+      ]
+    },
+    {
+      "k": 921,
+      "pair": "ADEL\u2013I1L",
+      "i": 0,
+      "j": 21,
+      "dq": 0.0,
+      "do": 0.002082007966176922,
+      "rank_dq": 922,
+      "rank_do": 459,
+      "delta_rank": 463,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": true,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": false,
+      "source_names": [
+        "ADEL"
+      ]
+    },
+    {
+      "k": 637,
+      "pair": "AVDL\u2013URYVR",
+      "i": 9,
+      "j": 60,
+      "dq": 0.0,
+      "do": 0.0046558446704773535,
+      "rank_dq": 638,
+      "rank_do": 199,
+      "delta_rank": 439,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": true,
+      "is_rme": false,
+      "is_rid": false,
+      "source_names": [
+        "AVDL"
+      ]
+    },
+    {
+      "k": 1021,
+      "pair": "OLQDL\u2013RMER",
+      "i": 42,
+      "j": 54,
+      "dq": 0.0,
+      "do": 0.001420749204510729,
+      "rank_dq": 1022,
+      "rank_do": 649,
+      "delta_rank": 373,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "RMER"
+      ]
+    },
+    {
+      "k": 894,
+      "pair": "RID\u2013RMER",
+      "i": 47,
+      "j": 54,
+      "dq": 0.0,
+      "do": 0.0017564858407144149,
+      "rank_dq": 895,
+      "rank_do": 539,
+      "delta_rank": 356,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": true,
+      "is_rid": true,
+      "source_names": [
+        "RID",
+        "RMER"
+      ]
+    },
+    {
+      "k": 631,
+      "pair": "AVDL\u2013RMEL",
+      "i": 9,
+      "j": 53,
+      "dq": 0.0,
+      "do": 0.003164635989953306,
+      "rank_dq": 632,
+      "rank_do": 297,
+      "delta_rank": 335,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "AVDL",
+        "RMEL"
+      ]
+    },
+    {
+      "k": 899,
+      "pair": "OLQVR\u2013RID",
+      "i": 45,
+      "j": 47,
+      "dq": 0.0,
+      "do": 0.0016644753977318955,
+      "rank_dq": 900,
+      "rank_do": 567,
+      "delta_rank": 333,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": true,
+      "source_names": [
+        "RID"
+      ]
+    },
+    {
+      "k": 515,
+      "pair": "RMER\u2013URYVR",
+      "i": 54,
+      "j": 60,
+      "dq": 0.0,
+      "do": 0.0051670543779138425,
+      "rank_dq": 516,
+      "rank_do": 184,
+      "delta_rank": 332,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": true,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "RMER"
+      ]
+    },
+    {
+      "k": 1010,
+      "pair": "OLLR\u2013RID",
+      "i": 41,
+      "j": 47,
+      "dq": 0.0,
+      "do": 0.0013389689848010147,
+      "rank_dq": 1011,
+      "rank_do": 683,
+      "delta_rank": 328,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": true,
+      "source_names": [
+        "RID"
+      ]
+    },
+    {
+      "k": 632,
+      "pair": "AVDL\u2013RMER",
+      "i": 9,
+      "j": 54,
+      "dq": 0.0,
+      "do": 0.002713986827606368,
+      "rank_dq": 633,
+      "rank_do": 340,
+      "delta_rank": 293,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "AVDL",
+        "RMER"
+      ]
+    },
+    {
+      "k": 513,
+      "pair": "RMER\u2013URYDL",
+      "i": 54,
+      "j": 58,
+      "dq": 0.0,
+      "do": 0.0041553108689578655,
+      "rank_dq": 514,
+      "rank_do": 222,
+      "delta_rank": 292,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": true,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "RMER"
+      ]
+    },
+    {
+      "k": 1071,
+      "pair": "I1L\u2013RID",
+      "i": 21,
+      "j": 47,
+      "dq": 0.0,
+      "do": 0.0010321196568281164,
+      "rank_dq": 1072,
+      "rank_do": 816,
+      "delta_rank": 256,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": true,
+      "source_names": [
+        "RID"
+      ]
+    },
+    {
+      "k": 540,
+      "pair": "ADEL\u2013OLQDL",
+      "i": 0,
+      "j": 42,
+      "dq": 0.0,
+      "do": 0.0024910877399978337,
+      "rank_dq": 541,
+      "rank_do": 373,
+      "delta_rank": 168,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": true,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": false,
+      "source_names": [
+        "ADEL"
+      ]
+    },
+    {
+      "k": 642,
+      "pair": "AVDL\u2013I1L",
+      "i": 9,
+      "j": 21,
+      "dq": 0.0,
+      "do": 0.0019959098695186673,
+      "rank_dq": 643,
+      "rank_do": 477,
+      "delta_rank": 166,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": false,
+      "source_names": [
+        "AVDL"
+      ]
+    },
+    {
+      "k": 635,
+      "pair": "AVDL\u2013URXL",
+      "i": 9,
+      "j": 57,
+      "dq": 0.0,
+      "do": 0.0019179764538664547,
+      "rank_dq": 636,
+      "rank_do": 497,
+      "delta_rank": 139,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": true,
+      "is_rme": false,
+      "is_rid": false,
+      "source_names": [
+        "AVDL"
+      ]
+    },
+    {
+      "k": 514,
+      "pair": "RMER\u2013URYVL",
+      "i": 54,
+      "j": 59,
+      "dq": 0.0,
+      "do": 0.0021535605449090425,
+      "rank_dq": 515,
+      "rank_do": 448,
+      "delta_rank": 67,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": true,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "RMER"
+      ]
+    },
+    {
+      "k": 131,
+      "pair": "RID\u2013RMEL",
+      "i": 47,
+      "j": 53,
+      "dq": 0.01903975996437053,
+      "do": 0.013048003816899146,
+      "rank_dq": 132,
+      "rank_do": 97,
+      "delta_rank": 35,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": true,
+      "is_rid": true,
+      "source_names": [
+        "RID",
+        "RMEL"
+      ]
+    },
+    {
+      "k": 142,
+      "pair": "OLQVL\u2013RMER",
+      "i": 44,
+      "j": 54,
+      "dq": 0.016875040523403113,
+      "do": 0.009802143604468929,
+      "rank_dq": 143,
+      "rank_do": 121,
+      "delta_rank": 22,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "RMER"
+      ]
+    },
+    {
+      "k": 37,
+      "pair": "AVDL\u2013URYDL",
+      "i": 9,
+      "j": 58,
+      "dq": 0.055800643065032435,
+      "do": 0.02609316147833595,
+      "rank_dq": 38,
+      "rank_do": 25,
+      "delta_rank": 13,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": true,
+      "is_rme": false,
+      "is_rid": false,
+      "source_names": [
+        "AVDL"
+      ]
+    },
+    {
+      "k": 155,
+      "pair": "I1R\u2013RMER",
+      "i": 22,
+      "j": 54,
+      "dq": 0.01491726190660296,
+      "do": 0.007532641482168018,
+      "rank_dq": 156,
+      "rank_do": 143,
+      "delta_rank": 13,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "RMER"
+      ]
+    },
+    {
+      "k": 69,
+      "pair": "RID\u2013URXL",
+      "i": 47,
+      "j": 57,
+      "dq": 0.0396160803320255,
+      "do": 0.01882277300252432,
+      "rank_dq": 70,
+      "rank_do": 60,
+      "delta_rank": 10,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": true,
+      "is_rme": false,
+      "is_rid": true,
+      "source_names": [
+        "RID"
+      ]
+    },
+    {
+      "k": 8,
+      "pair": "ADEL\u2013URYDL",
+      "i": 0,
+      "j": 58,
+      "dq": 0.0980002533362548,
+      "do": 0.04851429300373188,
+      "rank_dq": 9,
+      "rank_do": 7,
+      "delta_rank": 2,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": true,
+      "is_ury": true,
+      "is_rme": false,
+      "is_rid": false,
+      "source_names": [
+        "ADEL"
+      ]
+    },
+    {
+      "k": 9,
+      "pair": "ADEL\u2013RMEL",
+      "i": 0,
+      "j": 53,
+      "dq": 0.09565655648982868,
+      "do": 0.046280323345766795,
+      "rank_dq": 10,
+      "rank_do": 8,
+      "delta_rank": 2,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": true,
+      "is_ury": false,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "ADEL",
+        "RMEL"
+      ]
+    },
+    {
+      "k": 20,
+      "pair": "RMEL\u2013URYVR",
+      "i": 53,
+      "j": 60,
+      "dq": 0.07011936735578042,
+      "do": 0.03052594458534235,
+      "rank_dq": 21,
+      "rank_do": 19,
+      "delta_rank": 2,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": true,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "RMEL"
+      ]
+    },
+    {
+      "k": 4,
+      "pair": "ADEL\u2013URYVR",
+      "i": 0,
+      "j": 60,
+      "dq": 0.12215820457863846,
+      "do": 0.059458886069888785,
+      "rank_dq": 5,
+      "rank_do": 5,
+      "delta_rank": 0,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": true,
+      "is_ury": true,
+      "is_rme": false,
+      "is_rid": false,
+      "source_names": [
+        "ADEL"
+      ]
+    },
+    {
+      "k": 58,
+      "pair": "ADEL\u2013URXL",
+      "i": 0,
+      "j": 57,
+      "dq": 0.04497524818911772,
+      "do": 0.01944942946963264,
+      "rank_dq": 59,
+      "rank_do": 59,
+      "delta_rank": 0,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": true,
+      "is_ury": true,
+      "is_rme": false,
+      "is_rid": false,
+      "source_names": [
+        "ADEL"
+      ]
+    },
+    {
+      "k": 15,
+      "pair": "RMEL\u2013URYDL",
+      "i": 53,
+      "j": 58,
+      "dq": 0.07544000598835175,
+      "do": 0.03224603513707156,
+      "rank_dq": 16,
+      "rank_do": 17,
+      "delta_rank": -1,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": true,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "RMEL"
+      ]
+    },
+    {
+      "k": 202,
+      "pair": "OLQDL\u2013RID",
+      "i": 42,
+      "j": 47,
+      "dq": 0.00476732857205725,
+      "do": 0.004232371833179727,
+      "rank_dq": 203,
+      "rank_do": 214,
+      "delta_rank": -11,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": true,
+      "source_names": [
+        "RID"
+      ]
+    },
+    {
+      "k": 120,
+      "pair": "ADEL\u2013OLQVR",
+      "i": 0,
+      "j": 45,
+      "dq": 0.021501215018849384,
+      "do": 0.007997394942216676,
+      "rank_dq": 121,
+      "rank_do": 140,
+      "delta_rank": -19,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": true,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": false,
+      "source_names": [
+        "ADEL"
+      ]
+    },
+    {
+      "k": 31,
+      "pair": "RMEL\u2013RMER",
+      "i": 53,
+      "j": 54,
+      "dq": 0.057909561173292184,
+      "do": 0.020052566721204933,
+      "rank_dq": 32,
+      "rank_do": 54,
+      "delta_rank": -22,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "RMEL",
+        "RMER"
+      ]
+    },
+    {
+      "k": 625,
+      "pair": "AVDL\u2013OLQVL",
+      "i": 9,
+      "j": 44,
+      "dq": 0.0,
+      "do": 0.0013563166917141803,
+      "rank_dq": 626,
+      "rank_do": 674,
+      "delta_rank": -48,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": false,
+      "source_names": [
+        "AVDL"
+      ]
+    },
+    {
+      "k": 140,
+      "pair": "AVDL\u2013RID",
+      "i": 9,
+      "j": 47,
+      "dq": 0.01715347904915615,
+      "do": 0.004829506926598238,
+      "rank_dq": 141,
+      "rank_do": 193,
+      "delta_rank": -52,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": true,
+      "source_names": [
+        "AVDL",
+        "RID"
+      ]
+    },
+    {
+      "k": 541,
+      "pair": "ADEL\u2013OLQDR",
+      "i": 0,
+      "j": 43,
+      "dq": 0.0,
+      "do": 0.001442984230416111,
+      "rank_dq": 542,
+      "rank_do": 642,
+      "delta_rank": -100,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": true,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": false,
+      "source_names": [
+        "ADEL"
+      ]
+    },
+    {
+      "k": 548,
+      "pair": "ADEL\u2013OLLR",
+      "i": 0,
+      "j": 41,
+      "dq": 0.0,
+      "do": 0.0013675872805913988,
+      "rank_dq": 549,
+      "rank_do": 673,
+      "delta_rank": -124,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": true,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": false,
+      "source_names": [
+        "ADEL"
+      ]
+    },
+    {
+      "k": 623,
+      "pair": "AVDL\u2013OLLR",
+      "i": 9,
+      "j": 41,
+      "dq": 0.0,
+      "do": 0.0010913978499782608,
+      "rank_dq": 624,
+      "rank_do": 789,
+      "delta_rank": -165,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": false,
+      "source_names": [
+        "AVDL"
+      ]
+    },
+    {
+      "k": 228,
+      "pair": "AVDL\u2013OLQDL",
+      "i": 9,
+      "j": 42,
+      "dq": 0.001873026948398332,
+      "do": 0.002354203370789623,
+      "rank_dq": 229,
+      "rank_do": 404,
+      "delta_rank": -175,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": false,
+      "source_names": [
+        "AVDL"
+      ]
+    },
+    {
+      "k": 624,
+      "pair": "AVDL\u2013OLQDR",
+      "i": 9,
+      "j": 43,
+      "dq": 0.0,
+      "do": 0.000895175905387296,
+      "rank_dq": 625,
+      "rank_do": 875,
+      "delta_rank": -250,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": false,
+      "source_names": [
+        "AVDL"
+      ]
+    },
+    {
+      "k": 626,
+      "pair": "AVDL\u2013OLQVR",
+      "i": 9,
+      "j": 45,
+      "dq": 0.0,
+      "do": 0.0008350898826441189,
+      "rank_dq": 627,
+      "rank_do": 906,
+      "delta_rank": -279,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": false,
+      "source_names": [
+        "AVDL"
+      ]
+    },
+    {
+      "k": 931,
+      "pair": "ADEL\u2013I1R",
+      "i": 0,
+      "j": 22,
+      "dq": 0.0,
+      "do": 0.00010603553987404788,
+      "rank_dq": 932,
+      "rank_do": 1263,
+      "delta_rank": -331,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": true,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": false,
+      "source_names": [
+        "ADEL"
+      ]
+    },
+    {
+      "k": 622,
+      "pair": "AVDL\u2013OLLL",
+      "i": 9,
+      "j": 40,
+      "dq": 0.0,
+      "do": 0.0006670957192332907,
+      "rank_dq": 623,
+      "rank_do": 992,
+      "delta_rank": -369,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": false,
+      "source_names": [
+        "AVDL"
+      ]
+    },
+    {
+      "k": 200,
+      "pair": "RMEL\u2013URYVL",
+      "i": 53,
+      "j": 59,
+      "dq": 0.004907490258406373,
+      "do": 0.0011820577355551069,
+      "rank_dq": 201,
+      "rank_do": 738,
+      "delta_rank": -537,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": true,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "RMEL"
+      ]
+    },
+    {
+      "k": 643,
+      "pair": "AVDL\u2013I1R",
+      "i": 9,
+      "j": 22,
+      "dq": 0.0,
+      "do": 0.00015795391625101238,
+      "rank_dq": 644,
+      "rank_do": 1239,
+      "delta_rank": -595,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": false,
+      "is_rme": false,
+      "is_rid": false,
+      "source_names": [
+        "AVDL"
+      ]
+    },
+    {
+      "k": 545,
+      "pair": "RMEL\u2013URXL",
+      "i": 53,
+      "j": 57,
+      "dq": 0.0,
+      "do": 0.0003035349576962824,
+      "rank_dq": 546,
+      "rank_do": 1169,
+      "delta_rank": -623,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": true,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "RMEL"
+      ]
+    },
+    {
+      "k": 539,
+      "pair": "RMER\u2013URXL",
+      "i": 54,
+      "j": 57,
+      "dq": 0.0,
+      "do": 0.0003041503446753889,
+      "rank_dq": 540,
+      "rank_do": 1168,
+      "delta_rank": -628,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": true,
+      "is_rme": true,
+      "is_rid": false,
+      "source_names": [
+        "RMER"
+      ]
+    },
+    {
+      "k": 522,
+      "pair": "ADEL\u2013URYVL",
+      "i": 0,
+      "j": 59,
+      "dq": 0.0,
+      "do": 0.00030128382336413865,
+      "rank_dq": 523,
+      "rank_do": 1172,
+      "delta_rank": -649,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": true,
+      "is_ury": true,
+      "is_rme": false,
+      "is_rid": false,
+      "source_names": [
+        "ADEL"
+      ]
+    },
+    {
+      "k": 636,
+      "pair": "AVDL\u2013URYVL",
+      "i": 9,
+      "j": 59,
+      "dq": 0.0,
+      "do": 4.578873229876962e-05,
+      "rank_dq": 637,
+      "rank_do": 1295,
+      "delta_rank": -658,
+      "src_i": true,
+      "src_j": true,
+      "is_adel": false,
+      "is_ury": true,
+      "is_rme": false,
+      "is_rid": false,
+      "source_names": [
+        "AVDL"
+      ]
+    }
+  ],
+  "source_stats": {
+    "ADEL": {
+      "n_pairs": 12,
+      "mean_delta": 2.9166666666666665,
+      "median_delta": 0.0,
+      "n_upward": 5,
+      "n_downward": 5,
+      "pairs": [
+        "ADEL\u2013OLQVL",
+        "ADEL\u2013I1L",
+        "ADEL\u2013OLQDL",
+        "ADEL\u2013URYDL",
+        "ADEL\u2013RMEL",
+        "ADEL\u2013URYVR",
+        "ADEL\u2013URXL",
+        "ADEL\u2013OLQVR",
+        "ADEL\u2013OLQDR",
+        "ADEL\u2013OLLR",
+        "ADEL\u2013I1R",
+        "ADEL\u2013URYVL"
+      ],
+      "deltas": [
+        623,
+        463,
+        168,
+        2,
+        2,
+        0,
+        0,
+        -19,
+        -100,
+        -124,
+        -331,
+        -649
+      ]
+    },
+    "AVDL": {
+      "n_pairs": 15,
+      "mean_delta": -80.4,
+      "median_delta": -52.0,
+      "n_upward": 6,
+      "n_downward": 9,
+      "pairs": [
+        "AVDL\u2013URYVR",
+        "AVDL\u2013RMEL",
+        "AVDL\u2013RMER",
+        "AVDL\u2013I1L",
+        "AVDL\u2013URXL",
+        "AVDL\u2013URYDL",
+        "AVDL\u2013OLQVL",
+        "AVDL\u2013RID",
+        "AVDL\u2013OLLR",
+        "AVDL\u2013OLQDL",
+        "AVDL\u2013OLQDR",
+        "AVDL\u2013OLQVR",
+        "AVDL\u2013OLLL",
+        "AVDL\u2013I1R",
+        "AVDL\u2013URYVL"
+      ],
+      "deltas": [
+        439,
+        335,
+        293,
+        166,
+        139,
+        13,
+        -48,
+        -52,
+        -165,
+        -175,
+        -250,
+        -279,
+        -369,
+        -595,
+        -658
+      ]
+    },
+    "RID": {
+      "n_pairs": 14,
+      "mean_delta": 352.57142857142856,
+      "median_delta": 344.5,
+      "n_upward": 12,
+      "n_downward": 2,
+      "pairs": [
+        "RID\u2013URYDL",
+        "RID\u2013URYVR",
+        "OLQVL\u2013RID",
+        "OLQDR\u2013RID",
+        "I1R\u2013RID",
+        "OLLL\u2013RID",
+        "RID\u2013RMER",
+        "OLQVR\u2013RID",
+        "OLLR\u2013RID",
+        "I1L\u2013RID",
+        "RID\u2013RMEL",
+        "RID\u2013URXL",
+        "OLQDL\u2013RID",
+        "AVDL\u2013RID"
+      ],
+      "deltas": [
+        670,
+        665,
+        665,
+        573,
+        566,
+        542,
+        356,
+        333,
+        328,
+        256,
+        35,
+        10,
+        -11,
+        -52
+      ]
+    },
+    "RMEL": {
+      "n_pairs": 14,
+      "mean_delta": 281.7857142857143,
+      "median_delta": 185.0,
+      "n_upward": 10,
+      "n_downward": 4,
+      "pairs": [
+        "I1R\u2013RMEL",
+        "FLPL\u2013RMEL",
+        "OLQDR\u2013RMEL",
+        "I1L\u2013RMEL",
+        "OLQVR\u2013RMEL",
+        "OLQVL\u2013RMEL",
+        "AVDL\u2013RMEL",
+        "RID\u2013RMEL",
+        "ADEL\u2013RMEL",
+        "RMEL\u2013URYVR",
+        "RMEL\u2013URYDL",
+        "RMEL\u2013RMER",
+        "RMEL\u2013URYVL",
+        "RMEL\u2013URXL"
+      ],
+      "deltas": [
+        1042,
+        878,
+        803,
+        743,
+        684,
+        604,
+        335,
+        35,
+        2,
+        2,
+        -1,
+        -22,
+        -537,
+        -623
+      ]
+    },
+    "RMER": {
+      "n_pairs": 13,
+      "mean_delta": 214.30769230769232,
+      "median_delta": 293.0,
+      "n_upward": 11,
+      "n_downward": 2,
+      "pairs": [
+        "I1L\u2013RMER",
+        "FLPL\u2013RMER",
+        "OLLL\u2013RMER",
+        "OLQDL\u2013RMER",
+        "RID\u2013RMER",
+        "RMER\u2013URYVR",
+        "AVDL\u2013RMER",
+        "RMER\u2013URYDL",
+        "RMER\u2013URYVL",
+        "OLQVL\u2013RMER",
+        "I1R\u2013RMER",
+        "RMEL\u2013RMER",
+        "RMER\u2013URXL"
+      ],
+      "deltas": [
+        599,
+        585,
+        504,
+        373,
+        356,
+        332,
+        293,
+        292,
+        67,
+        22,
+        13,
+        -22,
+        -628
+      ]
+    }
+  },
+  "target_stats": {
+    "AVDL": {
+      "n_pairs": 15,
+      "mean_delta": -80.4,
+      "pairs": [
+        "AVDL\u2013URYVR",
+        "AVDL\u2013RMEL",
+        "AVDL\u2013RMER",
+        "AVDL\u2013I1L",
+        "AVDL\u2013URXL",
+        "AVDL\u2013URYDL",
+        "AVDL\u2013OLQVL",
+        "AVDL\u2013RID",
+        "AVDL\u2013OLLR",
+        "AVDL\u2013OLQDL",
+        "AVDL\u2013OLQDR",
+        "AVDL\u2013OLQVR",
+        "AVDL\u2013OLLL",
+        "AVDL\u2013I1R",
+        "AVDL\u2013URYVL"
+      ],
+      "deltas": [
+        439,
+        335,
+        293,
+        166,
+        139,
+        13,
+        -48,
+        -52,
+        -165,
+        -175,
+        -250,
+        -279,
+        -369,
+        -595,
+        -658
+      ]
+    },
+    "FLPL": {
+      "n_pairs": 2,
+      "mean_delta": 731.5,
+      "pairs": [
+        "FLPL\u2013RMEL",
+        "FLPL\u2013RMER"
+      ],
+      "deltas": [
+        878,
+        585
+      ]
+    },
+    "I1L": {
+      "n_pairs": 5,
+      "mean_delta": 445.4,
+      "pairs": [
+        "I1L\u2013RMEL",
+        "I1L\u2013RMER",
+        "ADEL\u2013I1L",
+        "I1L\u2013RID",
+        "AVDL\u2013I1L"
+      ],
+      "deltas": [
+        743,
+        599,
+        463,
+        256,
+        166
+      ]
+    },
+    "I1R": {
+      "n_pairs": 5,
+      "mean_delta": 139.0,
+      "pairs": [
+        "I1R\u2013RMEL",
+        "I1R\u2013RID",
+        "I1R\u2013RMER",
+        "ADEL\u2013I1R",
+        "AVDL\u2013I1R"
+      ],
+      "deltas": [
+        1042,
+        566,
+        13,
+        -331,
+        -595
+      ]
+    },
+    "OLLL": {
+      "n_pairs": 3,
+      "mean_delta": 225.66666666666666,
+      "pairs": [
+        "OLLL\u2013RID",
+        "OLLL\u2013RMER",
+        "AVDL\u2013OLLL"
+      ],
+      "deltas": [
+        542,
+        504,
+        -369
+      ]
+    },
+    "OLLR": {
+      "n_pairs": 3,
+      "mean_delta": 13.0,
+      "pairs": [
+        "OLLR\u2013RID",
+        "ADEL\u2013OLLR",
+        "AVDL\u2013OLLR"
+      ],
+      "deltas": [
+        328,
+        -124,
+        -165
+      ]
+    },
+    "OLQDL": {
+      "n_pairs": 4,
+      "mean_delta": 88.75,
+      "pairs": [
+        "OLQDL\u2013RMER",
+        "ADEL\u2013OLQDL",
+        "OLQDL\u2013RID",
+        "AVDL\u2013OLQDL"
+      ],
+      "deltas": [
+        373,
+        168,
+        -11,
+        -175
+      ]
+    },
+    "OLQDR": {
+      "n_pairs": 4,
+      "mean_delta": 256.5,
+      "pairs": [
+        "OLQDR\u2013RMEL",
+        "OLQDR\u2013RID",
+        "ADEL\u2013OLQDR",
+        "AVDL\u2013OLQDR"
+      ],
+      "deltas": [
+        803,
+        573,
+        -100,
+        -250
+      ]
+    },
+    "OLQVL": {
+      "n_pairs": 5,
+      "mean_delta": 373.2,
+      "pairs": [
+        "OLQVL\u2013RID",
+        "ADEL\u2013OLQVL",
+        "OLQVL\u2013RMEL",
+        "OLQVL\u2013RMER",
+        "AVDL\u2013OLQVL"
+      ],
+      "deltas": [
+        665,
+        623,
+        604,
+        22,
+        -48
+      ]
+    },
+    "OLQVR": {
+      "n_pairs": 4,
+      "mean_delta": 179.75,
+      "pairs": [
+        "OLQVR\u2013RMEL",
+        "OLQVR\u2013RID",
+        "ADEL\u2013OLQVR",
+        "AVDL\u2013OLQVR"
+      ],
+      "deltas": [
+        684,
+        333,
+        -19,
+        -279
+      ]
+    },
+    "RMEL": {
+      "n_pairs": 14,
+      "mean_delta": 281.7857142857143,
+      "pairs": [
+        "I1R\u2013RMEL",
+        "FLPL\u2013RMEL",
+        "OLQDR\u2013RMEL",
+        "I1L\u2013RMEL",
+        "OLQVR\u2013RMEL",
+        "OLQVL\u2013RMEL",
+        "AVDL\u2013RMEL",
+        "RID\u2013RMEL",
+        "ADEL\u2013RMEL",
+        "RMEL\u2013URYVR",
+        "RMEL\u2013URYDL",
+        "RMEL\u2013RMER",
+        "RMEL\u2013URYVL",
+        "RMEL\u2013URXL"
+      ],
+      "deltas": [
+        1042,
+        878,
+        803,
+        743,
+        684,
+        604,
+        335,
+        35,
+        2,
+        2,
+        -1,
+        -22,
+        -537,
+        -623
+      ]
+    },
+    "RMER": {
+      "n_pairs": 13,
+      "mean_delta": 214.30769230769232,
+      "pairs": [
+        "I1L\u2013RMER",
+        "FLPL\u2013RMER",
+        "OLLL\u2013RMER",
+        "OLQDL\u2013RMER",
+        "RID\u2013RMER",
+        "RMER\u2013URYVR",
+        "AVDL\u2013RMER",
+        "RMER\u2013URYDL",
+        "RMER\u2013URYVL",
+        "OLQVL\u2013RMER",
+        "I1R\u2013RMER",
+        "RMEL\u2013RMER",
+        "RMER\u2013URXL"
+      ],
+      "deltas": [
+        599,
+        585,
+        504,
+        373,
+        356,
+        332,
+        293,
+        292,
+        67,
+        22,
+        13,
+        -22,
+        -628
+      ]
+    },
+    "URXL": {
+      "n_pairs": 5,
+      "mean_delta": -220.4,
+      "pairs": [
+        "AVDL\u2013URXL",
+        "RID\u2013URXL",
+        "ADEL\u2013URXL",
+        "RMEL\u2013URXL",
+        "RMER\u2013URXL"
+      ],
+      "deltas": [
+        139,
+        10,
+        0,
+        -623,
+        -628
+      ]
+    },
+    "URYDL": {
+      "n_pairs": 5,
+      "mean_delta": 195.2,
+      "pairs": [
+        "RID\u2013URYDL",
+        "RMER\u2013URYDL",
+        "AVDL\u2013URYDL",
+        "ADEL\u2013URYDL",
+        "RMEL\u2013URYDL"
+      ],
+      "deltas": [
+        670,
+        292,
+        13,
+        2,
+        -1
+      ]
+    },
+    "URYVL": {
+      "n_pairs": 4,
+      "mean_delta": -444.25,
+      "pairs": [
+        "RMER\u2013URYVL",
+        "RMEL\u2013URYVL",
+        "ADEL\u2013URYVL",
+        "AVDL\u2013URYVL"
+      ],
+      "deltas": [
+        67,
+        -537,
+        -649,
+        -658
+      ]
+    },
+    "URYVR": {
+      "n_pairs": 5,
+      "mean_delta": 287.6,
+      "pairs": [
+        "RID\u2013URYVR",
+        "AVDL\u2013URYVR",
+        "RMER\u2013URYVR",
+        "RMEL\u2013URYVR",
+        "ADEL\u2013URYVR"
+      ],
+      "deltas": [
+        665,
+        439,
+        332,
+        2,
+        0
+      ]
+    }
+  },
+  "upward_count": 39,
+  "downward_count": 20,
+  "unchanged_count": 2,
+  "delta_rank_mean": 156.54098360655738,
+  "delta_rank_median": 67.0,
+  "delta_rank_std": 408.8558435186666,
+  "n_large_upward_ge50": 31,
+  "delta_concordant_pairs": 31082,
+  "total_pairs": 76860
+}

@@ -1,0 +1,34 @@
+{
+  "cepnem_dwell": {
+    "n_clipped": 0,
+    "neg_mass": 0.0,
+    "min_ev_before": 0.5732032631966024,
+    "max_ev": 3.6759629727445726,
+    "coord": "cepnem",
+    "state": "dwell"
+  },
+  "cepnem_roam": {
+    "n_clipped": 0,
+    "neg_mass": 0.0,
+    "min_ev_before": 0.36949974366763044,
+    "max_ev": 3.827119517951352,
+    "coord": "cepnem",
+    "state": "roam"
+  },
+  "gcamp_dwell": {
+    "n_clipped": 0,
+    "neg_mass": 0.0,
+    "min_ev_before": 0.37605034026471523,
+    "max_ev": 4.429742654782259,
+    "coord": "gcamp",
+    "state": "dwell"
+  },
+  "gcamp_roam": {
+    "n_clipped": 0,
+    "neg_mass": 0.0,
+    "min_ev_before": 0.1669232193438643,
+    "max_ev": 6.281591159123095,
+    "coord": "gcamp",
+    "state": "roam"
+  }
+}

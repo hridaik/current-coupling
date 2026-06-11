@@ -1,0 +1,430 @@
+{
+  "package": "figure_data_inventory",
+  "phase": "2C-A",
+  "phase2ca1_update_date": "2026-06-01",
+  "date": "2026-06-01",
+  "purpose": "Data provenance record for Figure Specification Package. No artwork produced. All file paths relative to repository root.",
+  "color_convention": {
+    "locked_date": "2026-06-01",
+    "locked_by": "Phase 2C-A.1",
+    "note": "Two conflicts resolved: original proposal had Randi=blue conflicting with dwelling=blue, and serotonin=orange conflicting with roaming=orange. Final convention uses completely separate palettes for state encoding and annotation encoding.",
+    "behavioral_states": {
+      "dwelling": {"hex": "#4C6EF5", "name": "medium blue"},
+      "roaming": {"hex": "#FF6B35", "name": "deep orange"}
+    },
+    "dq_sign_encoding": {
+      "dwelling_dominant_negative_dq": {"hex": "#4C6EF5", "note": "reuses dwelling color intentionally"},
+      "roaming_dominant_positive_dq": {"hex": "#FF6B35", "note": "reuses roaming color intentionally"}
+    },
+    "annotation_categories": {
+      "neuropeptide_ripollsanchez": {"hex": "#666666", "name": "dark gray"},
+      "randi_unc31": {"hex": "#2CA02C", "name": "green"},
+      "bentley_pdf": {"hex": "#D62728", "name": "red"},
+      "bentley_serotonin": {"hex": "#9467BD", "name": "purple"},
+      "bentley_combined_pdf_serotonin": {"hex": "#8C564B", "name": "brown"},
+      "cengen_combined_exploratory": {"hex": "#BCBD22", "name": "yellow-green", "style": "dashed border"}
+    }
+  },
+  "figures": [
+    {
+      "figure": "Figure 1 — Behavioral Story",
+      "title": "Food detection recruits a state-dependent PDF signaling pathway",
+      "data_sources": [
+        "phase0_config.py (behavioral parameters)",
+        "results/phase2/phase2_final_report.md (corpus description)",
+        "results/phase2/phase2b_pdf_audit.md (neuronal identities, PDFR-1 targets, biology)"
+      ],
+      "file_paths": [
+        "phase0_config.py",
+        "results/phase2/phase2_final_report.md",
+        "results/phase2/phase2b_pdf_audit.md"
+      ],
+      "variables": [
+        {"name": "BEHAV_THRESHOLD", "value": 0.284, "source": "phase0_config.py"},
+        {"name": "EWMA_TIMESCALE_SECONDS", "value": 20.0, "source": "phase0_config.py"},
+        {"name": "W_TRANS_SECONDS", "value": 10.0, "source": "phase0_config.py"},
+        {"name": "MIN_BOUT_SECONDS", "value": 10.0, "source": "phase0_config.py"},
+        {"name": "n_recordings", "value": 40, "source": "results/phase2/phase2_final_report.md §2"},
+        {"name": "n_target_neurons", "value": 61, "source": "results/phase2/phase2_final_report.md §2"},
+        {"name": "ADEL_pdf1_class4_edges", "value": 12, "source": "results/phase2/phase2b_pdf_audit.md §2.1"},
+        {"name": "RMEL_pdf1_class4_edges", "value": 12, "source": "results/phase2/phase2b_pdf_audit.md §2.1"},
+        {"name": "RMER_pdf1_class4_edges", "value": 12, "source": "results/phase2/phase2b_pdf_audit.md §2.1"},
+        {"name": "RID_pdf1_pdf2_class4_edges", "value": 28, "source": "results/phase2/phase2b_pdf_audit.md §2.1"},
+        {"name": "AVDL_pdf2_class4_edges", "value": 14, "source": "results/phase2/phase2b_pdf_audit.md §2.1"},
+        {"name": "n_pdfr1_confirmed_targets", "value": 5, "note": "URYVR, URYDL, RMEL, URXL, OLQVR", "source": "results/phase2/phase2b_pdf_audit.md §4"}
+      ],
+      "unresolved": [
+        "UNRESOLVED-1.1: Behavioral trajectory raw data not in results/; Panel A may require citation to Atanas et al. or purely schematic cartoon",
+        "UNRESOLVED-1.2: Color convention (dwelling/roaming colors) not locked — BLOCKING artwork"
+      ],
+      "status": "ready"
+    },
+    {
+      "figure": "Figure 2 — One Wiring, Two Functions",
+      "title": "Functional organization changes while anatomy stays fixed",
+      "data_sources": [
+        "results/phase2/stage2/DQ_cepnem.npy (CePNEM ΔQ matrix 61×61)",
+        "results/phase2/stage2/DQ_gcamp.npy (GCaMP ΔQ matrix 61×61)",
+        "results/phase2/stage2/ranked_class4_cepnem.npy (ranked Class 4 pairs CePNEM)",
+        "results/phase2/stage2/ranked_class4_gcamp.npy (ranked Class 4 pairs GCaMP)",
+        "results/phase2/stage2/stage2_results.json (annotation flags per pair)",
+        "results/phase2/stage2/stage2_report.md (top-20 ranked tables)"
+      ],
+      "file_paths": [
+        "results/phase2/stage2/DQ_cepnem.npy",
+        "results/phase2/stage2/DQ_gcamp.npy",
+        "results/phase2/stage2/ranked_class4_cepnem.npy",
+        "results/phase2/stage2/ranked_class4_gcamp.npy",
+        "results/phase2/stage2/stage2_results.json",
+        "results/phase2/stage2/stage2_report.md"
+      ],
+      "variables": [
+        {"name": "n_class4_total", "value": 1321, "source": "stage2_results.json class_counts[4]"},
+        {"name": "cepnem_n_class4_nonzero_dq", "value": 243, "source": "stage2_results.json coordinates.cepnem.n_class4_nonzero_dq"},
+        {"name": "cepnem_pct_nonzero", "value": 18.4, "unit": "percent", "source": "stage2_results.json"},
+        {"name": "gcamp_n_class4_nonzero_dq", "value": 585, "source": "stage2_results.json coordinates.gcamp.n_class4_nonzero_dq"},
+        {"name": "gcamp_pct_nonzero", "value": 44.3, "unit": "percent", "source": "stage2_results.json"},
+        {"name": "cepnem_dq_max_abs", "value": 0.2541, "pair": "IL1DR-URYVR", "source": "stage2_results.json"},
+        {"name": "cepnem_dq_p95", "value": 0.0412, "source": "stage2_results.json coordinates.cepnem.dq_class4_stats.p95_abs"},
+        {"name": "gcamp_dq_max_abs", "value": 0.2897, "pair": "OLLL-SMDVL", "source": "stage2_results.json"},
+        {"name": "gcamp_dq_p95", "value": 0.0998, "source": "stage2_results.json coordinates.gcamp.dq_class4_stats.p95_abs"},
+        {"name": "cepnem_top5_negative_dq", "value": [
+          {"rank": 1, "pair": "IL1DR-URYVR", "dq": -0.2541, "peptide": false, "randi": false},
+          {"rank": 5, "pair": "ADEL-URYVR", "dq": -0.1222, "peptide": false, "randi": false},
+          {"rank": 9, "pair": "ADEL-URYDL", "dq": -0.0980, "peptide": false, "randi": false},
+          {"rank": 10, "pair": "ADEL-RMEL", "dq": -0.0957, "peptide": false, "randi": false}
+        ], "source": "stage2_results.json top50_class4"},
+        {"name": "cepnem_top3_positive_dq", "value": [
+          {"rank": 11, "pair": "I1L-IL2DR", "dq": 0.0903, "peptide": true, "randi": false},
+          {"rank": 23, "pair": "AVER-IL2DR", "dq": 0.0647, "peptide": true, "randi": false},
+          {"rank": 39, "pair": "M1-OLQVR", "dq": 0.0536, "peptide": true, "randi": false}
+        ], "source": "stage2_results.json top50_class4"},
+        {"name": "gcamp_top3_negative_dq", "value": [
+          {"rank": 1, "pair": "OLLL-SMDVL", "dq": -0.2897, "peptide": true, "randi": false},
+          {"rank": 2, "pair": "NSMR-RMDVL", "dq": -0.2336, "peptide": true, "randi": false},
+          {"rank": 3, "pair": "RIVL-URYVR", "dq": -0.2200, "peptide": true, "randi": false}
+        ], "source": "stage2_results.json top50_class4"}
+      ],
+      "unresolved": [
+        "UNRESOLVED-2.1: Neuron name axis labels for scatter plot require results/diagnostics/neuron_harmonization.csv — verify file exists",
+        "UNRESOLVED-2.2: Annotation color convention not locked — BLOCKING artwork"
+      ],
+      "status": "ready"
+    },
+    {
+      "figure": "Figure 3 — Annotation Density",
+      "title": "Connectome annotation landscape for the 61-neuron subgraph",
+      "data_sources": [
+        "results/phase2/stage2/stage2_results.json (annotation_counts field)",
+        "results/phase2/stage4a/stage4a_results.json (annotation_summary field)",
+        "results/phase2/stage4/stage4_report.md §1 (Class 4 annotation densities)"
+      ],
+      "file_paths": [
+        "results/phase2/stage2/stage2_results.json",
+        "results/phase2/stage4a/stage4a_results.json",
+        "results/phase2/stage4/stage4_report.md"
+      ],
+      "variables": [
+        {"name": "n_class4_total", "value": 1321, "source": "stage2_results.json class_counts[4]"},
+        {"name": "neuropeptide_class4_count", "value": 972, "density_pct": 73.6, "source": "stage4_report.md §1"},
+        {"name": "neuropeptide_off_connectome_raw", "value": 1144, "note": "off-A_raw, not restricted to Creamer 56 Class 4", "source": "stage2_results.json annotation_counts.peptide_off_connectome"},
+        {"name": "randi_class4_count", "value": 108, "density_pct": 8.2, "source": "stage4_report.md §1"},
+        {"name": "randi_off_connectome_raw", "value": 109, "note": "off-A_raw, 1 pair outside Creamer boundary; 1-pair discrepancy documented in stage2_report.md", "source": "stage2_results.json annotation_counts.randi_off_connectome"},
+        {"name": "randi_total_undirected", "value": 160, "source": "stage2_results.json annotation_counts.randi_total_undirected"},
+        {"name": "randi_and_neuropeptide_overlap_raw", "value": 74, "source": "stage2_results.json annotation_counts.randi_and_peptide_off_connectome"},
+        {"name": "bentley_pdf_class4_count", "value": 61, "density_pct": 4.6, "source": "stage4a_results.json annotation_summary.Bentley_PDF"},
+        {"name": "bentley_serotonin_class4_count", "value": 33, "density_pct": 2.5, "source": "stage4a_results.json annotation_summary.Bentley_serotonin"},
+        {"name": "bentley_combined_class4_count", "value": 94, "density_pct": 7.1, "source": "stage4a_results.json annotation_summary.Bentley_serotonin_or_PDF"},
+        {"name": "cengen_combined_class4_count", "value": 409, "density_pct": 31.0, "source": "stage4a_results.json annotation_summary.CeNGEN_serotonin_or_PDF"},
+        {"name": "phase0_config_randi_directed_pairs", "value": 189, "note": "directed pairs per phase0 config; undirected = 160; off-connectome undirected = 109 (Class 4: 108)", "source": "stage2_report.md Note on Randi count"}
+      ],
+      "unresolved": [
+        "UNRESOLVED-3.1: Randi off-connectome=109 (stage2_results.json) vs Class 4 Randi=108 (stage4_report.md) — 1-pair discrepancy; document in caption as boundary classification effect",
+        "UNRESOLVED-3.2: Neuropeptide density 73.6% needs brief caption explanation (broad atlas scope)"
+      ],
+      "status": "ready"
+    },
+    {
+      "figure": "Figure 4 — Enrichment Results",
+      "title": "No evidence for broad neuropeptide enrichment; exploratory PDF signal in CePNEM",
+      "data_sources": [
+        "results/phase2/stage4/stage4_results.json (primary enrichment: neuropeptide + Randi)",
+        "results/phase2/stage4a/stage4a_results.json (exploratory: serotonin/PDF)",
+        "results/phase2/stage4/stage4_report.md (contingency tables, null model validation)",
+        "results/phase2/stage4a/stage4a_report.md (detailed PDF analysis)"
+      ],
+      "file_paths": [
+        "results/phase2/stage4/stage4_results.json",
+        "results/phase2/stage4a/stage4a_results.json",
+        "results/phase2/stage4/stage4_report.md",
+        "results/phase2/stage4a/stage4a_report.md"
+      ],
+      "variables": [
+        {"name": "neuropeptide_auroc_cepnem", "value": 0.5033, "source": "stage4_report.md §3"},
+        {"name": "neuropeptide_p_deg_cepnem", "value": 0.475, "source": "stage4_report.md §3"},
+        {"name": "neuropeptide_auroc_gcamp", "value": 0.5140, "source": "stage4_report.md §3"},
+        {"name": "neuropeptide_p_deg_gcamp", "value": 0.142, "source": "stage4_report.md §3"},
+        {"name": "neuropeptide_fisher_or_cepnem", "value": 0.533, "source": "stage4_report.md §4"},
+        {"name": "neuropeptide_fisher_p_deg_cepnem", "value": 0.981, "source": "stage4_report.md §4"},
+        {"name": "neuropeptide_fisher_contingency_cepnem", "value": {"a": 12, "b": 8, "c": 960, "d": 341}, "source": "stage4_report.md §4"},
+        {"name": "neuropeptide_fisher_or_gcamp", "value": 0.835, "source": "stage4_report.md §4"},
+        {"name": "neuropeptide_fisher_p_deg_gcamp", "value": 0.716, "source": "stage4_report.md §4"},
+        {"name": "neuropeptide_fisher_contingency_gcamp", "value": {"a": 14, "b": 6, "c": 958, "d": 343}, "source": "stage4_report.md §4"},
+        {"name": "randi_auroc_cepnem", "value": 0.4953, "source": "stage4_report.md §5"},
+        {"name": "randi_p_deg_cepnem", "value": 0.656, "source": "stage4_report.md §5"},
+        {"name": "randi_auroc_gcamp", "value": 0.5167, "source": "stage4_report.md §5"},
+        {"name": "randi_p_deg_gcamp", "value": 0.278, "source": "stage4_report.md §5"},
+        {"name": "randi_fisher_or_cepnem", "value": 0.000, "note": "0 Randi pairs in top-20 CePNEM", "source": "stage4_report.md §5"},
+        {"name": "randi_fisher_p_deg_cepnem", "value": 1.000, "source": "stage4_report.md §5"},
+        {"name": "bentley_pdf_auroc_cepnem", "value": 0.5560, "source": "stage4a_results.json results.cepnem.Bentley_PDF.auroc.observed"},
+        {"name": "bentley_pdf_p_deg_cepnem", "value": 0.023, "source": "stage4a_results.json results.cepnem.Bentley_PDF.auroc.p_degree_perm"},
+        {"name": "bentley_pdf_fisher_or_cepnem", "value": 5.456, "source": "stage4a_results.json results.cepnem.Bentley_PDF.fisher.or_observed"},
+        {"name": "bentley_pdf_fisher_p_deg_cepnem", "value": 0.008, "source": "stage4a_results.json results.cepnem.Bentley_PDF.fisher.p_degree_perm"},
+        {"name": "bentley_pdf_fisher_contingency_cepnem", "value": {"a": 4, "b": 16, "c": 57, "d": 1244}, "source": "stage4a_results.json results.cepnem.Bentley_PDF.fisher.contingency"},
+        {"name": "bentley_pdf_fisher_expected_topk", "value": 0.92, "source": "stage4a_results.json results.cepnem.Bentley_PDF.fisher.expected_in_topk"},
+        {"name": "bentley_pdf_auroc_gcamp", "value": 0.5260, "source": "stage4a_results.json results.gcamp.Bentley_PDF.auroc.observed"},
+        {"name": "bentley_pdf_p_deg_gcamp", "value": 0.261, "source": "stage4a_results.json results.gcamp.Bentley_PDF.auroc.p_degree_perm"},
+        {"name": "bentley_combined_auroc_p_deg_cepnem", "value": 0.055, "note": "marginal; above 0.05 threshold", "source": "stage4a_results.json results.cepnem.Bentley_serotonin_or_PDF.auroc.p_degree_perm"},
+        {"name": "bentley_combined_fisher_p_deg_cepnem", "value": 0.065, "note": "marginal", "source": "stage4a_results.json results.cepnem.Bentley_serotonin_or_PDF.fisher.p_degree_perm"},
+        {"name": "n_perm", "value": 1000, "source": "stage4_report.md §8"},
+        {"name": "degree_bins", "value": 10, "note": "equal-percentile bins on A_raw degree sum; range [6,33], median=16", "source": "stage4_report.md §8"},
+        {"name": "null_degree_preservation_max_bin_deviation", "value": 0, "source": "stage4_report.md §8"},
+        {"name": "primary_top_k", "value": 20, "source": "phase2_final_report.md §3"},
+        {"name": "n_class4_annotation_density_note", "value": "annotation covers 73.6% of 1321 class4 pairs; SE(AUROC) ≈ 0.018 under H0; observed AUROC 0.17 SEs from null", "source": "stage4_report.md §1"},
+        {"name": "null_distributions_2ca1", "note": "Extracted in Phase 2C-A.1 from stage4_results.json", "value": {
+          "neuropeptide_auroc_cepnem_degree_pres": {
+            "null_mean": 0.5020843282394142,
+            "null_std": 0.011719314711570786,
+            "null_p95": 0.5218898498944662,
+            "source": "stage4_results.json cepnem.tests.test1_neuropeptide_auroc.null_degree_preserving"
+          },
+          "neuropeptide_auroc_cepnem_simple": {
+            "null_mean": 0.4990147540886955,
+            "null_std": 0.01179204118578165,
+            "null_p95": 0.5175676830921976,
+            "source": "stage4_results.json cepnem.tests.test1_neuropeptide_auroc.null_simple"
+          },
+          "neuropeptide_auroc_gcamp_degree_pres": {
+            "null_mean": 0.49787483786715725,
+            "null_std": 0.015956623780390058,
+            "null_p95": 0.5234779410897685,
+            "source": "stage4_results.json gcamp.tests.test1_neuropeptide_auroc.null_degree_preserving"
+          },
+          "neuropeptide_auroc_gcamp_simple": {
+            "null_mean": 0.5006420607968682,
+            "null_std": 0.01650960016763948,
+            "null_p95": 0.5282181895362411,
+            "source": "stage4_results.json gcamp.tests.test1_neuropeptide_auroc.null_simple"
+          },
+          "randi_auroc_cepnem_degree_pres": {
+            "null_mean": 0.5036768877286191,
+            "null_std": null,
+            "note": "null_std not stored in stage4_results.json; only null_mean available",
+            "source": "stage4_results.json cepnem.tests.test3_randi.auroc.null_degree_preserving"
+          },
+          "randi_auroc_gcamp_degree_pres": {
+            "null_mean": 0.5014478222039022,
+            "null_std": null,
+            "note": "null_std not stored",
+            "source": "stage4_results.json gcamp.tests.test3_randi.auroc.null_degree_preserving"
+          },
+          "bentley_pdf_auroc_cepnem_degree_pres": {
+            "null_mean": 0.5014904892011449,
+            "null_std": null,
+            "note": "null_std not stored in stage4a_results.json",
+            "source": "stage4a_results.json results.cepnem.Bentley_PDF.auroc.null_degree_mean"
+          },
+          "bentley_pdf_auroc_gcamp_degree_pres": {
+            "null_mean": 0.5038649752797294,
+            "null_std": null,
+            "note": "null_std not stored",
+            "source": "stage4a_results.json results.gcamp.Bentley_PDF.auroc.null_degree_mean"
+          },
+          "error_bar_strategy": "For neuropeptide AUROC: use null_mean ± 2*null_std (exact). For Randi and PDF AUROC: show null_mean only, or approximate spread using neuropeptide null_std (similar order of magnitude at n_c4=1321). For Fisher OR: null_mean_or = Infinity for some tests; encode as reference line at OR=1 without spread bar."
+        }}
+      ],
+      "unresolved": [
+        "UNRESOLVED-4.1 PARTIALLY RESOLVED: Neuropeptide AUROC null_std extracted (CePNEM: 0.01172, GCaMP: 0.01596). Randi and PDF AUROC null_std not stored in result files — use approximation as documented or accept figure note.",
+        "UNRESOLVED-4.2: OR=0.000 for Randi CePNEM Fisher requires convention (left-pointing triangle or small offset on log scale)"
+      ],
+      "status": "ready"
+    },
+    {
+      "figure": "Figure 5 — ADEL-Centered PDF Network",
+      "title": "ADEL-centered PDF signaling network shows dwelling-dominant conditional dependence",
+      "data_sources": [
+        "results/phase2/phase2b_pdf_audit.md (all pair-level data, source/target annotation, sign direction, funatlas)",
+        "results/phase2/stage2/stage2_results.json (ranks 5, 9, 10, 16 confirmed)",
+        "results/phase2/stage2/DQ_cepnem.npy (actual ΔQ values)",
+        "results/phase2/stage2/DQ_gcamp.npy (GCaMP ΔQ for comparison)",
+        "results/phase2/stage4a/stage4a_results.json (Fisher top-K confirmation)"
+      ],
+      "file_paths": [
+        "results/phase2/phase2b_pdf_audit.md",
+        "results/phase2/stage2/stage2_results.json",
+        "results/phase2/stage2/DQ_cepnem.npy",
+        "results/phase2/stage2/DQ_gcamp.npy",
+        "results/phase2/stage4a/stage4a_results.json"
+      ],
+      "variables": [
+        {"name": "n_pdf_class4_pairs_total", "value": 61, "source": "stage4a_results.json annotation_summary.Bentley_PDF"},
+        {"name": "n_pdf_pairs_nonzero_dq_cepnem", "value": 17, "source": "phase2b_pdf_audit.md §2.2"},
+        {"name": "n_pdf_pairs_negative_dq", "value": 14, "note": "14/17 nonzero; 3 positive low-magnitude", "source": "phase2b_pdf_audit.md §2.3"},
+        {"name": "fisher_topk_pdf_annotated", "value": 4, "note": "4 of top-20 CePNEM pairs are PDF-annotated", "source": "stage4a_results.json results.cepnem.Bentley_PDF.fisher"},
+        {"name": "fisher_topk_or", "value": 5.456, "source": "stage4a_results.json results.cepnem.Bentley_PDF.fisher.or_observed"},
+        {"name": "fisher_topk_expected", "value": 0.92, "source": "stage4a_results.json results.cepnem.Bentley_PDF.fisher.expected_in_topk"},
+        {"name": "top10_pdf_pairs_cepnem", "value": [
+          {"rank_pdf": 1, "pair": "ADEL-URYVR", "dq_cepnem": -0.1222, "dq_gcamp": -0.0853, "source_neuron": "ADEL", "target_neuron": "URYVR", "ligand": "pdf-1", "funatlas_occ_wt": 0, "funatlas_status": "UNTESTED"},
+          {"rank_pdf": 2, "pair": "ADEL-URYDL", "dq_cepnem": -0.0980, "dq_gcamp": -0.0841, "source_neuron": "ADEL", "target_neuron": "URYDL", "ligand": "pdf-1", "funatlas_occ_wt": 0, "funatlas_status": "UNTESTED"},
+          {"rank_pdf": 3, "pair": "ADEL-RMEL", "dq_cepnem": -0.0957, "dq_gcamp": -0.0824, "source_neuron": "ADEL", "target_neuron": "RMEL", "ligand": "pdf-1", "funatlas_q_wt": 0.492, "funatlas_status": "NOT_SIGNIFICANT"},
+          {"rank_pdf": 4, "pair": "RMEL-URYDL", "dq_cepnem": -0.0754, "dq_gcamp": -0.1259, "source_neuron": "RMEL", "target_neuron": "URYDL", "ligand": "pdf-1", "funatlas_status": "NOT_IN_FUNATLAS"},
+          {"rank_pdf": 5, "pair": "RMEL-URYVR", "dq_cepnem": -0.0701, "dq_gcamp": -0.1232, "source_neuron": "RMEL", "target_neuron": "URYVR", "ligand": "pdf-1", "funatlas_status": "INFERRED_FROM_RMER"},
+          {"rank_pdf": 6, "pair": "RMEL-RMER", "dq_cepnem": -0.0579, "dq_gcamp": 0.0000, "source_neuron": "RMEL", "target_neuron": "RMER", "ligand": "pdf-1 bilateral", "funatlas_q_wt": 0.000, "funatlas_occ_wt": 22, "funatlas_status": "CONFIRMED"},
+          {"rank_pdf": 7, "pair": "AVDL-URYDL", "dq_cepnem": -0.0558, "dq_gcamp": -0.0240, "source_neuron": "AVDL", "target_neuron": "URYDL", "ligand": "pdf-2", "funatlas_status": "NOT_IN_FUNATLAS"},
+          {"rank_pdf": 8, "pair": "ADEL-URXL", "dq_cepnem": -0.0450, "dq_gcamp": -0.1516, "source_neuron": "ADEL", "target_neuron": "URXL", "ligand": "pdf-1", "funatlas_q_wt": 0.534, "funatlas_status": "NOT_SIGNIFICANT"},
+          {"rank_pdf": 9, "pair": "RID-URXL", "dq_cepnem": -0.0396, "dq_gcamp": -0.0220, "source_neuron": "RID", "target_neuron": "URXL", "ligand": "pdf-1 + pdf-2", "funatlas_occ_wt": 2, "funatlas_status": "LOW_COVERAGE"},
+          {"rank_pdf": 10, "pair": "ADEL-OLQVR", "dq_cepnem": -0.0215, "dq_gcamp": 0.0000, "source_neuron": "ADEL", "target_neuron": "OLQVR", "ligand": "pdf-1", "funatlas_status": "NOT_IN_FUNATLAS"}
+        ], "source": "phase2b_pdf_audit.md §2.2"},
+        {"name": "pdf_source_neurons", "value": [
+          {"neuron": "ADEL", "ligand": "pdf-1", "n_class4_edges": 12, "transmitter": "Dopamine", "cell_type": "Anterior deirid mechanosensor"},
+          {"neuron": "AVDL", "ligand": "pdf-2", "n_class4_edges": 14, "transmitter": "ACh", "cell_type": "Ventral cord interneuron"},
+          {"neuron": "RMEL", "ligand": "pdf-1", "n_class4_edges": 12, "transmitter": "GABA", "cell_type": "Head ring motor neuron"},
+          {"neuron": "RMER", "ligand": "pdf-1", "n_class4_edges": 12, "transmitter": "GABA", "cell_type": "Head ring motor neuron"},
+          {"neuron": "RID", "ligand": "pdf-1 + pdf-2", "n_class4_edges": 28, "transmitter": "Unknown (orphan)", "cell_type": "Ring interneuron, DCV modulator"}
+        ], "source": "phase2b_pdf_audit.md §2.1"},
+        {"name": "pdfr1_confirmed_targets", "value": ["URYVR", "URYDL", "RMEL", "URXL", "OLQVR"], "source": "phase2b_pdf_audit.md §4"}
+      ],
+      "complete_17pair_network_2ca1": {
+        "extraction_method": "Used results/phase2/stage2/ranked_class4_cepnem.npy as authoritative Class 4 index set (1321 pairs, verified match with stage2_results.json top-50). Intersected with Bentley PDF annotation from esconnectome_neuropeptides_Bentley_2016.csv → 61 Class 4 pairs (matches stage4a count). Extracted DQ_cepnem and DQ_gcamp values. No new analysis.",
+        "n_nonzero_dq_cepnem": 17,
+        "n_dwelling_dominant": 14,
+        "n_roaming_dominant": 3,
+        "n_zero_dq_cepnem": 44,
+        "pairs": [
+          {"rank_pdf": 1, "pair": "ADEL-URYVR", "i": 0, "j": 60, "dq_cepnem": -0.122158, "dq_gcamp": -0.08531, "ligand": "pdf-1", "source_neuron": "ADEL", "target_neuron": "URYVR", "dwelling_dominant": true},
+          {"rank_pdf": 2, "pair": "ADEL-URYDL", "i": 0, "j": 58, "dq_cepnem": -0.098, "dq_gcamp": -0.084092, "ligand": "pdf-1", "source_neuron": "ADEL", "target_neuron": "URYDL", "dwelling_dominant": true},
+          {"rank_pdf": 3, "pair": "ADEL-RMEL", "i": 0, "j": 53, "dq_cepnem": -0.095657, "dq_gcamp": -0.082358, "ligand": "pdf-1", "source_neuron": "ADEL", "target_neuron": "RMEL", "dwelling_dominant": true},
+          {"rank_pdf": 4, "pair": "RMEL-URYDL", "i": 53, "j": 58, "dq_cepnem": -0.07544, "dq_gcamp": -0.1259, "ligand": "pdf-1", "source_neuron": "RMEL", "target_neuron": "URYDL", "dwelling_dominant": true},
+          {"rank_pdf": 5, "pair": "RMEL-URYVR", "i": 53, "j": 60, "dq_cepnem": -0.070119, "dq_gcamp": -0.123242, "ligand": "pdf-1", "source_neuron": "RMEL", "target_neuron": "URYVR", "dwelling_dominant": true},
+          {"rank_pdf": 6, "pair": "RMEL-RMER", "i": 53, "j": 54, "dq_cepnem": -0.05791, "dq_gcamp": 0.0, "ligand": "pdf-1 bilateral", "source_neuron": "RMEL", "target_neuron": "RMER", "dwelling_dominant": true, "note": "both RMEL→RMER and RMER→RMEL in Bentley CSV"},
+          {"rank_pdf": 7, "pair": "AVDL-URYDL", "i": 9, "j": 58, "dq_cepnem": -0.055801, "dq_gcamp": -0.023995, "ligand": "pdf-2", "source_neuron": "AVDL", "target_neuron": "URYDL", "dwelling_dominant": true},
+          {"rank_pdf": 8, "pair": "ADEL-URXL", "i": 0, "j": 57, "dq_cepnem": -0.044975, "dq_gcamp": -0.151591, "ligand": "pdf-1", "source_neuron": "ADEL", "target_neuron": "URXL", "dwelling_dominant": true},
+          {"rank_pdf": 9, "pair": "RID-URXL", "i": 47, "j": 57, "dq_cepnem": -0.039616, "dq_gcamp": -0.022029, "ligand": "pdf-1", "source_neuron": "RID", "target_neuron": "URXL", "dwelling_dominant": true},
+          {"rank_pdf": 10, "pair": "ADEL-OLQVR", "i": 0, "j": 45, "dq_cepnem": -0.021501, "dq_gcamp": 0.0, "ligand": "pdf-1", "source_neuron": "ADEL", "target_neuron": "OLQVR", "dwelling_dominant": true},
+          {"rank_pdf": 11, "pair": "RID-RMEL", "i": 47, "j": 53, "dq_cepnem": -0.01904, "dq_gcamp": 0.065413, "ligand": "pdf-1", "source_neuron": "RID", "target_neuron": "RMEL", "dwelling_dominant": true},
+          {"rank_pdf": 12, "pair": "AVDL-RID", "i": 9, "j": 47, "dq_cepnem": 0.017153, "dq_gcamp": 0.031173, "ligand": "pdf-1", "source_neuron": "RID", "target_neuron": "AVDL", "dwelling_dominant": false, "note": "roaming-dominant; low magnitude"},
+          {"rank_pdf": 13, "pair": "OLQVL-RMER", "i": 44, "j": 54, "dq_cepnem": 0.016875, "dq_gcamp": -0.10046, "ligand": "pdf-1", "source_neuron": "RMER", "target_neuron": "OLQVL", "dwelling_dominant": false, "note": "roaming-dominant CePNEM but dwelling-dominant GCaMP"},
+          {"rank_pdf": 14, "pair": "I1R-RMER", "i": 22, "j": 54, "dq_cepnem": 0.014917, "dq_gcamp": 0.0, "ligand": "pdf-1", "source_neuron": "RMER", "target_neuron": "I1R", "dwelling_dominant": false, "note": "roaming-dominant; low magnitude"},
+          {"rank_pdf": 15, "pair": "RMEL-URYVL", "i": 53, "j": 59, "dq_cepnem": -0.004907, "dq_gcamp": 0.0, "ligand": "pdf-1", "source_neuron": "RMEL", "target_neuron": "URYVL", "dwelling_dominant": true, "note": "very low magnitude; marginal"},
+          {"rank_pdf": 16, "pair": "OLQDL-RID", "i": 42, "j": 47, "dq_cepnem": -0.004767, "dq_gcamp": -0.112459, "ligand": "pdf-1", "source_neuron": "RID", "target_neuron": "OLQDL", "dwelling_dominant": true, "note": "very low CePNEM but substantial GCaMP"},
+          {"rank_pdf": 17, "pair": "AVDL-OLQDL", "i": 9, "j": 42, "dq_cepnem": -0.001873, "dq_gcamp": 0.0, "ligand": "pdf-2", "source_neuron": "AVDL", "target_neuron": "OLQDL", "dwelling_dominant": true, "note": "very low magnitude; marginal"}
+        ]
+      },
+      "unresolved": [
+        "UNRESOLVED-5.1: RMER PDFR-1 expression status ambiguous — phase2b_pdf_audit.md lists RMEL (not RMER) as pdfr-1-expressing; RMER source status clear but target status needs verification from CeNGEN data",
+        "UNRESOLVED-5.2 RESOLVED (Phase 2C-A.1): Complete 17-pair network extracted — see complete_17pair_network_2ca1 above",
+        "UNRESOLVED-5.3: GCaMP vs CePNEM asymmetry for RMEL-RMER (dq_gcamp=0.000 vs dq_cepnem=-0.058) needs explanation in caption"
+      ],
+      "status": "ready"
+    },
+    {
+      "figure": "Figure 6 — Atlas Cross-Reference",
+      "title": "Functional validation landscape for PDF network predictions",
+      "data_sources": [
+        "results/phase2/phase2b_pdf_audit.md §6 (all funatlas measurements)",
+        "results/phase2/stage2/stage2_results.json (ΔQ ranks for pairs)",
+        "results/phase2/stage4a/stage4a_results.json (PDF annotation confirmation)"
+      ],
+      "file_paths": [
+        "results/phase2/phase2b_pdf_audit.md",
+        "results/phase2/stage2/stage2_results.json",
+        "results/phase2/stage4a/stage4a_results.json"
+      ],
+      "variables": [
+        {"name": "confirmed_pairs", "note": "funatlas q_wt < 0.05", "value": [
+          {"pair": "RMEL-RMER", "direction": "RMEL→RMER", "q_wt": 0.000, "dff_wt": 0.094, "occ_wt": 22, "dq_cepnem": -0.0579, "source": "phase2b_pdf_audit.md §6.2"},
+          {"pair": "RMER-RMEL", "direction": "RMER→RMEL", "q_unc31": 0.001, "dff_wt": 0.072, "occ_wt": 16, "note": "unc31 significant", "source": "phase2b_pdf_audit.md §6.2"},
+          {"pair": "RMER-URYVR", "direction": "RMER→URYVR", "q_wt": 0.000, "dff_wt": 0.151, "occ_wt": 8, "source": "phase2b_pdf_audit.md §6.2"},
+          {"pair": "RMEL-OLQVR", "direction": "RMEL→OLQVR", "q_wt": 0.028, "dff_wt": 0.222, "occ_wt": 13, "source": "phase2b_pdf_audit.md §6.2"},
+          {"pair": "RMER-OLQVR", "direction": "RMER→OLQVR", "q_wt": 0.036, "dff_wt": 0.080, "occ_wt": 13, "source": "phase2b_pdf_audit.md §6.2"},
+          {"pair": "RMEL-OLLL", "direction": "RMEL→OLLL", "q_unc31": 0.002, "dff_wt": 0.104, "occ_wt": 19, "note": "unc31 significant", "source": "phase2b_pdf_audit.md §6.2"},
+          {"pair": "RMER-OLLL", "direction": "RMER→OLLL", "q_unc31": 0.012, "dff_wt": 0.072, "occ_wt": 19, "note": "unc31 significant", "source": "phase2b_pdf_audit.md §6.2"},
+          {"pair": "RMER-I1L", "direction": "RMER→I1L", "q_unc31": 0.049, "dff_wt": 0.078, "occ_wt": 6, "note": "unc31 significant", "source": "phase2b_pdf_audit.md §6.2"}
+        ]},
+        {"name": "novel_predictions", "note": "zero funatlas observations (occ_wt=0)", "value": [
+          {"pair": "ADEL-URYVR", "direction": "ADEL→URYVR", "occ_wt": 0, "dq_cepnem": -0.1222, "dq_gcamp": -0.0853, "cepnem_rank": 5, "source": "phase2b_pdf_audit.md §6.1"},
+          {"pair": "ADEL-URYDL", "direction": "ADEL→URYDL", "occ_wt": 0, "dq_cepnem": -0.0980, "dq_gcamp": -0.0841, "cepnem_rank": 9, "source": "phase2b_pdf_audit.md §6.1"}
+        ]},
+        {"name": "tested_not_significant", "value": [
+          {"pair": "ADEL-RMEL", "direction": "ADEL→RMEL", "q_wt": 0.492, "q_unc31": 0.371, "dff_wt": 0.026, "occ_wt": 5, "dq_cepnem": -0.0957, "source": "phase2b_pdf_audit.md §6.1"},
+          {"pair": "ADEL-URXL", "direction": "ADEL→URXL", "q_wt": 0.534, "q_unc31": "NaN", "dff_wt": -0.030, "occ_wt": 7, "dq_cepnem": -0.0450, "source": "phase2b_pdf_audit.md §6.1"}
+        ]},
+        {"name": "ADEL_funatlas_wt_significant_targets", "value": ["ADAL", "ADER", "AINL", "AQR", "FLPL"], "note": "None in 61-neuron PDF-target set; ADEL is measurably active in funatlas but not toward URY/RMEL targets", "source": "phase2b_pdf_audit.md §6.3"}
+      ],
+      "unresolved": [
+        "UNRESOLVED-6.1: RID→AVAR pair (q_wt=0.020, occ_wt=2 in funatlas) — class status (on/off connectome?) not verified; omit from figure until confirmed",
+        "UNRESOLVED-6.2: ADEL funatlas targets are outside the 61-neuron set — clarify in caption that ADEL signaling to PDF targets is untested, not absent"
+      ],
+      "status": "ready"
+    },
+    {
+      "figure": "Figure 7 — Prediction Figure",
+      "title": "Predicted dwelling-specific PDF coupling",
+      "data_sources": [
+        "results/phase2/phase2b_pdf_audit.md §7.3 (explicit predictions)",
+        "results/phase2/phase2b_pdf_audit.md §2.3 (sign direction analysis)",
+        "results/phase2/phase2b_pdf_audit.md §5 (biological context)",
+        "results/phase2/phase2b_pdf_audit.md §8 (atlas gap and testability)",
+        "results/phase2/stage2/stage2_results.json (ΔQ values for cited pairs)"
+      ],
+      "file_paths": [
+        "results/phase2/phase2b_pdf_audit.md",
+        "results/phase2/stage2/stage2_results.json"
+      ],
+      "variables": [
+        {"name": "prediction1_pair_primary", "value": "ADEL-URYVR", "dq_cepnem": -0.1222, "cepnem_rank": 5, "funatlas_occ_wt": 0, "source": "phase2b_pdf_audit.md §7.3 Prediction 1"},
+        {"name": "prediction1_pair_secondary", "value": "ADEL-URYDL", "dq_cepnem": -0.0980, "cepnem_rank": 9, "funatlas_occ_wt": 0, "source": "phase2b_pdf_audit.md §7.3 Prediction 1"},
+        {"name": "prediction1_hypothesis", "value": "ADEL stimulation during dwelling produces stronger URYDL/URYVR co-activation than during roaming; effect is unc-31-sensitive and pdfr-1-dependent", "source": "phase2b_pdf_audit.md §7.3"},
+        {"name": "prediction2_pair", "value": "RID-URXL", "dq_cepnem": -0.0396, "note": "funatlas occ_wt=2; low coverage; lower-confidence prediction", "source": "phase2b_pdf_audit.md §7.3 Prediction 2"},
+        {"name": "dq_sign_interpretation", "value": "ΔQ < 0 means Q_dwell > Q_roam (dwelling-dominant conditional dependence). For top ADEL-centric pairs: Q_roam ≈ 0 (decoupled during roaming), Q_dwell < 0 (inversely coupled during dwelling).", "source": "phase2b_pdf_audit.md §2.3"},
+        {"name": "experimental_design_behavioral_threshold", "value": 0.284, "source": "phase0_config.py", "note": "same as Phase 0/Phase 2; must be used in experiment for consistency"},
+        {"name": "experimental_design_ewma_timescale", "value": 20.0, "unit": "seconds", "source": "phase0_config.py"},
+        {"name": "n_class4_total", "value": 1321, "note": "context for rank framing"},
+        {"name": "predicted_outcome_roaming", "value": "ADEL stimulation → no detectable URYDL/URYVR response (Q_roam ≈ 0)", "source": "derived from dq_cepnem sign and magnitude"},
+        {"name": "predicted_outcome_dwelling", "value": "ADEL stimulation → detectable inverse co-activation of URYDL/URYVR (Q_dwell < 0; conditional negative coupling)", "source": "derived from dq_cepnem sign and magnitude"},
+        {"name": "predicted_outcome_pdf_disruption", "value": "Dwelling-state ADEL→URY coupling abolished or reduced in unc-31 null and pdfr-1 null backgrounds", "source": "derived from pdf-1/pdfr-1 annotation and phase2b_pdf_audit.md §7.3"}
+      ],
+      "unresolved": [
+        "UNRESOLVED-7.1: ΔQ sign (negative partial correlation) does not directly equal causal stimulation response sign; caption must clarify that 'inverse co-activation' is the predicted pattern consistent with the conditional dependence, not a guaranteed causal sign",
+        "UNRESOLVED-7.2: Target journal conventions for prediction (non-data) figures vary; check before artwork — some journals require explicit 'predicted, not observed' labeling"
+      ],
+      "status": "ready"
+    }
+  ],
+  "blocking_issues_summary": [
+    {
+      "id": "BLOCK-A",
+      "description": "Color convention for dwelling/roaming states and annotation categories not locked",
+      "affects": ["Figure 1", "Figure 2", "Figure 3", "Figure 4", "Figure 5"],
+      "status": "RESOLVED — Phase 2C-A.1",
+      "resolution_date": "2026-06-01",
+      "resolution": "Full convention locked in color_convention section. Dwelling=#4C6EF5, Roaming=#FF6B35. Annotation palette separated: Neuropeptide=#666666, Randi=#2CA02C, PDF=#D62728, Serotonin=#9467BD, Combined=#8C564B, CeNGEN=#BCBD22. No conflicts with state colors."
+    },
+    {
+      "id": "BLOCK-B",
+      "description": "Null distribution SDs from stage4_results.json not extracted; needed for forest plot error bars (Figure 4 Panel A)",
+      "affects": ["Figure 4"],
+      "status": "PARTIALLY RESOLVED — Phase 2C-A.1",
+      "resolution_date": "2026-06-01",
+      "resolution": "Neuropeptide AUROC null distributions fully extracted (mean, std, p95 for both coordinates and both null types — see Figure 4 null_distributions_2ca1 variable). Randi and PDF AUROC: null_std not stored in stage4_results.json or stage4a_results.json — only null_mean available. Approximation approach documented. Remaining decision: whether to use neuropeptide null_std as approximate spread for Randi/PDF rows in forest plot."
+    },
+    {
+      "id": "BLOCK-C",
+      "description": "Full 17-pair PDF network (ranks 11-17 beyond top-10) not extracted from DQ_cepnem.npy × Bentley annotation",
+      "affects": ["Figure 5"],
+      "status": "RESOLVED — Phase 2C-A.1",
+      "resolution_date": "2026-06-01",
+      "resolution": "Complete 17-pair network extracted using ranked_class4_cepnem.npy as authoritative Class 4 index. Stored in Figure 5 complete_17pair_network_2ca1 variable. Pairs 15-17 have |DQ_cepnem| < 0.005 (marginal); pairs 12-14 are roaming-dominant (positive DQ). See figure specification for artwork guidance on which pairs to show."
+    }
+  ]
+}
