@@ -1,0 +1,173 @@
+{
+  "frozen_at": "2026-06-13T10:19:04Z",
+  "n_files": 32,
+  "files": {
+    "blind_z_run0.npz": {
+      "sha256": "8137066611ccf81868c86643f943ee84ded8dbba31e8254aafb7c96697fc57fd",
+      "bytes": 36311252,
+      "type": "trajectory_npz"
+    },
+    "blind_z_run1.npz": {
+      "sha256": "f88d4d8ecb1487e9fb56b694d76bb8df71ada12bcffbe3202e6b5f180830e5b1",
+      "bytes": 36320322,
+      "type": "trajectory_npz"
+    },
+    "blind_z_run2.npz": {
+      "sha256": "2c75b6ee403e5fdc5146098983a0853a5dc0dc8528ea524989bd63a977c9694f",
+      "bytes": 36333040,
+      "type": "trajectory_npz"
+    },
+    "blind_z_run3.npz": {
+      "sha256": "25e76e1493457965c8bb96600cf028eb5814368df78090ac86f47f2661779dbc",
+      "bytes": 36327151,
+      "type": "trajectory_npz"
+    },
+    "blind_z_run4.npz": {
+      "sha256": "3b84c4fda4c14c72b6b56bd2d9f70005110a1db72bd64d337a0c0b1f8512b268",
+      "bytes": 36346751,
+      "type": "trajectory_npz"
+    },
+    "neural_state_run0.npz": {
+      "sha256": "bda37ca450db8c63797d2056199cc2466c92c5052154009f82c0061bf79339d5",
+      "bytes": 36760670,
+      "type": "trajectory_npz"
+    },
+    "neural_state_run1.npz": {
+      "sha256": "ee6cb16d27ae5ed06253c1e6ca07785155fe785c154d86dca0e3048a00061c7a",
+      "bytes": 36766178,
+      "type": "trajectory_npz"
+    },
+    "neural_state_run2.npz": {
+      "sha256": "ed3cee06f766d2408a0a30cb977378d2d08b595ab2db1f605115442cee8e4976",
+      "bytes": 36772948,
+      "type": "trajectory_npz"
+    },
+    "neural_state_run3.npz": {
+      "sha256": "8b21bfde4ab1d3aa3438901a5feb42b634a86fdaab127f1c36af12a1f1c68485",
+      "bytes": 36769826,
+      "type": "trajectory_npz"
+    },
+    "neural_state_run4.npz": {
+      "sha256": "a0cae7e462da490420338a184a41b369f6d37b5b2d27fc0a0385e8a577f94721",
+      "bytes": 36781832,
+      "type": "trajectory_npz"
+    },
+    "oracle_z_run0.npz": {
+      "sha256": "e4f95b906ebd38a6c389549abfce5625142b6b070a463b776584dbd54184389f",
+      "bytes": 36683218,
+      "type": "trajectory_npz"
+    },
+    "oracle_z_run1.npz": {
+      "sha256": "bedba77c018378b245845540c0fe8a4da8c887a67417574f0b1b28a42fa89033",
+      "bytes": 36692402,
+      "type": "trajectory_npz"
+    },
+    "oracle_z_run2.npz": {
+      "sha256": "8b3055df87210c29a1bcffc2bbb8820819b820a69ddf461eb29b947daaf53984",
+      "bytes": 36705060,
+      "type": "trajectory_npz"
+    },
+    "oracle_z_run3.npz": {
+      "sha256": "d607a0fdc594218026958b40dfe57cc1326aef6145ec1c6a9ae1cf09fe88f7e5",
+      "bytes": 36699302,
+      "type": "trajectory_npz"
+    },
+    "oracle_z_run4.npz": {
+      "sha256": "5f8fa7980c53ddfe4a4d70ab66415542bd9767d8578920cb806bdacd2b4e7012",
+      "bytes": 36718944,
+      "type": "trajectory_npz"
+    },
+    "strong_z_run0.npz": {
+      "sha256": "95be75393f9b9eb6f690ce6fcefae18828f3e61d36ead83f0812c9cd95068f0b",
+      "bytes": 36878807,
+      "type": "trajectory_npz"
+    },
+    "strong_z_run1.npz": {
+      "sha256": "304ffa368010ff157edc4bb37de0bb5cdc4335ee37684fba0d5db11dd6ac91c6",
+      "bytes": 36893074,
+      "type": "trajectory_npz"
+    },
+    "strong_z_run2.npz": {
+      "sha256": "9008a2723562537925a5e502391b6ddb3b3ab73c9d2616429a50004f9c2bef14",
+      "bytes": 36906726,
+      "type": "trajectory_npz"
+    },
+    "strong_z_run3.npz": {
+      "sha256": "91b8a3b6326fe80db2c6005e5f77dc1ef239801a6b13b61b02fd8c4f97d2a71a",
+      "bytes": 36903837,
+      "type": "trajectory_npz"
+    },
+    "strong_z_run4.npz": {
+      "sha256": "e42b8316de831b85428924abdfacf1d26b5f1c13f0ac9a43524f9bf4df284258",
+      "bytes": 36921452,
+      "type": "trajectory_npz"
+    },
+    "weak_z_run0.npz": {
+      "sha256": "e7bfdb8e0214a3650c1db011f4dc5e01413c970f014bcfa7f25ee2840386854f",
+      "bytes": 36528436,
+      "type": "trajectory_npz"
+    },
+    "weak_z_run1.npz": {
+      "sha256": "6924c836ceba58c742db5f4c076daa7c60e25356d22e31f8b2ea66fef3f75daa",
+      "bytes": 36531320,
+      "type": "trajectory_npz"
+    },
+    "weak_z_run2.npz": {
+      "sha256": "32fb419985795d92daba1c705488b7bdaead8b256eff4377427ee03058cfcc76",
+      "bytes": 36541589,
+      "type": "trajectory_npz"
+    },
+    "weak_z_run3.npz": {
+      "sha256": "495b9141857cd2258c5d31c9e44ce20cf7ad3b808d440488a9abedd834d09532",
+      "bytes": 36533236,
+      "type": "trajectory_npz"
+    },
+    "weak_z_run4.npz": {
+      "sha256": "111e91292bbe9c1f12a9b1ba504407c1229ce247c8ab993d4ed1826aa60527d0",
+      "bytes": 36544746,
+      "type": "trajectory_npz"
+    },
+    "metadata.json": {
+      "sha256": "2cfe4015ba1893f16dbbe063e13768ce0953a4a623c1c62ee1fe70a452044326",
+      "bytes": 8776,
+      "type": "metadata_json"
+    },
+    "labels.json": {
+      "sha256": "dc99697ec10309cc9a95880352d1e6c7f017b76942b541ad9ddf36e41f892081",
+      "bytes": 719989,
+      "type": "locked_ground_truth",
+      "source_path": "/home/hridai/code/worm-phase0/ground_truth/labels.json"
+    },
+    "labels.sha256": {
+      "sha256": "e38a9687dc17efa5cb541be23f631217a8bacbfc0ae3ec40aa3fb783676a4ec6",
+      "bytes": 78,
+      "type": "locked_ground_truth",
+      "source_path": "/home/hridai/code/worm-phase0/ground_truth/labels.sha256"
+    },
+    "A_sparse.npy": {
+      "sha256": "4e02d897f6d0f6aef2a1edff077abb1d3f878618a39c5b09e1f3d108e10f291b",
+      "bytes": 156928,
+      "type": "locked_ground_truth",
+      "source_path": "/home/hridai/code/worm-phase0/ground_truth/A_sparse.npy"
+    },
+    "A_sparse.sha256": {
+      "sha256": "0930817b6f58d00b7a9035b7e954a2e2b5b8c1eef3cdf7cc2810d977daeb3b1c",
+      "bytes": 79,
+      "type": "locked_ground_truth",
+      "source_path": "/home/hridai/code/worm-phase0/ground_truth/A_sparse.sha256"
+    },
+    "construction_params.json": {
+      "sha256": "41337b50724594ca0f70eb262c992feefb7e5d8398d0f309bfd02dab04afe455",
+      "bytes": 480,
+      "type": "locked_ground_truth",
+      "source_path": "/home/hridai/code/worm-phase0/ground_truth/construction_params.json"
+    },
+    "audit_log.jsonl": {
+      "sha256": "57aeb49d6afdf2854cc04220426adc577b1e17573afaccb29fef7c0363072045",
+      "bytes": 3183,
+      "type": "locked_ground_truth",
+      "source_path": "/home/hridai/code/worm-phase0/ground_truth/audit_log.jsonl"
+    }
+  },
+  "hashes_json_sha256": "7f398677135dcbcb3c0e114a64bc0e71a0a5afb54701872c99e79cbf34ad0aed"
+}

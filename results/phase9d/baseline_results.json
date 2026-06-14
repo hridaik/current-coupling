@@ -1,0 +1,33 @@
+{
+  "B1_random": {
+    "auroc": 0.5105178237691932,
+    "spearman_rho": 0.012739294499091926,
+    "precision_at_20": 0.0,
+    "precision_at_50": 0.02,
+    "precision_at_100": 0.03
+  },
+  "B2_deltacorr": {
+    "auroc": 0.44403355873965034,
+    "spearman_rho": -0.16128678875092367,
+    "precision_at_20": 0.4,
+    "precision_at_50": 0.22,
+    "precision_at_100": 0.14
+  },
+  "B3_glasso": {
+    "auroc": 0.49706080797063174,
+    "spearman_rho": -0.1574447297591802,
+    "precision_at_20": 0.85,
+    "precision_at_50": 0.38,
+    "precision_at_100": 0.2,
+    "converged": true
+  },
+  "B4_oracle": {
+    "auroc": 0.998310530434164,
+    "spearman_rho": 0.9999999999999999,
+    "precision_at_20": 1.0,
+    "precision_at_50": 1.0,
+    "precision_at_100": 1.0
+  },
+  "oracle_ceiling_pass": true,
+  "b3_converged": true
+}

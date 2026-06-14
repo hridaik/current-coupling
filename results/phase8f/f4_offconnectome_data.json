@@ -1,0 +1,62 @@
+{
+  "10": {
+    "k": 10,
+    "n_off_connectome": 10,
+    "n_on_connectome": 0,
+    "pct_off_connectome": 100.0,
+    "pct_on_connectome": 0.0,
+    "n_sareachable": 0,
+    "n_C_in_topk": 0,
+    "n_S_in_topk": 0,
+    "n_N_in_topk": 10,
+    "C_rank_p10": 1301.6,
+    "C_rank_median": 5674.0,
+    "C_rank_p90": 8879.4,
+    "C_rank_mean": 5417.570595099183
+  },
+  "20": {
+    "k": 20,
+    "n_off_connectome": 20,
+    "n_on_connectome": 0,
+    "pct_off_connectome": 100.0,
+    "pct_on_connectome": 0.0,
+    "n_sareachable": 0,
+    "n_C_in_topk": 0,
+    "n_S_in_topk": 0,
+    "n_N_in_topk": 20,
+    "C_rank_p10": 1301.6,
+    "C_rank_median": 5674.0,
+    "C_rank_p90": 8879.4,
+    "C_rank_mean": 5417.570595099183
+  },
+  "50": {
+    "k": 50,
+    "n_off_connectome": 50,
+    "n_on_connectome": 0,
+    "pct_off_connectome": 100.0,
+    "pct_on_connectome": 0.0,
+    "n_sareachable": 0,
+    "n_C_in_topk": 0,
+    "n_S_in_topk": 0,
+    "n_N_in_topk": 50,
+    "C_rank_p10": 1301.6,
+    "C_rank_median": 5674.0,
+    "C_rank_p90": 8879.4,
+    "C_rank_mean": 5417.570595099183
+  },
+  "100": {
+    "k": 100,
+    "n_off_connectome": 98,
+    "n_on_connectome": 2,
+    "pct_off_connectome": 98.0,
+    "pct_on_connectome": 2.0,
+    "n_sareachable": 3,
+    "n_C_in_topk": 3,
+    "n_S_in_topk": 1,
+    "n_N_in_topk": 96,
+    "C_rank_p10": 1301.6,
+    "C_rank_median": 5674.0,
+    "C_rank_p90": 8879.4,
+    "C_rank_mean": 5417.570595099183
+  }
+}

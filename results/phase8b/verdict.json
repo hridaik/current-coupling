@@ -1,0 +1,42 @@
+{
+  "primary_metrics": {
+    "macro_auroc": 0.5384554197161826,
+    "c_auroc": 0.4483500392459158,
+    "lr_auroc": 0.4196520529405404,
+    "b4_c_auroc": 0.5
+  },
+  "thresholds": {
+    "macro_auroc_success": 0.7,
+    "macro_auroc_partial": 0.6,
+    "c_auroc_success": 0.65,
+    "c_auroc_partial": 0.55,
+    "lr_auroc_success": 0.65,
+    "lr_auroc_partial": 0.55,
+    "b4_margin": 0.05
+  },
+  "threshold_checks": {
+    "macro_auroc_success": false,
+    "macro_auroc_partial": false,
+    "c_auroc_success": false,
+    "c_auroc_partial": false,
+    "lr_auroc_success": false,
+    "lr_auroc_partial": false,
+    "beats_b4_by_margin": false
+  },
+  "framework_vs_b4_c": -0.05164996075408418,
+  "ci_spans_threshold": {
+    "macro_auroc": false,
+    "c_auroc": false,
+    "lr_auroc": false
+  },
+  "verdict": "FAILURE",
+  "sub_category": "FAILURE[MacroAUROC=0.5385<0.6; C-AUROC=0.4484<0.55; LR-AUROC=0.4197<0.55; C-AUROC\u2264B4(0.4484\u22640.5000)]",
+  "rationale": "At least one primary metric below failure threshold: MacroAUROC=0.5385 (threshold 0.6), C-AUROC=0.4484 (threshold 0.55), LR-AUROC=0.4197 (threshold 0.55)",
+  "benchmark_validity": {
+    "BV-1": true,
+    "BV-2": true,
+    "BV-3": false,
+    "BV-4": true,
+    "BV-5": true
+  }
+}

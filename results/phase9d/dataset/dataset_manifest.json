@@ -1,0 +1,40 @@
+{
+  "oracle_master_hash": "79c98d032742ba36333c7947a1becf23ec2bbdaa52ab1ee88f5bbc3f9f416a14",
+  "generation_timestamp": 1781401866.418081,
+  "oracle_timestamp": 1781401034.9421823,
+  "lc4_oracle_before_trajectories": true,
+  "parameters": {
+    "N_OBS": 150,
+    "N_TOTAL": 180,
+    "T_A": 150000,
+    "T_B": 150000,
+    "dt": 0.01,
+    "burn_in": 10000,
+    "seed_A": 100,
+    "seed_B": 200,
+    "seed_lesion": 300
+  },
+  "dataset_stats": {
+    "x_A_shape": [
+      150000,
+      150
+    ],
+    "x_B_shape": [
+      150000,
+      150
+    ],
+    "x_A_lesion_shape": [
+      150000,
+      150
+    ],
+    "pmc_src_var_ratio_A_over_B": 4.891180515289307,
+    "background_var_ratio_A_over_B": 1.0237126350402832,
+    "empirical_sigma_A_min_eig": 0.46581521513870777
+  },
+  "file_hashes": {
+    "x_A.npy": "bd42b13572f50ecaab440a1365c1fad8d127c4565aa95855db3a561b5252c9b9",
+    "x_B.npy": "a79a124cef0b063b94a78cf746b90b281492dc856218c8094d18fe8c355c164f",
+    "x_A_lesion.npy": "867a33b052590581df032c955bf0a62b8cdae89a17814979d8e5439fa6ddc5ec",
+    "A_obs.npy": "0abb12d0e8a9a1678c93c91b9d2df6efee168b8e9764d2ce3924221d48398522"
+  }
+}

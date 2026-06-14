@@ -1,0 +1,281 @@
+{
+  "N_OBS": 150,
+  "N_TOTAL": 180,
+  "SEED": 42,
+  "PMC_SRC": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7
+  ],
+  "PMC_TGT": [
+    80,
+    81,
+    82,
+    83,
+    84,
+    85,
+    115,
+    116,
+    117,
+    118,
+    119,
+    120
+  ],
+  "design": {
+    "PMC_SRC_isolated": true,
+    "PMC_TGT_isolated": true,
+    "HG_exclusive_to_PMC_TGT": true,
+    "PMC_definition": "expanded \u2014 all off-connectome pairs within PMC_SRC \u222a PMC_TGT",
+    "PMC_SRC_to_HG_n_connections": 5,
+    "W_HG_TGT": 0.3,
+    "W_SRC_HG": 0.25,
+    "spectral_shift_applied": true
+  },
+  "diffusion": {
+    "D_BASE": 1.0,
+    "D_HG_A": 10.0,
+    "D_SRC_A": 5.0
+  },
+  "n_off": 10433,
+  "n_pmc": 181,
+  "pmc_breakdown": {
+    "SRC_SRC": 28,
+    "TGT_TGT": 57,
+    "SRC_TGT": 96
+  },
+  "pmc_density_pct": 1.7348797086168888,
+  "n_struct_pairs": 742,
+  "dominance": {
+    "D1_ratio": 2758.324775191497,
+    "D1_ok": true,
+    "D2_pmc_top50": 50,
+    "D2_ok": true,
+    "pmc_median_delta_omega": 0.01586548642230505,
+    "nonpmc_p90_delta_omega": 5.7518558238681625e-06
+  },
+  "oracle": {
+    "PMC_AUROC": 0.998310530434164,
+    "ceiling_ok": true,
+    "dq_PMC_AUROC": 0.9970117675462328,
+    "rho_dq_domega": 0.9920105889050441
+  },
+  "intervention": {
+    "pmc_in_state_top50": 50,
+    "pmc_in_struct_top50": 0,
+    "n_lesioned_M1_to_M2_edges": 24
+  },
+  "precision_at_k": {
+    "5": {
+      "precision": 1.0,
+      "count": 5,
+      "enrichment": 57.64088397790055
+    },
+    "10": {
+      "precision": 1.0,
+      "count": 10,
+      "enrichment": 57.64088397790055
+    },
+    "20": {
+      "precision": 1.0,
+      "count": 20,
+      "enrichment": 57.64088397790055
+    },
+    "50": {
+      "precision": 1.0,
+      "count": 50,
+      "enrichment": 57.64088397790055
+    },
+    "100": {
+      "precision": 1.0,
+      "count": 100,
+      "enrichment": 57.64088397790055
+    }
+  },
+  "top20_pairs": [
+    {
+      "rank": 1,
+      "i": 82,
+      "j": 118,
+      "abs_delta_omega": 0.21293949055683428,
+      "is_pmc": true,
+      "type_i": "TGT",
+      "type_j": "TGT"
+    },
+    {
+      "rank": 2,
+      "i": 83,
+      "j": 116,
+      "abs_delta_omega": 0.20599926628672266,
+      "is_pmc": true,
+      "type_i": "TGT",
+      "type_j": "TGT"
+    },
+    {
+      "rank": 3,
+      "i": 84,
+      "j": 116,
+      "abs_delta_omega": 0.18652350144976187,
+      "is_pmc": true,
+      "type_i": "TGT",
+      "type_j": "TGT"
+    },
+    {
+      "rank": 4,
+      "i": 118,
+      "j": 120,
+      "abs_delta_omega": 0.18609424310894773,
+      "is_pmc": true,
+      "type_i": "TGT",
+      "type_j": "TGT"
+    },
+    {
+      "rank": 5,
+      "i": 82,
+      "j": 85,
+      "abs_delta_omega": 0.1799650146373793,
+      "is_pmc": true,
+      "type_i": "TGT",
+      "type_j": "TGT"
+    },
+    {
+      "rank": 6,
+      "i": 117,
+      "j": 119,
+      "abs_delta_omega": 0.17515743017992655,
+      "is_pmc": true,
+      "type_i": "TGT",
+      "type_j": "TGT"
+    },
+    {
+      "rank": 7,
+      "i": 80,
+      "j": 118,
+      "abs_delta_omega": 0.17034293365564251,
+      "is_pmc": true,
+      "type_i": "TGT",
+      "type_j": "TGT"
+    },
+    {
+      "rank": 8,
+      "i": 80,
+      "j": 85,
+      "abs_delta_omega": 0.1508664580725027,
+      "is_pmc": true,
+      "type_i": "TGT",
+      "type_j": "TGT"
+    },
+    {
+      "rank": 9,
+      "i": 116,
+      "j": 118,
+      "abs_delta_omega": 0.1371586862958383,
+      "is_pmc": true,
+      "type_i": "TGT",
+      "type_j": "TGT"
+    },
+    {
+      "rank": 10,
+      "i": 85,
+      "j": 117,
+      "abs_delta_omega": 0.13399617858011972,
+      "is_pmc": true,
+      "type_i": "TGT",
+      "type_j": "TGT"
+    },
+    {
+      "rank": 11,
+      "i": 116,
+      "j": 117,
+      "abs_delta_omega": 0.12055775699090958,
+      "is_pmc": true,
+      "type_i": "TGT",
+      "type_j": "TGT"
+    },
+    {
+      "rank": 12,
+      "i": 81,
+      "j": 85,
+      "abs_delta_omega": 0.11690107472841442,
+      "is_pmc": true,
+      "type_i": "TGT",
+      "type_j": "TGT"
+    },
+    {
+      "rank": 13,
+      "i": 82,
+      "j": 116,
+      "abs_delta_omega": 0.1163576795730597,
+      "is_pmc": true,
+      "type_i": "TGT",
+      "type_j": "TGT"
+    },
+    {
+      "rank": 14,
+      "i": 115,
+      "j": 119,
+      "abs_delta_omega": 0.11138219653466319,
+      "is_pmc": true,
+      "type_i": "TGT",
+      "type_j": "TGT"
+    },
+    {
+      "rank": 15,
+      "i": 85,
+      "j": 119,
+      "abs_delta_omega": 0.10700984674053941,
+      "is_pmc": true,
+      "type_i": "TGT",
+      "type_j": "TGT"
+    },
+    {
+      "rank": 16,
+      "i": 83,
+      "j": 85,
+      "abs_delta_omega": 0.10480955365693835,
+      "is_pmc": true,
+      "type_i": "TGT",
+      "type_j": "TGT"
+    },
+    {
+      "rank": 17,
+      "i": 84,
+      "j": 117,
+      "abs_delta_omega": 0.10443809938133677,
+      "is_pmc": true,
+      "type_i": "TGT",
+      "type_j": "TGT"
+    },
+    {
+      "rank": 18,
+      "i": 2,
+      "j": 81,
+      "abs_delta_omega": 0.10352261476036186,
+      "is_pmc": true,
+      "type_i": "SRC",
+      "type_j": "TGT"
+    },
+    {
+      "rank": 19,
+      "i": 117,
+      "j": 118,
+      "abs_delta_omega": 0.10317885240341598,
+      "is_pmc": true,
+      "type_i": "TGT",
+      "type_j": "TGT"
+    },
+    {
+      "rank": 20,
+      "i": 83,
+      "j": 118,
+      "abs_delta_omega": 0.10295548785220353,
+      "is_pmc": true,
+      "type_i": "TGT",
+      "type_j": "TGT"
+    }
+  ]
+}

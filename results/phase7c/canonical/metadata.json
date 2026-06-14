@@ -1,0 +1,451 @@
+{
+  "phase": "7C",
+  "dataset_type": "canonical",
+  "generated_at": "2026-06-13T10:17:28Z",
+  "completed_at": "2026-06-13T10:18:44Z",
+  "duration_seconds": 76.0,
+  "code_commit": "b6117b238f510109f3b964d07c60bd9b2c6d3ddc",
+  "simulator": {
+    "module": "scripts.phase7b.dynamics",
+    "function": "simulate_run",
+    "spec": "phase6b_architecture_spec.md"
+  },
+  "parameters": {
+    "N_OBS": 100,
+    "N_TOTAL": 140,
+    "T": 50000,
+    "T_WARMUP": 2000,
+    "T_EFF": 48000,
+    "DT": 0.1,
+    "R": 5,
+    "GAMMA_H2": 3.0,
+    "THETA_Z": 0.1,
+    "SIGMA_Z": 1.0,
+    "D_0": 1.0,
+    "EPS_LR": 0.1,
+    "KAPPA_CA": 0.5,
+    "SIGMA_OBS_NOISE": 0.1,
+    "NONLINEARITY": "softplus"
+  },
+  "seed_policy": {
+    "z_seed": "z_seed(run) = 49 + run_index",
+    "x_seed": "x_seed(run) = 60 + run_index",
+    "sparsity_seeds": {
+      "oo_sparsity": 42,
+      "h1_sparsity": 43,
+      "h2_sparsity": 44,
+      "oo_weights": 45,
+      "h1_weights": 46,
+      "h2_weights": 47,
+      "D_lr_u": 48
+    },
+    "run_indices": [
+      0,
+      1,
+      2,
+      3,
+      4
+    ]
+  },
+  "conditions": {
+    "oracle_z": {
+      "gamma_H2": 3.0,
+      "provide_z": true,
+      "use_obs_model": true
+    },
+    "blind_z": {
+      "gamma_H2": 3.0,
+      "provide_z": false,
+      "use_obs_model": true
+    },
+    "neural_state": {
+      "gamma_H2": 3.0,
+      "provide_z": true,
+      "use_obs_model": false
+    },
+    "weak_z": {
+      "gamma_H2": 1.5,
+      "provide_z": true,
+      "use_obs_model": true
+    },
+    "strong_z": {
+      "gamma_H2": 6.0,
+      "provide_z": true,
+      "use_obs_model": true
+    }
+  },
+  "locked_artifacts": {
+    "labels_hash": "dc99697ec10309cc9a95880352d1e6c7f017b76942b541ad9ddf36e41f892081",
+    "A_sparse_hash": "9e2e126b1843d180cf4ff3c57e75c995ad2a266d7dfe6d7ab44c72a8e233ea61",
+    "labels_path": "/home/hridai/code/worm-phase0/ground_truth/labels.json",
+    "A_sparse_path": "/home/hridai/code/worm-phase0/ground_truth/A_sparse.npy"
+  },
+  "artifacts": [
+    {
+      "condition": "oracle_z",
+      "run_index": 0,
+      "file": "oracle_z_run0.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": [
+        48000
+      ],
+      "gamma_H2": 3.0,
+      "provide_z": true,
+      "use_obs_model": true
+    },
+    {
+      "condition": "oracle_z",
+      "run_index": 1,
+      "file": "oracle_z_run1.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": [
+        48000
+      ],
+      "gamma_H2": 3.0,
+      "provide_z": true,
+      "use_obs_model": true
+    },
+    {
+      "condition": "oracle_z",
+      "run_index": 2,
+      "file": "oracle_z_run2.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": [
+        48000
+      ],
+      "gamma_H2": 3.0,
+      "provide_z": true,
+      "use_obs_model": true
+    },
+    {
+      "condition": "oracle_z",
+      "run_index": 3,
+      "file": "oracle_z_run3.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": [
+        48000
+      ],
+      "gamma_H2": 3.0,
+      "provide_z": true,
+      "use_obs_model": true
+    },
+    {
+      "condition": "oracle_z",
+      "run_index": 4,
+      "file": "oracle_z_run4.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": [
+        48000
+      ],
+      "gamma_H2": 3.0,
+      "provide_z": true,
+      "use_obs_model": true
+    },
+    {
+      "condition": "blind_z",
+      "run_index": 0,
+      "file": "blind_z_run0.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": null,
+      "gamma_H2": 3.0,
+      "provide_z": false,
+      "use_obs_model": true
+    },
+    {
+      "condition": "blind_z",
+      "run_index": 1,
+      "file": "blind_z_run1.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": null,
+      "gamma_H2": 3.0,
+      "provide_z": false,
+      "use_obs_model": true
+    },
+    {
+      "condition": "blind_z",
+      "run_index": 2,
+      "file": "blind_z_run2.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": null,
+      "gamma_H2": 3.0,
+      "provide_z": false,
+      "use_obs_model": true
+    },
+    {
+      "condition": "blind_z",
+      "run_index": 3,
+      "file": "blind_z_run3.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": null,
+      "gamma_H2": 3.0,
+      "provide_z": false,
+      "use_obs_model": true
+    },
+    {
+      "condition": "blind_z",
+      "run_index": 4,
+      "file": "blind_z_run4.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": null,
+      "gamma_H2": 3.0,
+      "provide_z": false,
+      "use_obs_model": true
+    },
+    {
+      "condition": "neural_state",
+      "run_index": 0,
+      "file": "neural_state_run0.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": [
+        48000
+      ],
+      "gamma_H2": 3.0,
+      "provide_z": true,
+      "use_obs_model": false
+    },
+    {
+      "condition": "neural_state",
+      "run_index": 1,
+      "file": "neural_state_run1.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": [
+        48000
+      ],
+      "gamma_H2": 3.0,
+      "provide_z": true,
+      "use_obs_model": false
+    },
+    {
+      "condition": "neural_state",
+      "run_index": 2,
+      "file": "neural_state_run2.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": [
+        48000
+      ],
+      "gamma_H2": 3.0,
+      "provide_z": true,
+      "use_obs_model": false
+    },
+    {
+      "condition": "neural_state",
+      "run_index": 3,
+      "file": "neural_state_run3.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": [
+        48000
+      ],
+      "gamma_H2": 3.0,
+      "provide_z": true,
+      "use_obs_model": false
+    },
+    {
+      "condition": "neural_state",
+      "run_index": 4,
+      "file": "neural_state_run4.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": [
+        48000
+      ],
+      "gamma_H2": 3.0,
+      "provide_z": true,
+      "use_obs_model": false
+    },
+    {
+      "condition": "weak_z",
+      "run_index": 0,
+      "file": "weak_z_run0.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": [
+        48000
+      ],
+      "gamma_H2": 1.5,
+      "provide_z": true,
+      "use_obs_model": true
+    },
+    {
+      "condition": "weak_z",
+      "run_index": 1,
+      "file": "weak_z_run1.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": [
+        48000
+      ],
+      "gamma_H2": 1.5,
+      "provide_z": true,
+      "use_obs_model": true
+    },
+    {
+      "condition": "weak_z",
+      "run_index": 2,
+      "file": "weak_z_run2.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": [
+        48000
+      ],
+      "gamma_H2": 1.5,
+      "provide_z": true,
+      "use_obs_model": true
+    },
+    {
+      "condition": "weak_z",
+      "run_index": 3,
+      "file": "weak_z_run3.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": [
+        48000
+      ],
+      "gamma_H2": 1.5,
+      "provide_z": true,
+      "use_obs_model": true
+    },
+    {
+      "condition": "weak_z",
+      "run_index": 4,
+      "file": "weak_z_run4.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": [
+        48000
+      ],
+      "gamma_H2": 1.5,
+      "provide_z": true,
+      "use_obs_model": true
+    },
+    {
+      "condition": "strong_z",
+      "run_index": 0,
+      "file": "strong_z_run0.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": [
+        48000
+      ],
+      "gamma_H2": 6.0,
+      "provide_z": true,
+      "use_obs_model": true
+    },
+    {
+      "condition": "strong_z",
+      "run_index": 1,
+      "file": "strong_z_run1.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": [
+        48000
+      ],
+      "gamma_H2": 6.0,
+      "provide_z": true,
+      "use_obs_model": true
+    },
+    {
+      "condition": "strong_z",
+      "run_index": 2,
+      "file": "strong_z_run2.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": [
+        48000
+      ],
+      "gamma_H2": 6.0,
+      "provide_z": true,
+      "use_obs_model": true
+    },
+    {
+      "condition": "strong_z",
+      "run_index": 3,
+      "file": "strong_z_run3.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": [
+        48000
+      ],
+      "gamma_H2": 6.0,
+      "provide_z": true,
+      "use_obs_model": true
+    },
+    {
+      "condition": "strong_z",
+      "run_index": 4,
+      "file": "strong_z_run4.npz",
+      "y_shape": [
+        48000,
+        100
+      ],
+      "z_shape": [
+        48000
+      ],
+      "gamma_H2": 6.0,
+      "provide_z": true,
+      "use_obs_model": true
+    }
+  ],
+  "n_artifacts": 25
+}

@@ -1,0 +1,23 @@
+{
+  "oracle_master_hash": "79c98d032742ba36333c7947a1becf23ec2bbdaa52ab1ee88f5bbc3f9f416a14",
+  "dataset_master_hash": "f4db4ca61e268578781841d5fc204589f10d0c1f55aeac784e7085d636888880",
+  "framework_output_hash": "e85e17b843d31b96a7bba0738747b7f4ed7c1b51e1bee4d628f33197b5b16aef",
+  "execution_time_s": 5.765565872192383,
+  "output_shape": [
+    150,
+    150
+  ],
+  "output_stats": {
+    "min": -1.2074723215161283,
+    "max": 1.9864085493234214,
+    "mean_abs": 0.027660063797388355,
+    "std": 0.05449869829231588
+  },
+  "lc_checks": {
+    "LC1_no_ground_truth_import": true,
+    "LC2_inputs_only_xA_xB_Aobs": true,
+    "LC3_no_z_column": true,
+    "one_shot": true,
+    "no_tuning": true
+  }
+}
