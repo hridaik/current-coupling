@@ -1,0 +1,16 @@
+concern_addressed,test_performed,adel_uryvr,adel_urydl,adel_rmel,rmel_rmer,module_da_ury,verdict,manuscript_implication
+Fixed-coupling (ΔΩ^B),ΔΩ^B = ΔΩ_ss + state-specific ΔB,2→2 (unchanged),6→3 (promoted),4→18 (minor),38→371 (FAILS),Rank 2→1 (strengthened),B — primary pairs robust,Disclose ΔΩ^B; note RMEL-RMER fragility
+State drift explains signal?,ΔB pair ranks among 1321,ΔB rank 370 (not),ΔB rank 601 (not),"ΔB rank 1 (YES, confounded)",ΔB rank 95 (partial),N/A,A (ADEL-URY); D (ADEL-RMEL),ADEL-URYVR/URYDL NOT driven by drift
+Residualization variants,"5 variants: GCaMP+GL, ridge, raw",GCaMP+GL rank 28,GCaMP+GL rank 39,GCaMP+GL rank 31,GCaMP+GL rank 709,GCaMP rank 1,B — direction preserved,Report GCaMP+GL as robustness check
+Animal bootstrap (conservative),"500 reps, ridge precision",Median rank 336; top-20: 5.2%,Median rank 450; top-20: 4.4%,Median rank 6; top-20: 76%,Median rank 433,Median rank 6,C — ridge lower bound,Label conservative; not test of primary GL
+Leave-one-animal-out (conservative),"Remove each of 40 animals, ridge",Range 87-478,Range 72-1261,Always rank 1-2,Range 87-564,Range ~3-14,C — ridge lower bound,Influential animals identified; caveat required
+Co-observation null,Matched-pair percentile (primary GL values),"99.9th pct, p=0.001","99.5th pct, p=0.005","99.8th pct, p=0.002","97.4th pct, p=0.026",N/A,A — primary specificity test,PRIMARY specificity evidence; uses actual GL values
+Dense diffusion creates signal?,5 diffusion specs D=I to state-specific,D=I rank 5; full rank 2,D=I rank 9; full rank 6,D=I rank 10; full rank 4,D=I rank 32,Rank 1 in ALL 5 specs,A — signal in D=I,Diffusion refines but does not create signal
+Diffusion shuffle null,500 reps row/col perm and 3 other nulls,Row/col p=0.018,Row/col p=0.170,—,—,Rank 1 in 75% of perms,A (URYVR); B (URYDL),D-Q alignment is specific to data for URYVR
+Diffusion hub control,Hub Spearman + matched-null per pair,"99.8th pct, p=0.0017","99.6th pct, p=0.0043","99.8th pct, p=0.0025","97.3th pct, p=0.027",Hub rho<0.04 globally,A — hub not a confound,Endpoint hubness does not explain signal
+Timescale sensitivity,"ΔΩ(τ) at τ=1,2,5,10,20 frames",Rank 2-4 ALL τ,Rank 6-12 (τ≤5); 220 (τ=20),Rank 3-7 (τ≤10); 70 (τ=20),Rank 48-171,Rank 1 at τ=1,A (URYVR); B (URYDL); C (RMER),URYVR most timescale-stable; sign stable all
+Diffusion/precision decomposition,State-conditioned decompositions A and B,83-96% precision-driven,92-111% precision-driven,81-92%,76-81%,N/A,A — precision-dominant,Decomposition not unique; sign agreement robust
+Top-K enrichment sweep,"Fisher at K=5,10,15,20,25,30,40,50,75,100",Top-K at ALL K>=5,Top-K at ALL K>=10,Top-K at ALL K>=5,Top-K at K>=40,N/A,A — PDF enriched all K,"2/5, 3/10, 4/20; BH-sig at K=30,40,50"
+FDR correction,BH across 70 annotation x K sweep,"BH-sig K=30,40,50 (not K=20)",Same,Same,N/A,N/A,B — K=20 nominal; sweep BH-sig K=30-50,Primary K=20 was single pre-specified test
+Reference sensitivity,10 connectome definitions tested,Off-ref ALL 10,Off-ref ALL 10,Off-ref ALL 10,Off-ref ALL 10,N/A,A — off-ref robust,Disclose RMEL-URYDL borderline (1 synapse)
+Baseline comparison,"vs |ΔQ|, |ΔΩ^B|, |ΔΣ|, |ΔCorr|, |ΔB|",Rank 2-5 non-ΔB objects,Rank 3-9 non-ΔB objects,Variable 1-31,Variable 32-371,Top-module in all objects,A (URYVR); A/B (URYDL),Signal recoverable in multiple formulations

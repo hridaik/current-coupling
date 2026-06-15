@@ -1,0 +1,6 @@
+pair,c4_rank,do_ss,in_top5,in_top10,in_top15,in_top20,in_top25,in_top30,in_top40,in_top50,in_top75,in_top100
+ADEL–URYVR,2,-0.0688,True,True,True,True,True,True,True,True,True,True
+ADEL–URYDL,6,-0.04978,False,True,True,True,True,True,True,True,True,True
+ADEL–RMEL,4,-0.0549,True,True,True,True,True,True,True,True,True,True
+RMEL–URYDL,23,-0.031,False,False,False,False,True,True,True,True,True,True
+RMEL–RMER,38,-0.02545,False,False,False,False,False,False,True,True,True,True

@@ -1,0 +1,6 @@
+variant,DA_URY_rank,top20_overlap_primary,PDF_top20,spearman_primary,ADEL_URYVR_rank,ADEL_URYVR_val,ADEL_URYDL_rank,ADEL_URYDL_val,ADEL_RMEL_rank,ADEL_RMEL_val,RMEL_URYDL_rank,RMEL_URYDL_val,RMEL_RMER_rank,RMEL_RMER_val
+Identity (D=I),1,15,4,0.3311,,,,,,,,,,
+Pooled diagonal,1,15,4,0.3313,,,,,,,,,,
+State-specific diagonal,1,16,3,0.3314,,,,,,,,,,
+Pooled full,1,14,5,0.2441,,,,,,,,,,
+State-specific full (primary),1,20,4,1.0,,,,,,,,,,

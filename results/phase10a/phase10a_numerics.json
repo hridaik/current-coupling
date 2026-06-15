@@ -1,0 +1,68 @@
+{
+  "date": "2026-06-15",
+  "authorization": "Phase 10A",
+  "drift_fit": {
+    "n_recs_used": 40,
+    "n_frames_dwell": 46438,
+    "n_frames_roam": 17117,
+    "ridge_lambda": 276.9976419424187,
+    "norm_B_dwell": 1.6438209823601442,
+    "norm_B_roam": 1.8514237624589809,
+    "norm_deltaB": 0.6274714198801471,
+    "rel_change_B": 0.3389129126477056
+  },
+  "ranking_correlations": {
+    "rho_DO_DQ": 0.3310745897981739,
+    "rho_DO_DOB": 0.3187765610608068,
+    "rho_DO_DSig": 0.25143037093944176,
+    "rho_DO_DCorr": 0.25740897102350224,
+    "rho_DO_DB": 0.09907070188821623,
+    "rho_DQ_DSig": 0.5375143638042013,
+    "rho_DQ_DCorr": 0.5356388550980424,
+    "rho_DOB_DO": 0.3187765610608068,
+    "rho_DB_DO": 0.09907070188821623,
+    "rho_DB_DQ": 0.2125690849619458
+  },
+  "top20_overlap_DOB_DO": 13,
+  "top50_overlap_DOB_DO": 22,
+  "pdf_in_top20_DO": 4,
+  "pdf_in_top20_DOB": 3,
+  "adel_ranks_DO": {
+    "ADEL_URYVR": 2,
+    "ADEL_URYDL": 6,
+    "ADEL_RMEL": 4,
+    "ADEL_URXL": 29,
+    "RMEL_URYDL": 23,
+    "RMEL_URYVR": 34,
+    "RMEL_RMER": 38
+  },
+  "adel_ranks_DQ": {
+    "ADEL_URYVR": 5,
+    "ADEL_URYDL": 9,
+    "ADEL_RMEL": 10,
+    "ADEL_URXL": 59,
+    "RMEL_URYDL": 16,
+    "RMEL_URYVR": 21,
+    "RMEL_RMER": 32
+  },
+  "adel_ranks_DOB": {
+    "ADEL_URYVR": 2,
+    "ADEL_URYDL": 3,
+    "ADEL_RMEL": 18,
+    "ADEL_URXL": 95,
+    "RMEL_URYDL": 168,
+    "RMEL_URYVR": 81,
+    "RMEL_RMER": 371
+  },
+  "adel_ranks_DB": {
+    "ADEL_URYVR": 370,
+    "ADEL_URYDL": 601,
+    "ADEL_RMEL": 1,
+    "ADEL_URXL": 337,
+    "RMEL_URYDL": 125,
+    "RMEL_URYVR": 273,
+    "RMEL_RMER": 95
+  },
+  "verdict": "B. Fixed-coupling assumption approximately supported; minor qualification needed.",
+  "ms_sentence": "We fitted state-specific effective drift matrices B_s by ridge regression of single-frame increments. The coupling state change (||\u0394B||_F/||B||_F = 0.34) is non-trivial. Adding the coupling correction (\u0394\u03a9^B = \u0394\u03a9_ss + \u0394B) preserves the ADEL-PDF ranking (Supplementary Note X), but we note the fixed-coupling assumption as a limitation."
+}

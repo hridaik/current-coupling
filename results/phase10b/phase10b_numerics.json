@@ -1,0 +1,215 @@
+{
+  "date": "2026-06-15",
+  "authorization": "Phase 10B",
+  "n_animals": 40,
+  "n_boot": 500,
+  "b1_rows": [
+    {
+      "variant": "CePNEM+GL (primary)",
+      "ADEL_URYVR_rank": 2,
+      "ADEL_URYDL_rank": 6,
+      "ADEL_RMEL_rank": 4,
+      "RMEL_URYDL_rank": 23,
+      "RMEL_RMER_rank": 38,
+      "DA_URY_module_rank": 2,
+      "PDF_top20": 4,
+      "top20_overlap_primary": 20,
+      "spearman_primary": 0.9999999999999999
+    },
+    {
+      "variant": "GCaMP+GL (Phase2)",
+      "ADEL_URYVR_rank": 28,
+      "ADEL_URYDL_rank": 39,
+      "ADEL_RMEL_rank": 31,
+      "RMEL_URYDL_rank": 51,
+      "RMEL_RMER_rank": 709,
+      "DA_URY_module_rank": 1,
+      "PDF_top20": 1,
+      "top20_overlap_primary": 2,
+      "spearman_primary": 0.3283152425650373
+    },
+    {
+      "variant": "CePNEM+Ridge (estimator ctrl)",
+      "ADEL_URYVR_rank": 165,
+      "ADEL_URYDL_rank": 293,
+      "ADEL_RMEL_rank": 1,
+      "RMEL_URYDL_rank": 126,
+      "RMEL_RMER_rank": 136,
+      "DA_URY_module_rank": 6,
+      "PDF_top20": 1,
+      "top20_overlap_primary": 5,
+      "spearman_primary": 0.11191244739323546
+    },
+    {
+      "variant": "v-reg GCaMP+Ridge",
+      "ADEL_URYVR_rank": 1106,
+      "ADEL_URYDL_rank": 35,
+      "ADEL_RMEL_rank": 23,
+      "RMEL_URYDL_rank": 704,
+      "RMEL_RMER_rank": 1139,
+      "DA_URY_module_rank": 10,
+      "PDF_top20": 0,
+      "top20_overlap_primary": 1,
+      "spearman_primary": 0.06190258793579296
+    },
+    {
+      "variant": "Raw GCaMP+Ridge",
+      "ADEL_URYVR_rank": 1289,
+      "ADEL_URYDL_rank": 37,
+      "ADEL_RMEL_rank": 30,
+      "RMEL_URYDL_rank": 656,
+      "RMEL_RMER_rank": 962,
+      "DA_URY_module_rank": 12,
+      "PDF_top20": 0,
+      "top20_overlap_primary": 0,
+      "spearman_primary": 0.06607721443986778
+    }
+  ],
+  "b2_pair_summaries": {
+    "ADEL_URYVR": {
+      "median": 336.0,
+      "p5": 17.950000000000003,
+      "p95": 1211.5999999999995,
+      "top10_freq": 0.02,
+      "top20_freq": 0.052,
+      "top50_freq": 0.118,
+      "n": 500
+    },
+    "ADEL_URYDL": {
+      "median": 450.5,
+      "p5": 23.950000000000003,
+      "p95": 1230.1499999999999,
+      "top10_freq": 0.026,
+      "top20_freq": 0.044,
+      "top50_freq": 0.098,
+      "n": 500
+    },
+    "ADEL_RMEL": {
+      "median": 6.0,
+      "p5": 1.0,
+      "p95": 120.49999999999955,
+      "top10_freq": 0.614,
+      "top20_freq": 0.764,
+      "top50_freq": 0.878,
+      "n": 500
+    },
+    "RMEL_URYDL": {
+      "median": 271.0,
+      "p5": 26.950000000000003,
+      "p95": 1138.7499999999993,
+      "top10_freq": 0.016,
+      "top20_freq": 0.04,
+      "top50_freq": 0.094,
+      "n": 500
+    },
+    "RMEL_RMER": {
+      "median": 433.0,
+      "p5": 48.900000000000006,
+      "p95": 1215.6499999999994,
+      "top10_freq": 0.0,
+      "top20_freq": 0.02,
+      "top50_freq": 0.054,
+      "n": 500
+    }
+  },
+  "b3_pair_loao": {
+    "ADEL_URYVR": {
+      "min": 87,
+      "max": 478,
+      "median": 165.0,
+      "always_top20": false,
+      "always_top50": false,
+      "worst_animal": "2023-03-07-01"
+    },
+    "ADEL_URYDL": {
+      "min": 72,
+      "max": 1261,
+      "median": 296.5,
+      "always_top20": false,
+      "always_top50": false,
+      "worst_animal": "2023-01-17-14"
+    },
+    "ADEL_RMEL": {
+      "min": 1,
+      "max": 2,
+      "median": 1.0,
+      "always_top20": true,
+      "always_top50": true,
+      "worst_animal": "2023-01-10-14"
+    },
+    "RMEL_URYDL": {
+      "min": 59,
+      "max": 508,
+      "median": 129.0,
+      "always_top20": false,
+      "always_top50": false,
+      "worst_animal": "2023-01-10-14"
+    },
+    "RMEL_RMER": {
+      "min": 87,
+      "max": 564,
+      "median": 143.0,
+      "always_top20": false,
+      "always_top50": false,
+      "worst_animal": "2023-01-17-14"
+    }
+  },
+  "b4_null_results": {
+    "ADEL_URYVR": {
+      "n_coobs": 28,
+      "total_frames": 44790.0,
+      "abs_DO_ss": 0.06880039698078091,
+      "rank": 2,
+      "n_matched": 981,
+      "matched_median": 0.0053034281501905915,
+      "empirical_pct": 0.9989806320081549,
+      "p_matched": 0.0010193679918450993
+    },
+    "ADEL_URYDL": {
+      "n_coobs": 29,
+      "total_frames": 46390.0,
+      "abs_DO_ss": 0.04978273426434956,
+      "rank": 6,
+      "n_matched": 1092,
+      "matched_median": 0.005320034215215104,
+      "empirical_pct": 0.9954212454212454,
+      "p_matched": 0.0045787545787545625
+    },
+    "ADEL_RMEL": {
+      "n_coobs": 30,
+      "total_frames": 47989.0,
+      "abs_DO_ss": 0.054900309943477166,
+      "rank": 4,
+      "n_matched": 1241,
+      "matched_median": 0.00522163193121539,
+      "empirical_pct": 0.9975825946817083,
+      "p_matched": 0.00241740531829171
+    },
+    "RMEL_URYDL": {
+      "n_coobs": 30,
+      "total_frames": 47989.0,
+      "abs_DO_ss": 0.030996388106636855,
+      "rank": 23,
+      "n_matched": 1241,
+      "matched_median": 0.00522163193121539,
+      "empirical_pct": 0.9822723609991942,
+      "p_matched": 0.01772763900080576
+    },
+    "RMEL_RMER": {
+      "n_coobs": 34,
+      "total_frames": 54388.0,
+      "abs_DO_ss": 0.025446968705615892,
+      "rank": 38,
+      "n_matched": 1230,
+      "matched_median": 0.00502388976006532,
+      "empirical_pct": 0.9739837398373984,
+      "p_matched": 0.026016260162601612
+    }
+  },
+  "grades": {
+    "ADEL_URYVR": "D \u2014 Not robust",
+    "ADEL_URYDL": "D \u2014 Not robust",
+    "DA_URY_module": "B \u2014 Moderate",
+    "RMEL_RMER": "C \u2014 Weak robustness"
+  }
+}

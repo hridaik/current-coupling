@@ -1,0 +1,11 @@
+reference_definition,N_C4,ADEL–URYVR,ADEL–URYDL,ADEL–RMEL,RMEL–URYDL,RMEL–RMER
+Creamer_chem_thr1,1322,off-reference,off-reference,off-reference,ON-reference,off-reference
+Creamer_chem_thr2,1401,off-reference,off-reference,off-reference,off-reference,off-reference
+Creamer_chem_thr3,1430,off-reference,off-reference,off-reference,off-reference,off-reference
+Creamer_gap_thr1,1462,off-reference,off-reference,off-reference,off-reference,off-reference
+Creamer_chem_or_gap,1282,off-reference,off-reference,off-reference,ON-reference,off-reference
+White1986_chem,1403,off-reference,off-reference,off-reference,off-reference,off-reference
+White1986_chem_elec,1375,off-reference,off-reference,off-reference,off-reference,off-reference
+Witvliet2020_chem,1410,off-reference,off-reference,off-reference,off-reference,off-reference
+CreamerLDS_nonzero,1327,off-reference,off-reference,off-reference,ON-reference,off-reference
+CreamerLDS_w05,1516,off-reference,off-reference,off-reference,off-reference,off-reference

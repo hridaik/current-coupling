@@ -1,0 +1,21 @@
+null_type,pair,primary_rank,null_median,null_p5,null_p95,p_value
+Diagonal shuffle,ADEL–URYVR,2,5,2.0,7.0,0.052
+Diagonal shuffle,ADEL–URYDL,6,11,6.0,24.0,0.06
+Diagonal shuffle,ADEL–RMEL,4,7,4.0,15.0,0.076
+Diagonal shuffle,RMEL–URYDL,23,17,9.0,32.049999999999955,0.828
+Diagonal shuffle,RMEL–RMER,38,30,17.0,53.0,0.81
+Off-diagonal shuffle,ADEL–URYVR,2,3,2.0,6.0,0.182
+Off-diagonal shuffle,ADEL–URYDL,6,5,3.0,13.0,0.64
+Off-diagonal shuffle,ADEL–RMEL,4,6,3.0,12.049999999999955,0.214
+Off-diagonal shuffle,RMEL–URYDL,23,27,11.0,131.14999999999986,0.422
+Off-diagonal shuffle,RMEL–RMER,38,99,24.0,554.7999999999993,0.14
+Row/col permutation,ADEL–URYVR,2,6,3.0,15.0,0.018
+Row/col permutation,ADEL–URYDL,6,10,5.0,29.049999999999955,0.17
+Row/col permutation,ADEL–RMEL,4,10,5.0,32.0,0.028
+Row/col permutation,RMEL–URYDL,23,18,7.0,63.0,0.638
+Row/col permutation,RMEL–RMER,38,55,17.0,277.04999999999995,0.31
+State swap,ADEL–URYVR,2,6,N/A,N/A,N/A (single comparison)
+State swap,ADEL–URYDL,6,7,N/A,N/A,N/A (single comparison)
+State swap,ADEL–RMEL,4,11,N/A,N/A,N/A (single comparison)
+State swap,RMEL–URYDL,23,21,N/A,N/A,N/A (single comparison)
+State swap,RMEL–RMER,38,142,N/A,N/A,N/A (single comparison)

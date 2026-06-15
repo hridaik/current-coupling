@@ -1,0 +1,7 @@
+item,item_type,original_rank_abs_DeltaOmega_ss,rank_abs_DeltaOmega_ss_plus_DeltaB,rank_abs_DeltaOmega_ss_plus_2DeltaB,value_DeltaOmega_ss,value_plus_DeltaB,value_plus_2DeltaB,sign_DeltaOmega_ss,sign_plus_DeltaB,sign_plus_2DeltaB,sign_changes_under_either_correction,DeltaB_rank_abs,module_n_pairs,aggregation_note
+ADEL-URYVR,pair,2,2,2,-0.0688003969808,-0.0573930858619,-0.0530438207799,negative,negative,negative,no,370,,single Class-4 pair value
+ADEL-URYDL,pair,6,3,10,-0.0497827342643,-0.0515269142704,-0.0392271397016,negative,negative,negative,no,601,,single Class-4 pair value
+ADEL-RMEL,pair,4,18,837,-0.0549003099435,-0.0291836039003,-0.00691635153721,negative,negative,negative,no,1,,single Class-4 pair value
+RMEL-URYDL,pair,23,168,836,-0.0309963881066,-0.0157451322879,-0.00692568730831,negative,negative,negative,no,125,,single Class-4 pair value
+RMEL-RMER,pair,38,371,1267,-0.0254469687056,-0.0108801581295,0.000831519722702,negative,negative,positive,yes,95,,single Class-4 pair value
+DA_mech<->URY_URX,module,2,1,1,-0.0177530790817,-0.0155734872377,-0.0123290048295,negative,negative,negative,no,,12,rank = Phase10A five-block mean |score| over Class-4 member pairs; sign = signed mean over same member pairs
